@@ -1,0 +1,1 @@
+<div *ngIf="user" class="btn-link" [class.done]="state === 'done'" [class.busy]="state === 'busy'" (click)="onCopy($event)" [title]="words['guides']?.['btn-link']?.[lang.slug]"><span></span></div>

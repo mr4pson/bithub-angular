@@ -1,0 +1,187 @@
+.task {
+    background-color: var(--color-bg-block3); border:1px var(--color-border2) solid; border-radius: 15px; transition: 0.3s;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: var(--color-bg-block4);
+            .task-head {.th-right {.th-indicator {color: var(--color-txt2);}}}
+        }
+    }
+    &.active{
+        &:hover {background-color: var(--color-bg-block3);}
+        .task-head {
+            .th-right {
+                .th-indicator {
+                    color: var(--color-txt1);
+                    span::before {transform: scaleY(-1);}
+                }
+            }
+        }
+    }
+    .task-head {
+        @media (min-width:0) {padding: 0 15px; height: 50px;}
+        @media (min-width:1000px) {padding: 0 30px; height: 70px;}
+        display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+        .th-left {
+            overflow: hidden; margin-right: 15px; display: flex; align-items: center;
+            .th-completed {
+                @media (min-width:0) {margin-right: 10px; width: 20px; min-width: 20px; height: 20px;}
+                @media (min-width:1000px) {margin-right: 15px; width: 24px; min-width: 24px; height: 24px;}
+                border-radius: 12px; display: flex; justify-content: center; align-items: center; border: 1px var(--color-border2) solid; position: relative; cursor: pointer; user-select: none;
+                &::after {
+                    @media (min-width:0) {width: 20px; height: 20px;}
+                    @media (min-width:1000px) {width: 24px; height: 24px;}
+                    display: block; position: absolute; left: -1px; top:-1px; border-radius: 12px; background: var(--gradient-hilite); transition: 0.3s; opacity: 0; content: "";
+                }
+                span {
+                    @media (min-width:0) {width: 20px; height: 20px;}
+                    @media (min-width:1000px) {width: 24px; height: 24px;}
+                    position: absolute; z-index: 2; left: -1px; top:-1px; display: flex; justify-content: center; align-items: center;
+                }
+                &.active {
+                    &::after {opacity: 1;}
+                    span::before {font-family: "fa-solid"; content: "\f00c"; color: var(--color-btn1);}
+                }
+                &.busy {
+                    pointer-events: none;
+                    span::before {font-family: "fa-light"; content: "\f3f4"; animation: rotation 1s linear 0s infinite;}
+                }
+            }
+            .th-name {
+                overflow: hidden;
+                .thn-content {
+                    display: flex; gap: 5px; align-items: center;
+                    .thn-text {
+                        @media (min-width:0) {font-size: 14px;}
+                        @media (min-width:1000px) {font-size: 18px;}
+                        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                        .thn-extra {}
+                        .thn-main {color: var(--color-txt2); font-weight: 600; }
+                    }
+                    .thn-yt {
+                        img {
+                            @media (min-width:0) {width: 22px;}
+                            @media (min-width:1000px) {width: 24px;}
+                            display: block;
+                        }
+                    }
+                }
+                .thn-until {
+                    @media (min-width:0) {font-size: 10px;}
+                    @media (min-width:1000px) {font-size: 12px;}
+                    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                }
+            }
+        }
+        .th-right {
+            display: flex;
+            .th-link {
+                @media (min-width:0) {font-size: 14px;}
+                @media (min-width:1000px) {font-size: 18px;}
+                color: var(--color-txt1); user-select: none; margin-right: 15px; transition: 0.3s;
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                span::before {font-family: "fa-light"; content: "\f0c1";}
+                &.done {
+                    color: var(--color-txt2); pointer-events: none;
+                    span::before {content: "\f00c";}
+                }
+            }
+            .th-indicator {
+                @media (min-width:0) {font-size: 14px;}
+                @media (min-width:1000px) {font-size: 18px;}
+                color: var(--color-txt1); user-select: none;
+                span::before {font-family: "fa-light"; content: "\f078"; transition: 0.3s; display: inline-block;}
+                &.busy {span::before {content: "\f3f4"; animation: rotation 1s linear 0s infinite;}}
+            }
+        }
+    }
+    .task-main {
+        height: 0; overflow: hidden; transition: 0.3s;
+        .task-params {
+            @media (min-width:0) {padding: 15px; display: block;}
+            @media (min-width:1000px) {padding: 30px; display: flex;}
+            justify-content: space-between;
+            .tp-left {
+                @media (min-width:0) {margin-bottom: 5px;}
+                @media (min-width:1000px) {margin-bottom: 0;}
+                .tp-until {
+                    @media (min-width:0) {height: 30px; border-radius: 10px; padding: 0 10px;}
+                    @media (min-width:1000px) {height: 40px; border-radius: 15px; padding: 0 15px;}
+                    background-color: var(--color-input-bg2); color: var(--color-txt2); display: inline-flex; align-items: center;
+                    span {
+                        @media (min-width:0) {font-size: 12px;}
+                        @media (min-width:1000px) {font-size: 16px;}
+                        white-space: nowrap; text-transform: capitalize;
+                        &::before {font-family: "fa-light"; content: "\f073"; display: inline-block; margin-right: 5px;}
+                    }
+                }
+            }
+            .tp-right {
+                @media (min-width:0) {gap: 5px;}
+                @media (min-width:1000px) {gap: 15px;}
+                display: flex;
+                .tp-time {
+                    @media (min-width:0) {height: 30px; border-radius: 10px; padding: 0 10px;}
+                    @media (min-width:1000px) {height: 40px; border-radius: 15px; padding: 0 15px;}
+                    background-color: var(--color-input-bg2); color: var(--color-txt2); display: flex; align-items: center;
+                    span {
+                        @media (min-width:0) {font-size: 12px;}
+                        @media (min-width:1000px) {font-size: 16px;}
+                        white-space: nowrap;
+                        &::before {font-family: "fa-light"; content: "\f017"; display: inline-block; margin-right: 5px;}
+                    }
+                }
+                .tp-price {
+                    @media (min-width:0) {height: 30px; border-radius: 10px; padding: 0 10px;}
+                    @media (min-width:1000px) {height: 40px; border-radius: 15px; padding: 0 15px;}
+                    background-color: var(--color-input-bg2); color: var(--color-alert1); display: flex; align-items: center; text-transform: uppercase;
+                    span {
+                        @media (min-width:0) {font-size: 12px;}
+                        @media (min-width:1000px) {font-size: 16px;}
+                        white-space: nowrap; display: inline-flex; align-items: center; font-weight: 600; line-height: 16px;
+                        &::before {font-family: "fa-light"; content: "\f056"; margin-inline-end: 5px;}
+                        &.free {
+                            color: var(--color-txt2);
+                            &::before {display: none;}
+                        }
+                    }
+                }
+            }
+        }
+        .task-content {
+            @media (min-width:0) {padding: 0 15px 15px 15px;}
+            @media (min-width:1000px) {padding: 0 30px 30px 30px;}
+            img {
+                @media (min-width:0) {max-width: 100%; width: 100%;}
+                @media (min-width:1000px) {max-width: 700px; width: auto;}
+                margin: 0 auto; display: block;
+            }
+            iframe {
+                @media (min-width:0) {width: 100%;}
+                @media (min-width:1000px) {width: 700px;}
+                margin: 0 auto; display: block; aspect-ratio: 16 / 9;
+            }
+        }
+        .task-completed {
+            @media (min-width:0) {padding-bottom: 15px;}
+            @media (min-width:1000px) {padding-bottom: 30px;}
+            display: flex; justify-content: center;
+            .tc-element {
+                display: flex; align-items: center; user-select: none;
+                .tc-btn {
+                    width: 30px; min-width: 30px; height: 30px; margin-right: 15px; border-radius: 15px; border: 1px var(--color-border2) solid; display: flex; justify-content: center; align-items: center; position: relative; cursor: pointer; user-select: none;
+                    &::after {display: block; position: absolute; left: -1px; top:-1px; width: 30px; height: 30px; border-radius: 15px; background: var(--gradient-hilite); transition: 0.3s; opacity: 0; content: "";}
+                    span {position: absolute; z-index: 2; left: -1px; top:-1px; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; font-size: 16px;}
+                    &.active {
+                        &::after {opacity: 1;}
+                        span::before {font-family: "fa-solid"; content: "\f00c"; color: var(--color-btn1);}
+                    }
+                    &.busy {
+                        pointer-events: none;
+                        span::before {font-family: "fa-light"; content: "\f3f4"; animation: rotation 1s linear 0s infinite;}
+                    }
+                }
+                .tc-title {}
+            }
+        }
+    }
+}

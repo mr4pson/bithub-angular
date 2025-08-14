@@ -1,0 +1,111 @@
+<ng-container *ngIf="drops === null"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+<ng-container *ngIf="drops !== null">
+    <div class="drops">
+        <ng-container *ngIf="!drops.length"><span>{{words['common']?.['empty']?.[lang.slug]}}</span></ng-container>
+        <ng-container *ngIf="drops.length">
+            <div class="d-items" [class.busy]="loading">
+                <div class="di-desktop only-desktop-block">
+                    <div class="datatable">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>{{words['drops']?.['project']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['spendings']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['drop']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['dropscore']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['tasks']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['fundraising']?.[lang.slug]}}</th>
+                                <th>{{words['drops']?.['date']?.[lang.slug]}}</th>
+                            </tr>
+                            <tr *ngFor="let d of drops">
+                                <td>
+                                    <a *ngIf="d.link[lang.slug]" [href]="d.link[lang.slug]" target="_blank"><img class="did-img" src="/images/drops/{{d.img}}"></a>
+                                    <img *ngIf="!d.link[lang.slug]" class="did-img" src="/images/drops/{{d.img}}">
+                                </td>
+                                <td>
+                                    <div class="did-value">
+                                        <strong *ngIf="d.link[lang.slug]"><a [href]="d.link[lang.slug]" target="_blank">{{d.name}}</a></strong>
+                                        <strong *ngIf="!d.link[lang.slug]">{{d.name}}</strong>
+                                    </div>
+                                    <div class="did-value">{{words['drops']?.['cat']?.[lang.slug]}}: {{d.cat}}</div>
+                                </td>
+                                <td>
+                                    <div class="did-value">{{words['drops']?.['money']?.[lang.slug]}}: {{d.spending_money}}$</div>
+                                    <div class="did-value">{{words['drops']?.['time']?.[lang.slug]}}: {{d.spending_time}} {{words['drops']?.['min']?.[lang.slug]}}</div>
+                                    <div class="did-value">{{words['drops']?.['term']?.[lang.slug]}}: {{d.term}} {{words['drops']?.['mon']?.[lang.slug]}}</div>
+                                </td>
+                                <td><div class="did-value"><strong>{{d.drop}}</strong></div></td>
+                                <td>
+                                    <span *ngIf="d.early">{{words['drops']?.['early']?.[lang.slug]}}</span>
+                                    <div *ngIf="!d.early" class="did-score"><score-scale [value]="d.score" /></div>
+                                </td>
+                                <td>{{d.tasks[lang.slug]}}</td>
+                                <td>
+                                    <div class="did-txt">{{d.fundrising}}</div>
+                                    <div *ngIf="d.invest[lang.slug]" class="did-value">{{words['drops']?.['invest']?.[lang.slug]}}: <strong>{{d.invest[lang.slug]}}</strong></div>
+                                </td>
+                                <td><div class="did-value">{{d.date[lang.slug]}}</div></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="di-mobile only-mobile-block">
+                    <div class="datagrid">
+                        <div *ngFor="let d of drops" class="dg-item">
+                            <div class="dgi-params">
+                                <div class="dgi-param">
+                                    <a *ngIf="d.link[lang.slug]" [href]="d.link[lang.slug]" target="_blank"><img class="dim-img" src="/images/drops/{{d.img}}"></a>
+                                    <img *ngIf="!d.link[lang.slug]" class="dim-img" src="/images/drops/{{d.img}}">
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['project']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">
+                                        <a *ngIf="d.link[lang.slug]" [href]="d.link[lang.slug]" target="_blank">{{d.name}}</a>
+                                        <span *ngIf="!d.link[lang.slug]">{{d.name}}</span>
+                                    </div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['cat']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.cat}}</div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['spendings']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{words['drops']?.['money']?.[lang.slug]}}: {{d.spending_money}}$</div>
+                                    <div class="dgi-value">{{words['drops']?.['time']?.[lang.slug]}}: {{d.spending_time}} {{words['drops']?.['min']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{words['drops']?.['term']?.[lang.slug]}}: {{d.term}} {{words['drops']?.['mon']?.[lang.slug]}}</div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['drop']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.drop}}</div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['dropscore']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">
+                                        <span *ngIf="d.early">{{words['drops']?.['early']?.[lang.slug]}}</span>
+                                        <div *ngIf="!d.early"><score-scale [value]="d.score" /></div>
+                                    </div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['tasks']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.tasks[lang.slug]}}</div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['fundraising']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.fundrising}}</div>
+                                </div>
+                                <div *ngIf="d.invest[lang.slug]" class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['invest']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.invest[lang.slug]}}</div>
+                                </div>
+                                <div class="dgi-param">
+                                    <div class="dgi-title">{{words['drops']?.['date']?.[lang.slug]}}</div>
+                                    <div class="dgi-value">{{d.date[lang.slug]}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

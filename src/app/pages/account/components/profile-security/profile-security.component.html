@@ -1,0 +1,16 @@
+<div class="security">
+    <div class="s-section">
+        <button type="button" class="btn gold" (click)="popupPasswordActive = true">
+            <span class="btn-icon pw"></span>
+            <span class="btn-text">{{words['account']?.['s-changepw']?.[lang.slug]}}</span>
+        </button>
+    </div>
+    <div class="s-section">
+        <button type="button" class="btn gold" [class.busy]="deactivating" [class.done]="deactivated" (click)="onDeactivate()">
+            <span class="btn-icon delete"></span>
+            <span class="btn-text">{{words['account']?.['s-deactivate']?.[lang.slug]}}</span>
+            <span class="btn-done"><span></span></span>
+        </button>
+    </div>
+</div>
+<popup-password [(active)]="popupPasswordActive"></popup-password>

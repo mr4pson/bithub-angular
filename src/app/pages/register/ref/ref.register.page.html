@@ -1,0 +1,4 @@
+<h1>{{words["register-ref"]?.["title"]?.[lang.slug]}}</h1>
+<div [class.loading]="found === null"><span>{{words['register-ref']?.['user-loading']?.[lang.slug]}}</span></div>
+<div *ngIf="found === true"><span>{{words['register-ref']?.['user-found']?.[lang.slug]}}</span></div>
+<div *ngIf="found === false"><span>{{words['register-ref']?.['user-notfound']?.[lang.slug]}}</span></div>

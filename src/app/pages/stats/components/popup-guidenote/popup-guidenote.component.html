@@ -1,0 +1,29 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-guidenote" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['guides']?.['guidenote-title']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['guides']?.['guidenote-title']?.[lang.slug]}}</div>
+            <div class="popup-content"> 
+                <ng-container *ngIf="guide !== null">
+                    <form class="gf" (submit)="onSave()">
+                        <div class="gf-row">
+                            <div class="gf-tawrap"><input-textarea [(value)]="content" [placeholder]="words['guides']?.['guidenote-content']?.[lang.slug]" [maxlength]="5000"></input-textarea></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-btnwrap">
+                                <button type="submit" class="btn gold compact" [class.busy]="loading" [class.done]="done">
+                                    <span class="btn-icon save"></span>
+                                    <span class="btn-text">{{words["common"]?.["save"]?.[lang.slug]}}</span>
+                                    <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </ng-container>                                
+            </div>            
+        </div>        
+    </div>
+</div>

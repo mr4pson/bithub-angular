@@ -1,0 +1,37 @@
+<div class="select-component">
+    <div class="sc-value" id="sc-value-{{unique}}" [class.active]="active" [class.disabled]="disabled" [class.error]="error" (click)="onToggle()">
+        <ng-container *ngIf="!currentValue">
+            <div class="sc-title">{{words['common']?.['empty3']?.[lang.slug]}}</div>
+        </ng-container>
+        <ng-container *ngIf="currentValue">
+            <ng-container *ngIf="!currentItem">
+                <div class="sc-title">{{words['common']?.['loading']?.[lang.slug]}}</div>
+            </ng-container>                        
+            <ng-container *ngIf="currentItem">
+                <div class="sc-imgwrap" *ngIf="currentItem.img"><img src="/images/guides/{{currentItem.img}}"></div>
+                <div class="sc-title">{{currentItem.name[lang.slug]}}</div>
+            </ng-container>            
+        </ng-container>
+    </div>    
+    <div class="sc-items" [class.active]="active" id="sc-items-{{unique}}">                
+        <div class="sci-content searchable bscroll-v" #container>
+            <form class="sci-search" (submit)="initItems()">
+                <input type="text" name="search" [(ngModel)]="search" [placeholder]="words['common']?.['search']?.[lang.slug]">
+                <button type="submit"><span></span></button>
+            </form>
+            <div class="sci-item" [class.active]="currentValue === null" (click)="onSelect(null)">
+                <div class="scii-title"><span>{{words['common']?.['empty3']?.[lang.slug]}}</span></div>
+            </div>
+            <ng-container *ngIf="items === null">
+                <div class="sci-item inactive"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></div>                
+            </ng-container>            
+            <ng-container *ngIf="items !== null">
+                <div *ngFor="let item of items" class="sci-item" [class.active]="item.id === currentValue" (click)="onSelect(item)">
+                    <div class="scii-imgwrap" *ngIf="item.img"><img src="/images/guides/{{item.img}}"></div>
+                    <div class="scii-title"><span>{{item.name[lang.slug]}}</span></div>
+                </div>
+                <div class="sci-item inactive" *ngIf="loadingMore"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></div>                              
+            </ng-container>
+        </div>        
+    </div>
+</div>

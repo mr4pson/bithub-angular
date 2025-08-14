@@ -1,0 +1,12 @@
+.bs-big {
+    height: 150px; width: 300px; position: relative;
+    .bsb-imgwrap {
+        padding-bottom: 100%; position: relative;
+        svg {transform: rotate(180deg); position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block;}
+    }
+    .bsb-value {text-align: center; font-weight: bold; font-size: 32px; position: absolute; top: 70px; left: 0; width: 100%; color: var(--color-txt2);}
+    .bsb-status {text-align: center; font-weight: 600; position: absolute; top: 110px; left: 0; width: 100%;}
+    .bsb-title {text-align: center; font-weight: 600; position: absolute; top: 130px; left: 0; width: 100%;}
+    .bsb-from {position: absolute; bottom: -10px; left: 35px; color: var(--color-txt2); font-size: 14px;}
+    .bsb-to {position: absolute; bottom: -10px; right: 35px; color: var(--color-txt2); font-size: 14px;}
+}

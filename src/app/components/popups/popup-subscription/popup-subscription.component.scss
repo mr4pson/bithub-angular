@@ -1,0 +1,70 @@
+.popup.popup-subscription {
+    @media (min-width:0) {width: 300px;}
+    @media (min-width:1000px) {width: 850px !important;}
+}
+
+.pc-subscription {
+    .pcs-description {
+        @media (min-width:0) {margin-bottom: 15px; text-align: left;}
+        @media (min-width:1000px) {margin-bottom: 30px; text-align: center;}
+    }
+    .pcs-section {
+        @media (min-width:0) {margin-bottom: 15px;}
+        @media (min-width:1000px) {margin-bottom: 30px;}
+        &:last-child {margin-bottom: 0;}
+        .pcs-title {color: var(--color-txt2); font-weight: 600; margin-bottom: 15px;}
+        .pcs-tariffs {
+            @media (min-width:0) {grid-template-columns: repeat(1, minmax(0, 1fr));}
+            @media (min-width:1000px) {grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            display: grid; gap: 15px;
+        }
+        .pcs-promocode {
+            @media (min-width:0) {width: 100%;}
+            @media (min-width:1000px) {width: 300px;}
+        }
+        .pcs-cart {
+            padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px var(--color-border2) solid;
+            .pcsc-item {
+                display: flex; justify-content: space-between; margin-bottom: 5px;
+                &:last-child {margin-bottom: 0;}
+                &.total {font-weight: bold; font-size: 18px;}
+                .pcsci-name {
+                    span {
+                        @media (min-width:0) {display: none;}
+                        @media (min-width:1000px) {display: inline;}
+                    }
+                }
+                .pcsci-value {color: var(--color-txt2);}
+            }
+        }
+        .pcs-insufficient {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            justify-content: space-between; gap: 30px;
+            .pcsi-note {
+                @media (min-width:0) {margin-bottom: 15px;}
+                @media (min-width:1000px) {margin-bottom: 0;}
+            }
+            .pcsi-btnwrap {
+                .btn {
+                    @media (min-width:0) {width: 100%;}
+                    @media (min-width:1000px) {width: auto;}
+                }
+            }
+        }
+        .pcs-pay {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            justify-content: flex-end;
+            .pcsp-btnwrap {
+                @media (min-width:0) {text-align: center;}
+                @media (min-width:1000px) {text-align: right;}
+                button {
+                    @media (min-width:0) {width: 100%;}
+                    @media (min-width:1000px) {width: 200px;}
+                }
+                .pcsp-error {font-size: 12px; color: var(--color-alert1); margin-top: 2px;}
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<div class="promocode">
+    <form (submit)="onSubmit()">
+        <input type="text" [(ngModel)]="code" name="code" [placeholder]="words['common']?.['promocode-ph']?.[lang.slug]" [disabled]="loading || applied" autocomplete="off">
+        <button type="submit" [class.busy]="loading"><span>{{applied ? words['common']?.['promocode-cancel']?.[lang.slug] : words['common']?.['promocode-apply']?.[lang.slug]}}</span></button>
+    </form>
+    <div class="p-error" *ngIf="error">{{words['errors']?.['promocode']?.[lang.slug]}}</div>
+</div>

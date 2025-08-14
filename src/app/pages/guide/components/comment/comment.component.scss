@@ -1,0 +1,26 @@
+.comment {
+    display: flex; gap: 15px;
+    .c-left {
+        @media (min-width:0) {display: none;}
+        @media (min-width:1000px) {display: block;}
+        width: 45px; min-width: 45px;
+        .c-ava {
+            width: 45px; height: 45px; border-radius: 23px; background-color: var(--color-input-ph); display: flex; justify-content: center; align-items: center; overflow: hidden;
+            img {width: 100%; height: 100%; object-fit: cover;}
+        }
+    }
+    .c-right {
+        overflow: hidden;
+        .c-name {
+            @media (min-width:0) {font-size: 16px;}
+            @media (min-width:1000px) {font-size: 18px;}
+            margin-bottom: 3px;
+            span {
+                font-weight: bold; color: var(--color-txt2); transition: 0.3s; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: inline-block; max-width: 100%;
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt1);}}
+            }
+        }
+        .c-date {font-size: 14px; margin-bottom: 10px;}
+        .c-content {word-break: break-word;}
+    }
+}

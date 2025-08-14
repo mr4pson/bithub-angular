@@ -1,0 +1,25 @@
+<div class="problem-comments">
+    <div class="pc-main tascroll-v" #container>
+        <ng-container *ngIf="!comments">
+            <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+        </ng-container>
+        <ng-container *ngIf="comments">
+            <ng-container *ngIf="!comments.length">
+                <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+            </ng-container>
+            <ng-container *ngIf="comments.length">
+                <div *ngFor="let c of comments" class="pc-commentwrap" [class.right]="c.user_id === user.id">
+                    <div class="pc-comment">
+                        <div class="pc-params">{{c.user_name}}&nbsp;&bull;&nbsp;{{c.created_at | date:'dd.MM.yyyy HH:mm'}}</div>
+                        <div class="pc-content" [innerHTML]="c.content"></div>
+                    </div>
+                </div>
+                <div class="loading" *ngIf="loadingMore"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+            </ng-container>            
+        </ng-container>
+    </div>
+    <form class="pc-dash" (submit)="onCreate()">
+        <div class="pcd-left"><textarea maxlength="1000" name="content" [(ngModel)]="newComment" (keyup)="onKeyUp($event)"></textarea></div>
+        <div class="pcd-right"><button type="submit"><span></span></button></div>
+    </form>
+</div>

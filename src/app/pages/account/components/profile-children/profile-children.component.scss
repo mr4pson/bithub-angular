@@ -1,0 +1,20 @@
+.profile-children {
+    .pc-link {
+        @media (min-width:0) {margin-bottom: 15px; display: block;}
+        @media (min-width:1000px) {margin-bottom: 30px; display: flex;}
+        justify-content: space-between; align-items: center;
+        .pcl-info {
+            @media (min-width:0) {margin: 0 0 15px 0;}
+            @media (min-width:1000px) {margin:0 15px 0 0;}
+        }
+        .pcl-btnwrap {
+            @media (min-width:0) {width: 100%; min-width: 100%;}
+            @media (min-width:1000px) {width: 200px; min-width: 200px;}
+            height: 45px;
+            button {width: 100%; height: 100%;}
+        }
+    }
+    .pc-children {
+        .pcc-title {margin-bottom: 15px; font-weight: 600; color: var(--color-txt2);}
+    }
+}

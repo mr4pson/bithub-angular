@@ -1,0 +1,27 @@
+.popup-error {
+    @media (min-width:0) {right: 15px; bottom: 15px; width: calc(100% - 30px);}
+    @media (min-width:1000px) {right: 30px; bottom: 30px; width: 300px;}
+    position: fixed; z-index: 1000; background-color: var(--color-bg-popup1); overflow: hidden; border-radius: 15px; display: none;
+    &.active {display: block;}
+    .pe-head {
+        padding: 15px; display: flex; justify-content: space-between; align-items: center; 
+        .pe-close {
+            cursor: pointer; color: var(--color-txt2); font-size: 20px; transition: 0.3s;
+            span::before {font-family: "fa-light"; content: "\f00d";}
+            @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt1);}}
+        }
+        .pe-icon {
+            color: var(--color-alert1); font-size: 20px;
+            span::before {font-family: "fa-light"; content: "\f071";}
+        }
+    }
+    .pe-main {        
+        padding-bottom: 30px;
+        .pe-txt {
+            @media (min-width:0) {max-height: 90px; }
+            @media (min-width:1000px) {max-height: 120px; }
+            font-size: 14px; overflow-y: auto; padding: 0 15px; margin-bottom: 15px;
+        }
+        .pe-btnwrap {display: flex; justify-content: center;}        
+    }    
+}

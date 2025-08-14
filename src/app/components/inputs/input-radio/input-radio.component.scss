@@ -1,0 +1,17 @@
+.ir {
+    display: inline-flex; align-items: center; vertical-align: top; user-select: none; gap: 15px;
+    .ir-btn {
+        width: 30px; min-width: 30px; height: 30px; border-radius: 15px; border: 1px var(--color-border2) solid; cursor: pointer; position: relative;
+        &::after {position: absolute; left: 0; top:0; width: 30px; height: 30px; border-radius: 15px; display: inline-flex; justify-content: center; align-items: center; color: var(--color-btn1); background: var(--gradient-hilite); transition: 0.3s; opacity: 0; font-family: "fa-solid"; content: "\f00c"; font-size: 16px;}
+        &.active::after {opacity: 1;}        
+    }
+    .ir-title {}
+    &.compact {
+        gap: 10px;
+        .ir-btn {
+            width: 20px; min-width: 20px; height: 20px;
+            &::after {width: 20px; height: 20px; font-size: 14px;}
+        }
+        .ir-title {font-size: 14px;}
+    }
+}

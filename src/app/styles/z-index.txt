@@ -1,0 +1,5 @@
+header - 10
+popup windows, mobmenu - 100
+context menus - 1000
+errors - 10000
+splash - 100000

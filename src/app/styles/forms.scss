@@ -1,0 +1,60 @@
+.gf {
+    .gf-row {
+        margin-bottom: 15px;
+        &:last-child {margin-bottom: 0;}
+    }
+    .gf-title {margin-bottom: 5px; font-size: 14px; display: flex; justify-content: space-between;}
+    .gf-head {font-size: 16px; font-weight: bold;}
+    .gf-inputwrap {
+        height: 45px;
+        input[type='text'], input[type='email'], input[type='password'], input[type='number'] {width: 100%; height: 100%;}
+        .selectwrap {width: 100%; height: 100%;}
+    }
+    .gf-tawrap {
+        height: 200px;
+        &.compact {height: 150px;}
+        &.semiwide {
+            @media (min-width:0) {width: 100%;}
+            @media (min-width:1000px) {width: 50%;}
+        }
+        textarea {width:100%; height: 100%; resize: none;}
+    }
+    .gf-btnwrap {
+        height: 45px; display: flex; justify-content: center;
+        &.end {justify-content: flex-end;}
+        &.start {justify-content: flex-start;}
+        button {
+            width: 100%; height: 100%;
+            &.compact {
+                @media (min-width:0) {width: 100%;}
+                @media (min-width:1000px) {width: 200px;}
+            }
+        }
+    }
+    .gf-error {font-size: 12px; color: var(--color-alert1); margin-top: 2px;}
+    .gf-denied {height: 45px; line-height: 45px; text-align: center; color: var(--color-alert1); font-weight: bold;}
+    .gf-linkwrap {text-align: center;}
+    .gf-2cols {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+        &.adaptive {
+            @media (min-width:0) {grid-template-columns: 1fr;}
+            @media (min-width:1000px) {grid-template-columns: 1fr 1fr;}
+        }
+        .gf-col {}
+    }
+    .gf-or {
+        display: flex; justify-content: center; overflow: hidden;
+        span {
+            position: relative;
+            &::before, &::after {display: block; content:""; position: absolute; top: calc(50% + 2px); width: 500px; height: 1px; background-color: var(--color-border2);}
+            &::before {right: calc(100% + 5px);}
+            &::after {left: calc(100% + 5px);}
+        }
+    }
+    .gf-radio {
+        .gfr-item {
+            margin-bottom: 5px;
+            &:last-child {margin-bottom: 0;}
+        }
+    }
+}

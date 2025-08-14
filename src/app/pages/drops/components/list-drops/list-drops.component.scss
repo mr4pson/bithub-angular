@@ -1,0 +1,45 @@
+.drops {
+    .d-items {
+        transition: 0.3s;
+        &.busy {opacity: 0.5; pointer-events: none;}
+
+        .di-desktop {
+            .did-img {
+                width: 30px;
+                min-width: 30px;
+                height: 30px;
+                object-fit: cover;
+                border-radius: 7px;
+            }
+
+            .did-value {
+                white-space: nowrap;
+                margin-bottom: 3px;
+                &:last-child {margin-bottom: 0;}
+                a {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px;
+                    &::before {font-family: "fa-light"; content: "\f0c1";}
+                }
+            }
+
+            .did-txt {
+                margin-bottom: 3px;
+                &:last-child {margin-bottom: 0;}
+            }
+
+            .did-score {width: 200px;}
+        }
+
+        .di-mobile {
+            .dim-img {
+                width: 40px;
+                min-width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 7px;
+            }
+        }
+    }
+}

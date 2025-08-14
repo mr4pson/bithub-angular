@@ -1,0 +1,34 @@
+<a class="guide" routerLink="/{{lang.slug}}/guide/{{guide.id}}">
+    <div class="g-hit" *ngIf="guide.hit" [title]="words['guides']?.['hit']?.[lang.slug]"><span></span></div>
+    <div class="g-top">
+        <div class="g-imgwrap" *ngIf="guide.img">
+            <img src="/images/guides/{{guide.img}}" loading="lazy" [alt]="guide.name[lang.slug]">
+        </div>
+        <div class="g-details" [class.wide]="!guide.img">
+            <div class="g-params">
+                <div class="g-time" [title]="words['guides']?.['time']?.[lang.slug]"><span>{{guide.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
+                <div class="g-price" [title]="words['guides']?.['price']?.[lang.slug]"><span [class.free]="!guide.price">{{guide.price ? '$'+guide.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
+            </div>
+            <div class="g-name">{{guide.name[lang.slug]}}<span class="g-status {{guide.status}}" [title]="words['guides']?.['status-'+guide.status]?.[lang.slug]"></span></div>
+            <div class="g-content">{{guide.contentshort[lang.slug]}}</div>
+        </div>
+    </div>
+    <div class="g-middle">
+        <div class="g-rating">
+            <div class="g-invest">
+                <div class="gi-value">${{guide.invest}} {{words['guides']?.['mln']?.[lang.slug]}}</div>
+                <div class="gi-title">{{words['guides']?.['invest']?.[lang.slug]}}</div>
+            </div>
+            <div class="g-score" [title]="words['guides']?.['bs']?.[lang.slug]">
+                <sd-small [value]="guide.bh_score" />
+            </div>
+        </div>
+        <div class="g-progress"><the-progress1 [value]="guide.progress"></the-progress1></div>
+    </div>
+    <div class="g-bottom" *ngIf="authenticated">
+        <div class="gb-link"><btn-link [guide_id]="guide.id" /></div>
+        <div class="gb-unviewed" *ngIf="guide.has_unviewed" (click)="onGetUnviewed($event)" [title]="words['guides']?.['unviewed-in-guide']?.[lang.slug]"><span></span></div>
+        <div class="gb-favorite"><btn-favorition [guide]="guide"></btn-favorition></div>
+        <div class="gb-datemarks" (click)="onEditDatemarks($event)" [title]="words['guides']?.['calendar']?.[lang.slug]"><span></span></div>
+    </div>
+</a>

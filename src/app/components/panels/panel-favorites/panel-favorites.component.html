@@ -1,0 +1,37 @@
+<div class="panel favorites" id="panel-{{unique}}" [class.active]="active">
+    <div class="panel-left" (click)="onClose()"></div>
+    <div class="panel-right">
+        <div class="panel-head">    
+            <div class="panel-title">{{words['guides']?.['favorites']?.[lang.slug]}}</div>        
+            <div class="panel-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="panel-main">
+            <div class="panel-title2">{{words['guides']?.['favorites']?.[lang.slug]}}</div>
+            <div class="panel-content">
+                <div class="pf-guides bscroll-v" #container>
+                    <ng-container *ngIf="guides === null">
+                        <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                    </ng-container>
+                    <ng-container *ngIf="guides !== null">
+                        <ng-container *ngIf="guides.length">
+                            <div *ngFor="let guide of guides" class="pf-guide">
+                                <a *ngIf="guide.img" class="pfg-img" routerLink="/{{lang.slug}}/guide/{{guide.id}}" (click)="onClose()"><img src="/images/guides/{{guide.img}}" loading="lazy" [alt]="guide.name[lang.slug]"></a>
+                                <div class="pfg-details">
+                                    <a class="pfg-name" (click)="onClose()" routerLink="/{{lang.slug}}/guide/{{guide.id}}">{{guide.name[lang.slug]}}</a>
+                                    <div class="pfg-params">
+                                        <div class="pfg-time" [title]="words['guides']?.['time']?.[lang.slug]"><span>{{guide.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
+                                        <div class="pfg-price" [title]="words['guides']?.['price']?.[lang.slug]"><span [class.free]="!guide.price">{{guide.price ? '$'+guide.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="loading" *ngIf="loadingMore"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                        </ng-container>
+                        <ng-container *ngIf="!guides.length">
+                            <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+                        </ng-container>
+                    </ng-container>
+                </div>            
+            </div>            
+        </div>          
+    </div>        
+</div>

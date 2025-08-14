@@ -1,0 +1,33 @@
+.profile-proposal {
+    .pp-note {margin-bottom: 15px;}
+    .pp-points {
+        @media (min-width:0) {display: block; margin-bottom: 15px; padding-bottom: 15px;}
+        @media (min-width:1000px) {display: flex; margin-bottom: 30px; padding-bottom: 30px;}
+        justify-content: space-between; align-items: center; border-bottom: 1px var(--color-border2) solid;
+        .ppp-title {
+            @media (min-width:0) {margin: 0 0 5px 0;}
+            @media (min-width:1000px) {margin: 0 15px 0 0;}
+        }
+        .ppp-value {
+            @media (min-width:0) {width: 100%;}
+            @media (min-width:1000px) {width: 200px;}
+            height: 45px;
+            input {width: 100%; height: 100%;}
+        }
+    }
+    .pp-form {
+        .ppf-head {font-size: 16px; margin-bottom: 15px; font-weight: bold;}
+        .ppf-title {font-size: 14px; margin-bottom: 5px;}
+        .ppf-tawrap {height: 150px; margin-bottom: 15px;}
+        .ppf-btnwrap {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            justify-content: flex-end; height: 45px;
+            button {
+                @media (min-width:0) {width: 100%;}
+                @media (min-width:1000px) {width: 200px;}
+                height: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.popup.popup-problem-view {
+    @media (min-width:0) {width: 300px;}
+    @media (min-width:1000px) {width: 600px !important;}
+    .problem-view {
+        .pv-row {
+            margin-bottom: 15px;
+            &:last-child {margin-bottom: 0;}
+        }
+        .pv-2cols {
+            @media (min-width:0) {grid-template-columns: 1fr;}
+            @media (min-width:1000px) {grid-template-columns: 1fr 1fr;}
+            display: grid; gap: 15px;
+            .pv-col {width: 100%; overflow: hidden;}
+        }
+        .pv-title {margin-bottom: 5px; font-size: 14px;}
+        .pv-text {
+            display: flex; align-items: center; height: 45px; border: 1px var(--color-border2) solid; padding: 0 15px; border-radius: 15px;
+            span {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        }
+        .pv-user {
+            display: flex; align-items: center; height: 45px; border: 1px var(--color-border2) solid; padding: 0 15px; border-radius: 15px;
+            .pvu-imgwrap {
+                width: 30px; min-width: 30px; height: 30px; border-radius: 50%; overflow: hidden; margin-right: 10px; background-color: var(--color-border2); display: flex; justify-content: center; align-items: center; font-size: 14px; color: var(--color-txt2); text-transform: capitalize;
+                img {width: 100%; height: 100%; object-fit: cover;}
+            }
+            .pvu-title {flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        }
+        .pv-guide {
+            display: flex; align-items: center; height: 45px; border: 1px var(--color-border2) solid; padding: 0 15px; border-radius: 15px;
+            a {
+                display: flex; align-items: center; overflow: hidden;
+                .pvg-imgwrap {
+                    width: 30px; min-width: 30px; height: 30px; border-radius: 50%; overflow: hidden; margin-right: 10px;
+                    img {width: 100%; height: 100%; object-fit: cover;}
+                }
+                .pvg-title {flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+            }
+        }
+        .pv-task {
+            display: flex; align-items: center; height: 45px; border: 1px var(--color-border2) solid; padding: 0 15px; border-radius: 15px;
+            a {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        }
+        .pv-content {height: 120px; overflow-y: auto; padding: 15px; border: 1px var(--color-border2) solid; border-radius: 15px;}
+    }
+}

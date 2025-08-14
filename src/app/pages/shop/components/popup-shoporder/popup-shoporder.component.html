@@ -1,0 +1,29 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['shop']?.['order-title']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['shop']?.['order-title']?.[lang.slug]}}</div>
+            <div class="popup-content">
+                <ng-container *ngIf="sent"><div class="ta-center" [innerHTML]="words['shop']?.['order-thankyou']?.[lang.slug]"></div></ng-container>
+                <ng-container *ngIf="!sent">
+                    <form class="gf" (submit)="onSubmit()">
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['shop']?.['order-tg']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><input type="text" name="tg" [(ngModel)]="tg"></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['shop']?.['order-comment']?.[lang.slug]}}</div>
+                            <div class="gf-tawrap"><input-textarea [(value)]="comment" [maxlength]="1000" /></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-btnwrap"><button type="submit" class="btn gold" [class.busy]="sending"><span class="btn-icon"></span><span class="btn-text">{{words["shop"]?.["order"]?.[lang.slug]}}</span></button></div>
+                        </div>
+                    </form>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

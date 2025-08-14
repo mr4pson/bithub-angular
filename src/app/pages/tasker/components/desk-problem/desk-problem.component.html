@@ -1,0 +1,17 @@
+<div class="desk-problem" draggable="true" (dragstart)="onDragStart($event)" (dragend)="onDragEnd($event)">
+    <div class="dp-left">
+        <div class="dp-imgwrap" *ngIf="problem.guide?.img"><img src="/images/guides/{{problem.guide.img}}"></div>
+        <a class="dp-content" (click)="onView()">{{problem.content}}</a>
+    </div>
+    <div class="dp-right">
+        <div class="dp-user" *ngIf="mode === 'public' && !user.parent_id">
+            <img *ngIf="problem.user.img" src="/images/users/{{problem.user.img}}">
+            <span *ngIf="!problem.user.img">{{problem.user.name[0]}}</span>
+        </div>
+        <ng-container *ngIf="mode === 'private' || !user.parent_id">
+            <div class="dp-btn edit" [class.busy]="loading" (click)="onEdit()" [title]=" words['common']?.['edit']?.[lang.slug]"><span></span></div>
+            <div class="dp-btn delete" [class.busy]="deleting" (click)="onDelete()" [title]="words['common']?.['delete']?.[lang.slug]"><span></span></div>
+        </ng-container>        
+    </div>   
+    <div class="dp-newcomments" *ngIf="problem.has_unviewed_comments"></div>
+</div>

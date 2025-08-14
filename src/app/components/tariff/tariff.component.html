@@ -1,0 +1,13 @@
+<div class="tariff" [class.active]="active">
+    <div class="t-left">
+        <div class="t-mark"><span></span></div>
+        <div class="t-details">
+            <div class="t-name">{{tariff.name[lang.slug]}}</div>
+            <div class="t-note">{{tariff.note[lang.slug]}}</div>
+        </div>                                    
+    </div>
+    <div class="t-right">
+        <div class="t-price">${{tariff.price}}</div>                                    
+    </div>
+    <div class="t-top" *ngIf="tariff.top"><span>TOP</span></div>
+</div>

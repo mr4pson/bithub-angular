@@ -1,0 +1,22 @@
+.panel-account {
+    position: absolute; right: 0; top: calc(100% + 5px); background-color: var(--color-bg-block2); padding: 10px; border-radius: 15px; border:1px var(--color-border2) solid; opacity: 0; pointer-events: none; transition: 0.3s;
+    &.active {opacity: 1; pointer-events: inherit;}
+    ul {
+        list-style: none; padding: 0; margin: 0;
+        li {
+            padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px var(--color-border2) solid;
+            &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
+            a {
+                color: var(--color-txt1); padding: 0 5px; display: block; white-space: nowrap;
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                &.active {pointer-events: none; color: var(--color-txt2);}
+                &::before {font-family: "fa-light"; display: inline-block; width: 20px;}
+                &.account::before {content: "\f007";}
+                &.stats::before {content: "\e473";}
+                &.tasker::before {content: "\e196";}
+                &.dailers::before {content: "\f073";}
+                &.logout::before {content: "\f08b";}                
+            }
+        }
+    }
+}

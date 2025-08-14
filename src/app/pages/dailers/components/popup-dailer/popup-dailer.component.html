@@ -1,0 +1,39 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-dailer" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['dailers']?.[dailer?.id ? 'edition' : 'creation']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['dailers']?.[dailer?.id ? 'edition' : 'creation']?.[lang.slug]}}</div>
+            <div class="popup-content"> 
+                <ng-container *ngIf="dailer !== null">
+                    <form class="gf" (submit)="onSave()">
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['dailers']?.['name']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><input type="text" name="name" [(ngModel)]="dailer.name" [class.error]="errors['name']"></div>
+                            <div class="gf-error" *ngIf="errors['name']">{{words['errors']?.[errors['name']]?.[lang.slug]}}</div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['dailers']?.['link']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><input type="text" name="link" [(ngModel)]="dailer.link"></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['dailers']?.['comment']?.[lang.slug]}}</div>
+                            <div class="gf-tawrap"><input-textarea [(value)]="dailer.comment" [maxlength]="2000"></input-textarea></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-btnwrap">
+                                <button type="submit" class="btn gold" [class.busy]="saving" [class.done]="saved">
+                                    <span class="btn-icon save"></span>
+                                    <span class="btn-text">{{words["common"]?.["save"]?.[lang.slug]}}</span>
+                                    <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                                </button>
+                            </div>                            
+                        </div>
+                    </form>
+                </ng-container>                                
+            </div>            
+        </div>        
+    </div>
+</div>

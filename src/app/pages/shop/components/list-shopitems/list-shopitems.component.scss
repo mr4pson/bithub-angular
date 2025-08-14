@@ -1,0 +1,9 @@
+.shopitems {
+    .s-items {
+        @media (min-width:0) {grid-template-columns: minmax(0, 1fr); gap: 15px;}
+        @media (min-width:780px) {grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px;}
+        @media (min-width:1600px) {grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px;}
+        display: grid; transition: 0.3s;
+        &.busy {opacity: 0.5; pointer-events: none;}
+    }
+}

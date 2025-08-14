@@ -1,0 +1,5 @@
+<div class="pagination">
+    <div class="p-btn back" [class.disabled]="!value" (click)="onBack()"><span></span></div>
+    <div *ngFor="let p of parts" class="p-btn" [class.skip]="p==-1 || p==-2" [class.active]="p == value" (click)="onSelect(p)"><span>{{(p==-1 || p==-2) ? "..." : p+1}}</span></div>
+    <div class="p-btn forward" [class.disabled]="value === n-1" (click)="onForward()"><span></span></div>
+</div>

@@ -1,0 +1,46 @@
+<div class="panel unviewed" id="panel-{{unique}}" [class.active]="active">
+    <div class="panel-left" (click)="onClose()"></div>
+    <div class="panel-right">
+        <div class="panel-head">
+            <div class="panel-title">{{words['guides']?.['unviewed-in-guides']?.[lang.slug]}}</div>
+            <div class="panel-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="panel-main">
+            <div class="panel-title2">{{words['guides']?.['unviewed-in-guides']?.[lang.slug]}}</div>
+            <div class="panel-content">
+                <div class="pu-wrap">
+                    <div class="pu-dash"><input-radio [(value)]="favorites" (valueChange)="onFavoritesChange()" [title]="words['guides']?.['favorites']?.[lang.slug]" [compact]="true"></input-radio></div>
+                    <div class="pu-tasks bscroll-v" #container>
+                        <ng-container *ngIf="tasks === null">
+                            <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                        </ng-container>
+                        <ng-container *ngIf="tasks !== null">
+                            <ng-container *ngIf="tasks.length">
+                                <div *ngFor="let task of tasks" class="pu-task">
+                                    <a class="put-gname" routerLink="/{{lang.slug}}/guide/{{task.guide_id}}" (click)="onClose()">{{task.guide.name[lang.slug]}}</a>
+                                    <a class="put-name" routerLink="/{{lang.slug}}/guide/{{task.guide_id}}" [queryParams]="{task: task.id}" (click)="onClose()">{{task.name[lang.slug]}}</a>
+                                    <div class="put-details">
+                                        <div class="put-time" [title]="words['guides']?.['time']?.[lang.slug]"><span>{{task.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
+                                        <div class="put-price" [title]="words['guides']?.['price']?.[lang.slug]"><span [class.free]="!task.price">{{task.price ? '$'+task.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
+                                        <div *ngIf="task.actual_until" class="put-until" [class.bad]="!task.actual"><span>{{words['common']?.['until']?.[lang.slug]}} {{task.actual_until | date:"dd.MM.yyyy HH:mm"}}</span></div>
+                                    </div>
+                                </div>
+                                <div class="loading" *ngIf="loadingMore"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                            </ng-container>
+                            <ng-container *ngIf="!tasks.length">
+                                <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="pu-btnwrap">
+                        <button *ngIf="tasks?.length" type="button" class="btn gold" [class.busy]="viewing" [class.done]="viewed" (click)="onViewed()">
+                            <span class="btn-icon view"></span>
+                            <span class="btn-text">{{words["guides"]?.["unviewed-viewed"]?.[lang.slug]}}</span>
+                            <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

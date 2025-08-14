@@ -1,0 +1,20 @@
+<h1 class="only-mobile-block">{{words['guides']?.['title']?.[lang.slug]}}</h1>
+<div class="home-dash">
+    <div class="hd-top">
+        <div class="hdt-left">
+            <list-cats [(value)]="cat_id" (valueChange)="onCatChange()" />
+        </div>
+        <div class="hdt-right">
+            <div class="hdtr-block"><entity-sorting [items]="sortings" [(value)]="sorting" (valueChange)="onSortingChange()" /></div>
+            <div class="hdtr-block"><input-search [(value)]="search" (valueChange)="onSearchChange()" /></div>
+        </div>
+    </div>
+    <div class="hd-bottom">
+        <div class="hdb-select"><select-simple [(value)]="status" (valueChange)="onFilterChange()" [items]="[null,'current','ending','expired']" dict="guides" word="fstatus" /></div>
+        <div class="hdb-select"><select-simple [(value)]="earnings" (valueChange)="onFilterChange()" [items]="[null,'drop','possible_drop','early_access','points']" dict="guides" word="earnings" /></div>
+        <input-radio *ngIf="authenticated" [(value)]="favorites" [title]="words['guides']?.['favorites']?.[lang.slug]" (valueChange)="onFilterChange()" />
+    </div>
+</div>
+<div class="home-guides"><list-guides [guides]="guides" [loading]="loading" /></div>
+<div class="home-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()" /></div>
+<popup-baxers />

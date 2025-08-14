@@ -1,0 +1,5 @@
+<form class="input-search" (submit)="onSubmit()">
+    <input type="text" name="search" [placeholder]="words['common']?.['search']?.[lang.slug]" [(ngModel)]="currentValue">
+    <button class="submit" type="submit"><span></span></button>
+    <button class="reset" [class.active]="currentValue" type="button" (click)="onReset()"><span></span></button>
+</form>

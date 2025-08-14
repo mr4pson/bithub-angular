@@ -1,0 +1,10 @@
+<div class="popup-error" [class.active]="active">
+    <div class="pe-head">
+        <div class="pe-icon"><span></span></div>
+        <div class="pe-close" (click)="onClose()"><span></span></div>
+    </div>
+    <div class="pe-main">     
+        <div class="pe-txt"><span>{{txt}}</span></div>
+        <div class="pe-btnwrap"><button type="button" class="btn casual" (click)="onReload()"><span class="btn-icon reload"></span><span class="btn-text">Перезагрузить/Reload</span></button></div>
+    </div>
+</div>

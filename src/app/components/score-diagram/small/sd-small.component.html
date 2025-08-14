@@ -1,0 +1,14 @@
+<div class="bs-small">
+    <svg viewBox="0 0 100 100">
+        <defs>
+            <linearGradient id="bss-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" [attr.stop-color]="color3.toString()" />
+                <stop offset="50%" [attr.stop-color]="color2.toString()" />
+                <stop offset="100%" [attr.stop-color]="color1.toString()" />
+            </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" [attr.r]="radius" [attr.stroke-dasharray]="strokeDashArray(1000)" stroke-linecap="round" stroke="#21374D" stroke-width="10" fill="none"></circle>
+        <circle cx="50" cy="50" [attr.r]="radius" [attr.stroke-dasharray]="strokeDashArray(currentValue)" stroke-linecap="round" stroke="url(#bss-grad)" stroke-width="10" fill="none"></circle>
+    </svg>
+    <div class="bss-value" [style.color]="color">{{roundedValue}}</div>
+</div>

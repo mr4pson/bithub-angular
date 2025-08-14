@@ -1,0 +1,15 @@
+<div class="datemarks">
+    <div class="dm-btn"><button type="button" class="btn gold" (click)="onToggle()"><span class="btn-icon calendar"></span><span class="btn-text">{{words["guides"]?.["calendar"]?.[lang.slug]}}</span></button></div>
+    <div #content class="dm-content">
+        <div class="dm-wrap">
+            <div class="dm-section">
+                <div class="dm-title" [innerHTML]="remindTxt"></div>
+                <datemarks-calendar [guide_id]="guide.id" type="reminder" />
+            </div>
+            <div class="dm-section">
+                <div class="dm-title">{{words['guides']?.['execution']?.[lang.slug]}}:</div>
+                <datemarks-calendar [guide_id]="guide.id" type="execution" />
+            </div>
+        </div>
+    </div>
+</div>

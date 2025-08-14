@@ -1,0 +1,22 @@
+.pagination {
+    display: flex; user-select: none;
+    .p-btn {
+        @media (min-width:0) {font-size: 14px; padding: 0 7px; height: 30px;}
+        @media (min-width:1000px) {font-size: 18px; padding: 0 10px; height: 35px;}
+        border-radius: 10px; border:1px var(--color-border2) solid; display: flex; align-items: center; cursor: pointer; font-weight: 600; margin: 0 2px; background-color: var(--color-input-bg1); transition: 0.3s;
+        &.skip {border: none; pointer-events: none;}
+        span {color: var(--color-txt1); transition: 0.3s;}
+        @media (hover: hover) and (pointer: fine) {&:hover {span {color: var(--color-txt2);}}}
+        &.active {
+            pointer-events: none;
+            span {background-image: var(--gradient-hilite); background-clip: text; -webkit-text-fill-color: transparent; color: var(--color-hilite1);}
+        }
+        &.back, &.forward {
+            background-color: transparent; border:none;
+            span::before {font-family: "fa-light";}
+            &.disabled {opacity: 0.3; pointer-events: none;}
+        }
+        &.back {span::before {content: "\f053";}}
+        &.forward {span::before {content: "\f054";}}
+    }
+}

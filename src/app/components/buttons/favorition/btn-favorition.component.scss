@@ -1,0 +1,7 @@
+.btn-favorition {
+    height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; background-color: var(--color-input-bg2); border-radius: 50%; border:1px var(--color-border2) solid; cursor: pointer; position: relative; user-select: none;
+    span::before {font-family: "fa-light"; content: "\f004"; transition: 0.3s; display: inline-block;}
+    @media (hover: hover) and (pointer: fine) {&:hover {span::before {color: var(--color-txt2);}}}
+    &.active {span::before {font-family: "fa-solid"; color: var(--color-hilite2);}}
+    &.busy {span::before {font-family: "fa-light" !important; content: "\f3f4" !important; animation: rotation 1s linear 0s infinite;}}                
+}

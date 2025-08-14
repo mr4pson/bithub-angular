@@ -1,0 +1,72 @@
+.popup.popup-limit {
+    @media (min-width:0) {width: 300px;}
+    @media (min-width:1000px) {width: 850px !important;}
+}
+
+.pc-limit {
+    .pcl-description {
+        @media (min-width:0) {margin-bottom: 15px; text-align: left;}
+        @media (min-width:1000px) {margin-bottom: 30px; text-align: center;}
+    }
+    .pcl-section {
+        @media (min-width:0) {margin-bottom: 15px;}
+        @media (min-width:1000px) {margin-bottom: 30px;}
+        &:last-child {margin-bottom: 0;}
+        .pcl-2cols {
+            @media (min-width:0) {grid-template-columns: minmax(0, 1fr); gap:15px;}
+            @media (min-width:1000px) {grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+            display: grid;
+            .pcl-col {}
+        }
+        .pcl-title {
+            color: var(--color-txt2); font-weight: 600; margin-bottom: 15px; display: flex; justify-content: space-between;
+            .pclt-left {}
+            .pclt-right {color: var(--color-txt1); font-weight: normal;}
+        }
+        .pcl-inputwrap {height: 45px;}
+        .pcl-cart {
+            padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px var(--color-border2) solid;
+            .pclc-item {
+                display: flex; justify-content: space-between; margin-bottom: 5px;
+                &:last-child {margin-bottom: 0;}
+                &.total {font-weight: bold; font-size: 18px;}
+                .pclci-name {
+                    span {
+                        @media (min-width:0) {display: none;}
+                        @media (min-width:1000px) {display: inline;}
+                    }
+                }
+                .pclci-value {color: var(--color-txt2);}
+            }
+        }
+        .pcl-insufficient {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            justify-content: space-between; gap: 30px;
+            .pcli-note {
+                @media (min-width:0) {margin-bottom: 15px;}
+                @media (min-width:1000px) {margin-bottom: 0;}
+            }
+            .pcli-btnwrap {
+                .btn {
+                    @media (min-width:0) {width: 100%;}
+                    @media (min-width:1000px) {width: auto;}
+                }
+            }
+        }
+        .pcl-pay {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            justify-content: flex-end;
+            .pclp-btnwrap {
+                @media (min-width:0) {text-align: center;}
+                @media (min-width:1000px) {text-align: right;}
+                button {
+                    @media (min-width:0) {width: 100%;}
+                    @media (min-width:1000px) {width: 200px;}
+                }
+                .pclp-error {font-size: 12px; color: var(--color-alert1); margin-top: 2px;}
+            }
+        }
+    }
+}

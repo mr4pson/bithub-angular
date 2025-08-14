@@ -1,0 +1,75 @@
+import { IMultilangable } from "../multilangable";
+import { CEntity, IEntity } from "./_entity";
+import { CTask, ITask } from "./task";
+
+export class CGuide extends CEntity {
+    public img?: string;
+    public invest?: number;
+    public bh_score?: number;
+    public name: IMultilangable;
+    public content?: IMultilangable;
+    public contentshort?: IMultilangable;
+    public earnings?: TGuideEarnings;
+    public price: number;
+    public time: number;
+    public status?: TGuideStatus;
+    public hit?: boolean;
+    public created_at?: Date;
+    public favorited?: boolean;
+    public progress?: number;
+    public note?: string;
+    public has_unviewed?: boolean;
+    public remind_at?: string;
+    public executed_at?: string;
+    // relations
+    public links?: IGuideLink[];
+    public tasks?: CTask[];
+
+    public override build(o: IGuide): CGuide {
+        for (let field in o) {
+            if (field === "created_at") {
+                this[field] = o[field] ? new Date(o[field]) : null;
+            } else if (field === "tasks") {
+                this[field] = o[field].map(t => new CTask().build(t));
+            } else {
+                this[field] = o[field];
+            }
+        }
+
+        return this;
+    }
+}
+
+export interface IGuide extends IEntity {
+    img: string;
+    invest?: number;
+    bh_score?: number;
+    name: IMultilangable;
+    content?: IMultilangable;
+    contentshort?: IMultilangable;
+    earnings?: TGuideEarnings;
+    price: number;
+    time: number;
+    status?: TGuideStatus;
+    hit?: boolean;
+    created_at?: string;
+    favorited?: boolean;
+    progress?: number;
+    note?: string;
+    has_unviewed?: boolean;
+    remind_at?: string;
+    executed_at?: string;
+    // relations
+    links?: IGuideLink[];
+    tasks?: ITask[];
+}
+
+export interface IGuideLink extends IEntity {
+    img: string;
+    value: string;
+    name: string;
+}
+
+export type TGuideStatus = "current" | "ending" | "expired";
+
+export type TGuideEarnings = "none" | "drop" | "possible_drop" | "early_access" | "points";

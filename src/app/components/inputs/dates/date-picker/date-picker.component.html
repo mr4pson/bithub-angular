@@ -1,0 +1,26 @@
+<div class="date-picker">
+    <div class="dp-date" (click)="onActivateCalendar()" #btnelement>
+        <span class="dp-value">{{formattedDate}}</span>
+        <span *ngIf="resetable && value" class="dp-reset" (click)="onReset($event)"></span>
+    </div>
+    <div *ngIf="calendarActive" class="dp-calendar" [style.left]="calendarLeft" [style.top]="calendarTop">        
+        <div class="dp-head">        
+            <div class="dph-left">
+                <div class="dph-month">{{words['dates']?.['month-'+(month+1)]?.[lang.slug]}} {{year}}</div>
+                <div class="smallbtn compact down" (click)="yearPickerActive = true"><span></span></div>
+            </div>
+            <div class="dph-right">
+                <div class="smallbtn compact back" [dir]="lang.dir" (mousedown)="onMonthBack()"><span></span></div>
+                <div class="smallbtn compact next" [dir]="lang.dir" (mousedown)="onMonthNext()"><span></span></div>
+            </div>        
+        </div>
+        <div class="dp-days">                
+            <div class="dp-days-content">
+                <div class="head" *ngFor="let i of [1,2,3,4,5,6,7]">{{words['dates']?.['day-'+i]?.[lang.slug]}}</div>                
+                <div *ngFor="let day of days" class="day" [class.hidden]="day.hidden" [class.holiday]="day.holiday" [class.current]="isCurrent(day.n)" [class.now]="day.now" (click)="onSetDay(day.n);">{{day.n}}</div>
+            </div>
+        </div>        
+        <year-picker *ngIf="yearPickerActive" [(value)]="year" (close)="yearPickerActive = false" (valueChange)="buildDays()"></year-picker>
+    </div> 
+    <div *ngIf="calendarActive" class="dp-ovl" (click)="onClose()"></div>
+</div>

@@ -1,0 +1,12 @@
+<h1>{{words['dailers']?.['title']?.[lang.slug]}}</h1>
+
+<div class="dailers-dash">
+    <button type="button" class="btn gold" (click)="onEdit()">
+        <span class="btn-icon create"></span>
+        <span class="btn-text">{{words["common"]?.["create"]?.[lang.slug]}}</span>
+    </button>
+</div>
+<div class="dailers-list"><list-dailers [dailers]="dailers" [loading]="loading" (editDailer)="onEdit($event)" (deleteDailer)="onDelete($event)"></list-dailers></div>
+<div class="dailers-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()"></the-pagination></div>
+
+<popup-dailer [dailer]="editDailer" [(active)]="editDailerPopupActive" (dailerSaved)="initDailers()"></popup-dailer>

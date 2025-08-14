@@ -1,0 +1,48 @@
+<header>
+    <div class="h-left">
+        <div class="hl-mmbtn" (click)="onTogglePanel('Mob', $event)"><span></span></div>
+        <div class="hl-logo"><a routerLink="/{{lang.slug}}"><img src="/assets/images/logo.svg" alt="logo"></a></div>
+        <div class="hl-lang">
+            <span class="hll-btn" [class.active]="panelLangsActive" (click)="onTogglePanel('Langs', $event)">{{lang.slug}}</span>
+            <panel-langs [(active)]="panelLangsActive"></panel-langs>
+        </div>
+        <div class="hl-links">
+            <a target="_blank" [href]="words['contacts']?.['yt']?.[lang.slug]"><img src="/assets/images/yt_opaque.svg"></a>
+            <a target="_blank" [href]="words['contacts']?.['tg']?.[lang.slug]"><img src="/assets/images/tg_opaque.svg"></a>
+        </div>
+    </div>
+    <div class="h-right">
+        <ng-container *ngIf="!authenticated">
+            <button type="button" class="hr-btn btn gold" (click)="popupLoginActive = true"><span class="btn-icon login"></span><span class="btn-text">{{words["login"]?.["title"]?.[lang.slug]}}</span></button>
+        </ng-container>
+        <ng-container *ngIf="user">
+            <div class="hr-dash">
+                <div class="hrd-btnwrap">
+                    <div class="hrd-btn hrd-favorites" [class.active]="panelFavoritesActive" (click)="onTogglePanel('Favorites', $event)"><span></span></div>
+                    <panel-favorites [(active)]="panelFavoritesActive"></panel-favorites>
+                </div>
+                <div class="hrd-btnwrap">
+                    <btn-unviewed [active]="panelUnviewedActive" (click)="onTogglePanel('Unviewed', $event)"></btn-unviewed>
+                    <panel-unviewed [(active)]="panelUnviewedActive"></panel-unviewed>
+                </div>
+                <div class="hrd-money" *ngIf="!user.parent_id">
+                    <div class="hrd-amount" [class.active]="panelInorderActive" (click)="onTogglePanel('Inorder', $event)"><span>${{user.money | number:'1.2-2'}}</span></div>
+                    <panel-inorder [(active)]="panelInorderActive"></panel-inorder>
+                </div>
+            </div>
+            <div class="hr-ava" [class.active]="panelAccountActive">
+                <div class="hra-img" (click)="onTogglePanel('Account', $event)">
+                    <img *ngIf="user.img" src="/images/users/{{user.img}}">
+                    <span *ngIf="!user.img">{{user.name?.[0]}}</span>
+                </div>
+                <panel-account [(active)]="panelAccountActive"></panel-account>
+            </div>
+        </ng-container>
+    </div>
+    <div class="h-center">
+        <nav><menu-main></menu-main></nav>
+        <div class="hc-logo" *ngIf="!authenticated"><a routerLink="/{{lang.slug}}"><img src="/assets/images/logo.svg" alt="logo"></a></div>
+    </div>
+</header>
+
+<panel-mob [(active)]="panelMobActive"></panel-mob>

@@ -1,0 +1,16 @@
+.datemarks {
+    .dm-btn {}
+    .dm-content {
+        overflow: hidden; transition: 0.3s; max-height: 0;
+        .dm-wrap {
+            @media (min-width:0) {gap:15px;}
+            @media (min-width:640px) {gap: 30px;}
+            display: flex; padding-top: 15px; flex-wrap: wrap;
+            .dm-section {
+                @media (min-width:0) {width: 100%;}
+                @media (min-width:640px) {width: calc(50% - 15px);}
+                .dm-title {margin-bottom: 15px;}
+            }
+        }
+    }
+}

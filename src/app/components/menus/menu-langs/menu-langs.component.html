@@ -1,0 +1,11 @@
+<ul class="menu-langs">
+    <li *ngFor="let l of langs">
+        <!-- warning: "ml-langlink" used in function -->
+        <a  
+            [routerLink]="getLangLink(l, 'url')" 
+            [fragment]="getLangLink(l, 'fragment')" 
+            [queryParams]="getLangLink(l, 'queryParams')" 
+            class="ml-langlink"
+            [class.active]="lang.id === l.id"
+        >{{l.slug}}</a></li>
+</ul>                

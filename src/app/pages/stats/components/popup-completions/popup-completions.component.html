@@ -1,0 +1,30 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-completions" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{guide?.name[lang.slug]}} ({{completions?.length || '-'}} {{words['common']?.['acc']?.[lang.slug]}})</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{guide?.name[lang.slug]}} ({{completions?.length || '-'}} {{words['common']?.['acc']?.[lang.slug]}})</div>
+            <div class="popup-content">
+                <ng-container *ngIf="!completions"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+                <ng-container *ngIf="completions">
+                    <div class="completions">
+                        <div *ngFor="let c of completions" class="c-completion">
+                            <div class="cc-info">
+                                <div class="cc-namewallet">
+                                    <div class="cc-name">{{c.user.name}}</div>
+                                    <div class="cc-wallet" *ngIf="c.user.wallet">({{c.user.wallet}})</div>
+                                </div>
+                                <div class="cc-progress">{{words['guides']?.['progress']?.[lang.slug]}}: {{c.progress}}%</div>
+                            </div>
+                            <div class="cc-tasks">
+                                <a *ngFor="let t of c.tasks; let i = index;" class="cc-task" [class.active]="t.completed" target="_blank" href="/{{lang.slug}}/guide/{{guide.id}}?task={{t.task_id}}">{{i+1}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

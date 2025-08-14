@@ -1,0 +1,71 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-subscription" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['subscription']?.['title']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['subscription']?.['title']?.[lang.slug]}}</div>
+            <div class="popup-content">
+                <ng-container *ngIf="tariffs !== null">
+                    <div class="pc-subscription">
+                        <div class="pcs-description">{{words['subscription']?.['description']?.[lang.slug]}}</div>
+                        <div class="pcs-section">
+                            <div class="pcs-title">{{words['subscription']?.['tariff']?.[lang.slug]}}</div>
+                            <div class="pcs-tariffs">
+                                <the-tariff *ngFor="let t of tariffs" [tariff]="t" [active]="t.id === tariff?.id" (click)="tariff = t"></the-tariff>
+                            </div>
+                        </div>
+                        <div class="pcs-section">
+                            <div class="pcs-title">{{words['subscription']?.['coupon-code']?.[lang.slug]}}</div>
+                            <div class="pcs-promocode"><promo-code (promocodeLoaded)="promocode = $event"></promo-code></div>
+                        </div>
+                        <ng-container *ngIf="tariff && user">
+                            <div class="pcs-section">
+                                <div class="pcs-title">{{words['subscription']?.['order']?.[lang.slug]}}</div>
+                                <div class="pcs-cart">
+                                    <div class="pcsc-item">
+                                        <div class="pcsci-name">{{tariff.name[lang.slug]}} <span>({{words['common']?.['until']?.[lang.slug]}} {{tariffUntil}})</span></div>
+                                        <div class="pcsci-value">${{tariff.price}}</div>
+                                    </div>
+                                    <div class="pcsc-item" *ngIf="promocode">
+                                        <div class="pcsci-name">{{words['subscription']?.['coupon']?.[lang.slug]}} "{{promocode.code}}"</div>
+                                        <div class="pcsci-value">-{{promocode.discount}}%</div>
+                                    </div>
+                                    <div class="pcsc-item total">
+                                        <div class="pcsci-name">{{words['subscription']?.['total']?.[lang.slug]}}</div>
+                                        <div class="pcsci-value">${{total}}</div>
+                                    </div>
+                                </div>
+                                <ng-container *ngIf="total > user.money">
+                                    <div class="pcs-insufficient">
+                                        <div class="pcsi-note">
+                                            <div>{{words['common']?.['insufficient']?.[lang.slug]}}</div>
+                                            <div>{{words['common']?.['your-money']?.[lang.slug]}}: <strong>${{user.money | number:'1.2-2'}}</strong></div>
+                                        </div>
+                                        <div class="pcsi-btnwrap"><button type="button" class="btn casual" (click)="onRecharge($event)"><span class="btn-icon pay"></span><span class="btn-text">{{words["common"]?.["recharge"]?.[lang.slug]}}</span></button></div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="total <= user.money">
+                                    <div class="pcs-pay" *ngIf="total <= user.money">
+                                        <div class="pcsp-btnwrap">
+                                            <button type="button" class="btn gold" [class.busy]="loading" [class.done]="done" (click)="onPay()">
+                                                <span class="btn-icon pay"></span>
+                                                <span class="btn-text">{{words["subscription"]?.["pay"]?.[lang.slug]}}</span>
+                                                <span class="btn-done"><span>{{words["subscription"]?.["paid"]?.[lang.slug]}}</span></span>
+                                            </button>
+                                            <div class="pcsp-error" *ngIf="error">{{words['errors']?.[error]?.[lang.slug]}}</div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="tariffs === null">
+                    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

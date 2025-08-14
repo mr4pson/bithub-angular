@@ -1,0 +1,6 @@
+<div class="progress2">
+    <ng-container *ngFor="let t of tasks; let i = index">
+        <div class="p2-mark" [class.active]="t.completed"><span>{{i+1}}</span></div>
+        <div *ngIf="i !== tasks.length - 1" class="p2-stick" [class.flex]="tasks.length < 31" [class.fixed]="tasks.length >= 31" [class.active]="t.completed"></div>
+    </ng-container>
+</div>

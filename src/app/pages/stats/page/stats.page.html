@@ -1,0 +1,12 @@
+<h1>{{words['stats']?.['title']?.[lang.slug]}}</h1>
+<div class="stat-dash">
+    <div class="sd-left">
+        <input-radio [(value)]="favorites" [title]="words['guides']?.['favorites']?.[lang.slug]" (valueChange)="onFilterChange()"></input-radio>
+    </div>
+    <div class="sd-right">
+        <div class="sdr-block"><entity-sorting [items]="sortings" [(value)]="sorting" (valueChange)="onSortingChange()" /></div>
+        <div class="sdr-block"><input-search [(value)]="search" (valueChange)="onSearchChange()" /></div>
+    </div>
+</div>
+<div class="stat-guides"><list-statguides [guides]="guides" [loading]="loading"></list-statguides></div>
+<div class="stat-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()"></the-pagination></div>

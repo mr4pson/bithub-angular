@@ -1,0 +1,13 @@
+.desk-create {
+    height: 270px; background-color: var(--color-bg-block1); border:1px var(--color-border2) solid; border-radius: 15px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; user-select: none; transition: 0.3s;
+    @media (hover: hover) and (pointer: fine) {&:hover {border-color: var(--color-hilite2);}}
+    .dc-icon {
+        font-size: 30px;
+        span::before {font-family: "fa-solid"; content: "\2b"; display: inline-block;}
+    }
+    .dc-title {}
+    &.busy {
+        pointer-events: none;
+        .dc-icon {span::before {content: "\f3f4"; animation: rotation 1s linear 0s infinite;}}
+    }
+}

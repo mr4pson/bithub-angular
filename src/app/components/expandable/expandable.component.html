@@ -1,0 +1,4 @@
+<div class="expandable" [class.expanded]="expanded">
+    <div class="e-content" [innerHTML]="value | safe:'html'" #container></div>
+    <div class="e-ovl" *ngIf="expanded !== null"><a (click)="expand()">{{words['common']?.['expand']?.[lang.slug]}}</a></div>
+</div>

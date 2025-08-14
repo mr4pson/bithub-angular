@@ -1,0 +1,27 @@
+.score-scale {
+    .ss-value {
+        margin-bottom: 5px;
+    }
+
+    .ss-scale {
+        height: 6px;
+        padding: 0 5px;
+        border-radius: 4px;
+        background: linear-gradient(to right, var(--color-alert1), yellow, var(--color-ok));
+
+        .ss-limit {
+            position: relative;
+            height: 100%;
+
+            .ss-handle {
+                position: absolute;
+                z-index: 2;
+                top: -2px;
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<div class="datemarks-calendar" [class.compact]="compact" [class.busy]="loading">
+    <div class="dc-head">
+        <div class="dch-left">
+            <div class="dch-month">{{words['dates']?.['month-'+(month+1)]?.[lang.slug]}} {{year}}</div>
+        </div>
+        <div class="dch-right">
+            <div class="smallbtn back" [dir]="lang.dir" (mousedown)="onMonthBack()"><span></span></div>
+            <div class="smallbtn next" [dir]="lang.dir" (mousedown)="onMonthNext()"><span></span></div>
+        </div>
+    </div>
+    <div class="dc-days">
+        <div class="dc-days-content">
+            <div class="head" *ngFor="let i of [1,2,3,4,5,6,7]">{{words['dates']?.['day-'+i]?.[lang.slug]}}</div>
+            <div *ngFor="let day of days" class="day" [class.hidden]="day.hidden" [class.holiday]="day.holiday" [class.now]="day.now" [class.selected]="datemarks.includes(day.n)" (click)="onDayToggle(day.n);">{{day.n}}</div>
+        </div>
+    </div>
+</div>

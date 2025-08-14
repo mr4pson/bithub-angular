@@ -1,0 +1,15 @@
+.popup.popup-datemarks {
+    @media (min-width:0) {width: 300px;}
+    @media (min-width:1000px) {width: 700px !important;}
+}
+
+.pd-datemarks {
+    @media (min-width:0) {gap:15px;}
+    @media (min-width:1000px) {gap: 30px;}
+    display: flex; flex-wrap: wrap;
+    .pdd-section {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: calc(50% - 15px);}
+        .pdd-title {margin-bottom: 15px;}
+    }
+}

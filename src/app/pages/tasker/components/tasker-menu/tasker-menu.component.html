@@ -1,0 +1,6 @@
+<div class="tm">
+    <ul>
+        <li><a [class.active]="mode === 'public'" (click)="setMode('public')">{{words['tasker']?.['mode-public']?.[lang.slug]}}</a></li>
+        <li><a [class.active]="mode === 'private'" (click)="setMode('private')">{{words['tasker']?.['mode-private']?.[lang.slug]}}</a></li>                             
+    </ul>
+</div>

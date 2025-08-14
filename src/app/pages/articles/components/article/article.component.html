@@ -1,0 +1,13 @@
+<a class="article" routerLink="/{{lang.slug}}/education/{{article.slug}}">
+    <div class="a-imgwrap" *ngIf="article.img"><img src="/images/articles/{{article.img}}" loading="lazy" [alt]="article.name[lang.slug]"></div>
+    <div class="a-details" [class.wide]="!article.img">
+        <div class="a-txt">
+            <div class="a-name">{{article.name[lang.slug]}}</div>
+            <div class="a-content">{{article.contentshort[lang.slug]}}</div>   
+        </div>        
+        <div class="a-dash">
+            <div class="a-time" [title]="words['articles']?.['readtime']?.[lang.slug]"><span>{{article.readtime}} {{words['common']?.['minutes']?.[lang.slug]}}</span></div>
+            <div class="a-wasread" *ngIf="authenticated"><btn-reading [article]="article"></btn-reading></div>
+        </div>
+    </div>     
+</a>

@@ -1,0 +1,17 @@
+.personal {
+    .p-form {
+        @media (min-width:0) {padding-bottom: 15px; margin-bottom: 15px;}
+        @media (min-width:1000px) {padding-bottom: 30px; margin-bottom: 30px;}
+        border-bottom: 1px var(--color-border2) solid;
+    }
+    .p-tg {
+        @media (min-width:0) {padding-bottom: 15px; margin-bottom: 15px;}
+        @media (min-width:1000px) {padding-bottom: 30px; margin-bottom: 30px;}
+        border-bottom: 1px var(--color-border2) solid;
+        &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
+        .p-tgdesc {margin-bottom: 15px;}
+        .p-tgbtn {
+            .btn {width: 100%; height: 45px;}
+        }
+    }
+}

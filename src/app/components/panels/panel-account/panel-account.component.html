@@ -1,0 +1,9 @@
+<div class="panel-account" id="panel-{{unique}}" [class.active]="active">
+    <ul>
+        <li><a class="pa-pagelink account" [class.active]="url[2] === 'account'" routerLink="/{{lang.slug}}/account" (click)="onClose()">{{words["user-menu"]?.["account"]?.[lang.slug]}}</a></li>
+        <li><a class="pa-pagelink stats" [class.active]="url[2] === 'stats'" routerLink="/{{lang.slug}}/stats" (click)="onClose()">{{words["user-menu"]?.["stats"]?.[lang.slug]}}</a></li>
+        <li><a class="pa-pagelink tasker" [class.active]="url[2] === 'tasker'" routerLink="/{{lang.slug}}/tasker" (click)="onClose()">{{words["user-menu"]?.["tasker"]?.[lang.slug]}}</a></li>
+        <li><a class="pa-pagelink dailers" [class.active]="url[2] === 'dailers'" routerLink="/{{lang.slug}}/dailers" (click)="onClose()">{{words["user-menu"]?.["dailers"]?.[lang.slug]}}</a></li>
+        <li><a class="pa-pagelink logout" routerLink="/{{lang.slug}}/auth/logout" (click)="onClose()">{{words["user-menu"]?.["logout"]?.[lang.slug]}}</a></li>
+    </ul>
+</div>

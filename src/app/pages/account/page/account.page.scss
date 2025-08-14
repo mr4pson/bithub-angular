@@ -1,0 +1,30 @@
+.profile {
+    @media (min-width:0) {display: block;}
+    @media (min-width:1000px) {display: flex;}
+    justify-content: space-between;
+    .p-left {
+        @media (min-width:0) {width: 100%; margin-bottom: 15px;}
+        @media (min-width:1000px) {width: 400px; margin-bottom: 0;}
+        &.wide {
+            @media (min-width:0) {width: 100%;}
+            @media (min-width:1000px) {width: 500px;}
+            margin: 0 auto;
+        }
+    }
+    .p-right {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: calc(100% - 400px - 30px);}
+    }
+    .p-section {
+        @media (min-width:0) {padding: 15px; margin-bottom: 15px; padding: 15px;}
+        @media (min-width:1000px) {padding: 30px; margin-bottom: 30px; padding: 30px;}
+        &:last-child {margin-bottom: 0;}
+        background-color: var(--color-bg-block1); border-radius: 15px; border:1px var(--color-border2) solid;
+        .ps-title {
+            @media (min-width:0) {font-size: 16px;}
+            @media (min-width:1000px) {font-size: 18px;}
+            font-weight: bold; color: var(--color-txt2); margin-bottom: 15px;
+        }
+        .ps-content {}
+    }
+}

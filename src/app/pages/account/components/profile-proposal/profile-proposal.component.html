@@ -1,0 +1,22 @@
+<div class="profile-proposal">
+    <div class="pp-note">{{words['account']?.['prop-description']?.[lang.slug]}}</div>
+    <div class="pp-points">
+        <div class="ppp-title">{{words['account']?.['prop-points']?.[lang.slug]}}</div>
+        <div class="ppp-value"><input type="text" value="{{user.points}}" disabled></div>
+    </div>
+    <form class="gf" (submit)="onSubmit()">
+        <div class="gf-row">
+            <div class="gf-head">{{words['account']?.['prop-guide']?.[lang.slug]}}</div>
+        </div>        
+        <div class="gf-row">
+            <div class="gf-title">{{words['account']?.['prop-content']?.[lang.slug]}}</div>
+            <div class="gf-tawrap compact"><input-textarea [(value)]="content" [maxlength]="2000" [error]="errors['content']"></input-textarea></div>
+        </div>        
+        <div class="gf-btnwrap end">
+            <button type="submit" class="btn gold compact" [class.busy]="sending" [class.done]="sent">
+                <span class="btn-icon send"></span>
+                <span class="btn-text">{{words["common"]?.["send"]?.[lang.slug]}}</span>
+                <span class="btn-done"><span>{{words["common"]?.["sent"]?.[lang.slug]}}</span></span>
+            </button></div>
+    </form>
+</div>

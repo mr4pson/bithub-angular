@@ -1,0 +1,10 @@
+<ng-container *ngIf="desks === null">
+    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+</ng-container>
+<ng-container *ngIf="desks !== null">
+    <div class="list-desks">
+        <the-desk *ngFor="let d of desks; let i = index;" [desk]="d" [mode]="mode" (deskDeleted)="onDelete(i)"></the-desk>        
+        <desk-create *ngIf="mode === 'private' || !user.parent_id" [mode]="mode" (deskCreated)="onCreate($event)"></desk-create><!-- в общем может создавать супер-юзер, в личном - любой -->
+        <span *ngIf="mode === 'public' && !desks.length && user.parent_id">{{words['common']?.['empty']?.[lang.slug]}}</span><!-- у суб-юзера в пустом списке надпись "ничего не найдено" вместо кнопки -->        
+    </div>
+</ng-container>

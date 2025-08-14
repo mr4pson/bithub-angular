@@ -1,0 +1,11 @@
+.comments {
+    .c-list {
+        margin-bottom: 30px; transition: 0.3s;
+        &.busy {opacity: 0.5; pointer-events: none;}
+        .c-item {
+            margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px var(--color-border2) solid;
+            &:last-child {margin-bottom: 0; padding-bottom: 0; border-bottom: none;}
+        }
+    }
+    .c-pagination {margin-bottom: 30px; display: flex; justify-content: center;}
+}

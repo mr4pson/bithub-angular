@@ -1,0 +1,4 @@
+.dailers {
+    transition: 0.3s;
+    &.busy {opacity: 0.5; pointer-events: none;}
+}

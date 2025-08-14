@@ -1,0 +1,22 @@
+<div *ngIf="baxers.length" class="baxers" [class.active]="active">
+    <div class="b-win" id="popup-{{unique}}">
+        <div class="b-head">
+            <div class="b-arrows">
+                <ng-container *ngIf="baxers.length > 1">
+                    <div class="smallbtn back" [dir]="lang.dir" (click)="onBack()"><span></span></div>
+                    <div class="smallbtn next" [dir]="lang.dir" (click)="onNext()"><span></span></div>
+                </ng-container>                
+            </div>
+            <div class="smallbtn close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="b-content">
+            <div *ngFor="let b of baxers; let i = index;" class="b-img" [class.active]="step === i">
+                <ng-container *ngIf="b.link[lang.slug]"><a [href]="b.link[lang.slug]" target="_blank"><img src="/images/baxers/{{b.img[lang.slug]}}" loading="lazy" alt="bx"></a></ng-container>
+                <ng-container *ngIf="!b.link[lang.slug]"><img src="/images/baxers/{{b.img[lang.slug]}}" loading="lazy" alt="bx"></ng-container>
+            </div>            
+        </div> 
+        <div class="b-foot">
+            <input-radio [(value)]="baxers[step].dontShow" (valueChange)="onDontShowChanged(baxers[step])" [compact]="true" [title]="words['common']?.['dont-show']?.[lang.slug]"></input-radio>
+        </div>        
+    </div>
+</div>

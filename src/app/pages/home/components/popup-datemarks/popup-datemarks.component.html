@@ -1,0 +1,23 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-datemarks" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['guides']?.['calendar']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['guides']?.['calendar']?.[lang.slug]}}</div>
+            <div class="popup-content">
+                <div *ngIf="guide" class="pd-datemarks">
+                    <div class="pdd-section">
+                        <div class="pdd-title" [innerHTML]="remindTxt"></div>
+                        <datemarks-calendar [guide_id]="guide.id" [compact]="true" type="reminder" />
+                    </div>
+                    <div class="pdd-section">
+                        <div class="pdd-title">{{words['guides']?.['execution']?.[lang.slug]}}:</div>
+                        <datemarks-calendar [guide_id]="guide.id" [compact]="true" type="execution" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

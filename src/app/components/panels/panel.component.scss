@@ -1,0 +1,41 @@
+.panel {
+    @media (min-width:0) {position: fixed; right: 0; top: 0; width: 100%; height: 100%; opacity: 1; transform: translateX(100%);}
+    @media (min-width:1000px) {position: absolute; right: -15px; top: calc(100% + 5px); width: 330px; height: auto; opacity: 0; transform: none;}
+    z-index: 100; pointer-events: none; transition: 0.3s; display: flex;    
+    &.active {opacity: 1; pointer-events: inherit; transform: none;}
+    .panel-left {
+        @media (min-width:0) {width: calc(100% - 300px);}
+        @media (min-width:1000px) {width: 0;}
+        background-color: var(--color-bg-block1); height: 100%;
+    }
+    .panel-right {
+        @media (min-width:0) {width: 300px; background-color: var(--color-bg-main2); border-radius: 0; border: none;}
+        @media (min-width:1000px) {width: 100%; background-color: var(--color-bg-block2); border-radius: 15px; border:1px var(--color-border2) solid;}
+        height: 100%;
+        .panel-head {
+            @media (min-width:0) {display: flex;}
+            @media (min-width:1000px) {display: none;}
+            height: 60px; border-bottom: 1px var(--color-border2) solid; padding: 0 15px; align-items: center; justify-content: space-between;
+            .panel-title {color: var(--color-txt2); font-weight: bold; font-size: 18px;}
+            .panel-close {
+                cursor: pointer; color: var(--color-txt1); font-size: 30px; transition: 0.3s;
+                span::before {font-family: "fa-light"; content: "\f00d";}
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+            }
+        }
+        .panel-main {
+            @media (min-width:0) {height: calc(100% - 60px); padding: 0;}
+            @media (min-width:1000px) {height: 100%; padding: 15px;}
+            width: 100%; 
+            .panel-title2 {
+                @media (min-width:0) {display: none;}
+                @media (min-width:1000px) {display: block;}
+                height: 30px; color: var(--color-txt2); font-weight: bold; font-size: 16px;
+            }
+            .panel-content {
+                @media (min-width:0) {height: 100%;}
+                @media (min-width:1000px) {height: calc(100% - 30px);}
+            }
+        }
+    }
+}

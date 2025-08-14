@@ -1,0 +1,74 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-problem-view" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['tasker']?.['problem']?.[lang.slug]}} <span *ngIf="problem">#{{problem.id}}</span></div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['tasker']?.['problem']?.[lang.slug]}} <span *ngIf="problem">#{{problem.id}}</span></div>
+            <div class="popup-content">
+                <ng-container *ngIf="problem">
+                    <div class="problem-view">
+                        <div class="pv-row">
+                            <div class="pv-title">{{words['tasker']?.['problem-created-at']?.[lang.slug]}}</div>
+                            <div class="pv-text"><span>{{problem.created_at | date:'dd.MM.yyyy HH:mm'}}</span></div>
+                        </div>
+                        <div class="pv-row" *ngIf="mode === 'public' && !user.parent_id">
+                            <div class="pv-title">{{words['tasker']?.['problem-user']?.[lang.slug]}}</div>
+                            <div class="pv-user">
+                                <div class="pvu-imgwrap">
+                                    <img *ngIf="problem.user.img" src="/images/users/{{problem.user.img}}">
+                                    <span *ngIf="!problem.user.img">{{problem.user.name[0]}}</span>
+                                </div>
+                                <div class="pvu-title">{{problem.user.name}}</div>
+                            </div>
+                        </div>
+                        <div class="pv-row" *ngIf="problem.guide">
+                            <ng-container *ngIf="problem.task">
+                                <div class="pv-2cols">
+                                    <div class="pv-col">
+                                        <div class="pv-title">{{words['tasker']?.['problem-guide']?.[lang.slug]}}</div>
+                                        <div class="pv-guide">
+                                            <a href="/{{lang.slug}}/guide/{{problem.guide.id}}" target="_blank">
+                                                <div class="pvg-imgwrap" *ngIf="problem.guide.img"><img src="/images/guides/{{problem.guide.img}}"></div>
+                                                <div class="pvg-title">{{problem.guide.name[lang.slug]}}</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pv-col">
+                                        <div class="pv-title">{{words['tasker']?.['problem-task']?.[lang.slug]}}</div>
+                                        <div class="pv-task"><a href="/{{lang.slug}}/guide/{{problem.guide.id}}?task={{problem.task.id}}" target="_blank">{{problem.task.name[lang.slug]}}</a></div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!problem.task">
+                                <div class="pv-title">{{words['tasker']?.['problem-guide']?.[lang.slug]}}</div>
+                                <div class="pv-guide">
+                                    <a href="/{{lang.slug}}/guide/{{problem.guide.id}}" target="_blank">
+                                        <div class="pvg-imgwrap" *ngIf="problem.guide.img"><img src="/images/guides/{{problem.guide.img}}"></div>
+                                        <div class="pvg-title">{{problem.guide.name[lang.slug]}}</div>
+                                    </a>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="pv-row" *ngIf="problem.actual_until">
+                            <div class="pv-title">{{words['tasker']?.['problem-actual-until']?.[lang.slug]}}</div>
+                            <div class="pv-text"><span>{{problem.actual_until | date:'dd.MM.yyyy'}}</span></div>
+                        </div>
+                        <div class="pv-row">
+                            <div class="pv-title">{{words['tasker']?.['problem-content']?.[lang.slug]}}</div>
+                            <div class="pv-content tascroll-v" [innerHTML]="problem.content"></div>
+                        </div>
+                        <div class="pv-row">
+                            <div class="pv-title">{{words['tasker']?.['problem-comments']?.[lang.slug]}}</div>
+                            <problem-comments [problem_id]="problem.id" *ngIf="active"></problem-comments><!-- в закрытом виде чат не должен работать -->
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!problem">
+                    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="entity-sorting">
+    <div class="es-value" id="ss.value-{{unique}}" (click)="active = !active" [class.active]="active"><span>{{words["common"]?.[value.name]?.[lang.slug]}}</span></div>
+    <div class="es-items" id="ss.items-{{unique}}" [class.active]="active">
+        <ul>
+            <li *ngFor="let item of items" (click)="onSelect(item)" [class.active]="item.name === value.name"><span>{{words["common"]?.[item.name]?.[lang.slug]}}</span></li>
+        </ul>
+    </div>
+</div>

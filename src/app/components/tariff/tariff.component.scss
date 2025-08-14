@@ -1,0 +1,37 @@
+.tariff {
+    display: flex; justify-content: space-between; align-items: center; background-color: var(--color-input-bg1); border:1px var(--color-border2) solid; border-radius: 15px; padding: 10px 15px; transition: 0.3s; cursor: pointer; user-select: none; position: relative;
+    .t-left {
+        display: flex; align-items: center;
+        .t-mark {
+            width: 20px; min-width: 20px; height: 20px; border-radius: 10px; margin-right: 10px; border:1px var(--color-border2) solid; display: flex; justify-content: center; align-items: center; color: var(--color-border2); font-size: 12px; position: relative;
+            span::before {font-family: "fa-solid"; content: "\f00c";}
+            &::after {position: absolute; left: -1px; top: -1px; right:-1px; bottom: -1px; border-radius: 50%; font-family: "fa-solid"; content: "\f00c"; display: flex; justify-content: center; align-items: center; background: var(--gradient-hilite); color: var(--color-bg-main2); transition: 0.3s; opacity: 0;}
+        }
+        .t-details {
+            .t-name {
+                @media (min-width:0) {font-size: 14px;}
+                @media (min-width:1000px) {font-size: 16px;}
+                font-weight: 600; background-image: var(--gradient-hilite); background-clip: text; -webkit-text-fill-color: transparent; color: var(--color-hilite2);
+            }
+            .t-note {font-size: 11px;}
+        }
+    }
+    .t-right {
+        .t-price {
+            @media (min-width:0) {font-size: 14px;}
+            @media (min-width:1000px) {font-size: 16px;}
+            text-align: right; font-weight: 600; background-image: var(--gradient-hilite); background-clip: text; -webkit-text-fill-color: transparent; color: var(--color-hilite2);
+        }
+    }
+    @media (hover: hover) and (pointer: fine) {&:hover {border-color: var(--color-hilite2);}}
+    &.active {
+        border-color: var(--color-hilite2); pointer-events: none;
+        .t-left {.t-mark::after {opacity: 1;}}
+    }
+    .t-top {
+        @media (min-width:0) {background-color: var(--color-bg-popup2);}
+        @media (min-width:1000px) {background-color: var(--color-bg-popup1);}
+        position: absolute; top: -10px; right: 15px; height: 20px; border:1px var(--color-rhilite1) solid; color: var(--color-rhilite1); border-radius: 8px; padding: 0 5px; font-size: 12px; font-weight: bold; display: flex; align-items: center; 
+        span::before {font-family: "fa-solid"; display: inline-block; margin-right: 3px; content: "\f06d";}
+    }
+}

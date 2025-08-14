@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Drop Guide</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SM4YV4VR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-73SM4YV4VR');
+    </script>
+</head>
+<body>
+    <app-root></app-root>
+    <div id="splash"><img src="/assets/images/logo2.svg" alt="Drop guide"></div>
+    <style>
+        #splash {position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background-color: #122336; display: flex; justify-content: center; align-items: center; transition:0.5s;}
+        #splash.transparent {opacity: 0;}
+        #splash img {max-height: 40px; max-width: 200px;}
+    </style>
+</body>
+</html>

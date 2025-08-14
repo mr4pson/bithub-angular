@@ -1,0 +1,45 @@
+.date-picker {
+    .dp-date {
+        display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; vertical-align: top; height: 45px; background-color: var(--color-input-bg1); border:1px var(--color-border2) solid; padding: 0 15px; border-radius: 15px; cursor: pointer; user-select: none; font-size: 16px;
+        @media (hover: hover) and (pointer: fine) {&:hover {.dp-value {color: var(--color-txt2);}}}
+        .dp-value {
+            transition: 0.3s; white-space: nowrap;
+            &::before {font-family: "fa-light"; display: inline-block; margin-inline-end: 10px; content: "\f073";}
+        }        
+        .dp-reset{
+            transition: 0.3s;
+            @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+            &::before {font-family: "fa-light"; content: "\f00d";}
+        }
+    }
+    .dp-calendar {
+        position: fixed; z-index: 1001; padding: 15px; background-color: var(--color-bg-block25); border:1px var(--color-border2) solid; border-radius: 15px; user-select: none; box-shadow: var(--shadow-popup);
+        .dp-head {
+            display: flex; justify-content: space-between; align-items: center; height: 30px; margin-bottom: 15px;
+            .dph-left { 
+                display: flex; align-items: center; gap: 5px;
+                .dph-month {text-transform: capitalize;}            
+            }
+            .dph-right {display: flex; gap:10px;}           
+        }
+        .dp-days {   
+            height: 228px;         
+            .dp-days-content {
+                display: grid; grid-template-columns: repeat(7, 30px); gap: 3px; font-size: 12px; 
+                div {
+                    display: flex; justify-content: center; align-items: center; height: 30px; 
+                    &.head {text-transform: capitalize;}
+                    &.day {
+                        cursor: pointer; border-radius: 15px; cursor: pointer; transition: 0.3s;
+                        &.hidden {opacity: 0 !important; pointer-events: none;}
+                        &.current {background-color: var(--color-hilite2) !important; color: var(--color-bg-block25) !important; pointer-events: none;}
+                        &.holiday {}
+                        &.now {font-weight: bold;}
+                        @media (hover: hover) and (pointer: fine) {&:hover {background-color: var(--color-border1);}}	
+                    }                    
+                }
+            }                
+        }         
+    }
+    .dp-ovl {position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;}        
+}

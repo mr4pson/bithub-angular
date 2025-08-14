@@ -1,0 +1,32 @@
+<div class="comments" #container>
+    <h2>{{words['comments']?.['title']?.[lang.slug]}}</h2>
+    <div class="c-list" [class.busy]="loading">
+        <ng-container *ngIf="!comments"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+        <ng-container *ngIf="comments">
+            <ng-container *ngIf="!comments.length"><span>{{words['comments']?.['empty']?.[lang.slug]}}</span></ng-container>
+            <ng-container *ngIf="comments.length">
+                <div *ngFor="let c of comments" class="c-item">
+                    <the-comment [comment]="c" (replyTo)="onReplyTo($event)" />
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="c-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()"></the-pagination></div>
+    <h2>{{words['comments']?.['new']?.[lang.slug]}}</h2>
+    <form class="gf" (submit)="onSend()">
+        <div class="gf-row">
+            <div class="gf-tawrap semiwide">
+                <input-textarea [(value)]="content" [placeholder]="words['comments']?.['content-ph']?.[lang.slug]" [maxlength]="1000" [error]="errors['content']" />
+            </div>
+        </div>
+        <div class="gf-row">
+            <the-captcha [(value)]="captchaToken" [error]="errors['captcha-token']" [title]="words['comments']?.['not-robot']?.[lang.slug]"></the-captcha>
+        </div>
+        <div class="gf-row">
+            <ng-container *ngIf="sent">{{words["comments"]?.["sent"]?.[lang.slug]}}</ng-container>
+            <ng-container *ngIf="!sent">
+                <div class="gf-btnwrap start"><button type="submit" class="btn gold compact" [class.busy]="sending"><span class="btn-icon"></span><span class="btn-text">{{words["comments"]?.["send"]?.[lang.slug]}}</span></button></div>
+            </ng-container>
+        </div>
+    </form>
+</div>

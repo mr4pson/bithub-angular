@@ -1,0 +1,44 @@
+.panel.favorites {
+    @media (min-width:0) {height: 100%;}
+    @media (min-width:1000px) {height: 304px;}
+    .pf-guides {
+        @media (min-width:0) {padding: 15px;}
+        @media (min-width:1000px) {padding:0 5px 0 0;}
+        width: 100%; height: 100%; overflow-y: auto;                
+        .pf-guide {  
+            display: flex; justify-content: space-between; align-items: center; padding-bottom:15px; margin-bottom:15px; border-bottom: 1px var(--color-border2) solid;
+            &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
+            .pfg-img {
+                width: 60px; height: 60px; min-width: 60px; margin-right: 15px; display: block; overflow: hidden;
+                img {width: 100%; height: 100%; object-fit: cover; border-radius: 15px;}
+            }
+            .pfg-details {
+                flex: 1; overflow: hidden;
+                .pfg-name {font-size: 16px; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; font-weight: bold; margin-bottom: 5px;}
+                .pfg-params {
+                    display: flex; gap:5px;
+                    .pfg-time {
+                        height: 26px; border-radius: 8px; padding: 0 5px; background-color: var(--color-input-bg2); color: var(--color-txt2); display: flex; align-items: center; 
+                        span {
+                            white-space: nowrap; font-size: 11px;
+                            &::before {font-family: "fa-light"; content: "\f017"; display: inline-block; margin-inline-end: 5px;}
+                        }
+                    }
+                    .pfg-price {
+                        height: 26px; border-radius: 8px; padding: 0 5px; background-color: var(--color-input-bg2); color: var(--color-alert1); display: flex; align-items: center; text-transform: uppercase;
+                        span {
+                            font-size: 11px; white-space: nowrap; display: inline-flex; align-items: center; font-weight: 600;
+                            &::before {font-family: "fa-light"; content: "\f056"; margin-inline-end: 5px;}
+                            &.free {
+                                color: var(--color-txt2); 
+                                &::before {display: none;}
+                            }
+                        }
+                    }
+                }
+            }                    
+        }
+    } 
+    
+}
+

@@ -1,0 +1,20 @@
+<ng-container *ngIf="guides !== null">
+    <div class="stat-guides">
+        <ng-container *ngIf="guides.length">
+            <div class="sg-items" [class.busy]="loading">
+                <div class="sg-item" *ngFor="let guide of guides; let i = index;">
+                    <the-statguide [guide]="guide" (editGuideNote)="onEditGuideNote(i)" (viewCompletions)="onViewCompletions(i)"></the-statguide>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!guides.length">
+            <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+        </ng-container>
+    </div>
+</ng-container>
+<ng-container *ngIf="guides === null">
+    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+</ng-container>
+
+<popup-guidenote [(active)]="notePopupActive" [guide]="guideToEditNote"></popup-guidenote>
+<popup-completions [(active)]="completionsPopupActive" [guide]="completionsGuide"></popup-completions>

@@ -1,0 +1,54 @@
+<div class="histback"><a routerLink="/{{lang.slug}}">{{words['guides']?.['back']?.[lang.slug]}}</a></div>
+
+<ng-container *ngIf="guide">
+    <div class="guidecontent">
+        <div class="g-head">
+            <div class="gh-top">
+                <div class="ght-left">
+                    <div class="ghtl-imgwrap" *ngIf="guide.img"><img src="/images/guides/{{guide.img}}" [alt]="guide.name[lang.slug]" loading="lazy"></div>
+                    <div class="ghtl-details">
+                        <h1>{{guide.name[lang.slug]}}</h1>
+                        <div class="ghtl-moredetails">
+                            <div class="ghtl-date">{{guide.created_at | date:'dd.MM.yyyy'}}</div>
+                            <div>&bull;</div>
+                            <div class="ghtl-status {{guide.status}}"><span>{{words['guides']?.['status-'+guide.status]?.[lang.slug]}}</span></div>
+                        </div>
+                        <div class="ghtl-links">
+                            <a *ngFor="let link of guide.links" class="ghtl-link" [href]="link.value" target="_blank"><img *ngIf="link.img" src="/images/linktypes/{{link.img}}" [alt]="link.name"></a>
+                        </div>
+                        <div class="ghtl-params">
+                            <div class="ghtl-time" [title]="words['guides']?.['time']?.[lang.slug]"><span>{{guide.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
+                            <div class="ghtl-price" [title]="words['guides']?.['price']?.[lang.slug]"><span [class.free]="!guide.price">{{guide.price ? '$'+guide.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
+                            <div class="ghtl-earnings" *ngIf="guide.earnings !== 'none'"><span>{{words['guides']?.['earnings-'+guide.earnings]?.[lang.slug]}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ght-right">
+                    <div class="ghtr-top"><sd-big [value]="guide.bh_score" /></div>
+                    <div class="ghtr-bottom">
+                        <div class="ghtrb-tws"><sd-small [value]="guide.bh_score" /></div>
+                        <div class="ghtrb-progress"><the-progress1 [value]="guide.progress"></the-progress1></div>
+                        <div class="ghtrb-favorite"><btn-favorition [guide]="guide"></btn-favorition></div>
+                    </div>
+                </div>
+            </div>
+            <div class="gh-bottom" *ngIf="guide.tasks.length > 1"><the-progress2 [tasks]="guide.tasks" /></div>
+        </div>
+        <div class="g-calendar" *ngIf="user"><the-datemarks [guide]="guide" /></div>
+        <div class="g-content"><expandable-text [value]="guide.content[lang.slug]"></expandable-text></div>
+        <div class="g-warning" *ngIf="user && !user.paid_at">
+            <div class="gw-txt" [innerHTML]="warningTxt"></div>
+            <div class="gw-btnwrap" *ngIf="!user.parent_id"><button type="button" class="btn gold" (click)="onSubscribe()"><span class="btn-icon pay"></span><span class="btn-text">{{words['guides']?.['ftwarning-btn']?.[lang.slug]}}</span></button></div>
+        </div>
+        <div class="g-tasks">
+            <div class="g-task" *ngFor="let t of guide.tasks; let i = index;">
+                <the-task [task]="t" [no]="i + 1" [n]="guide.tasks.length" (updateProgress)="onUpdateProgress()"></the-task>
+            </div>
+        </div>
+    </div>
+    <guide-comments [guide_id]="guide.id" />
+</ng-container>
+
+<ng-container *ngIf="!guide">
+    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+</ng-container>

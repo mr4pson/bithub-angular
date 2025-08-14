@@ -1,0 +1,50 @@
+.popup.popup-unviewed {
+    .popup-content {
+        @media (min-width:0) {padding: 0 !important;}
+        @media (min-width:1000px) {padding: 0 60px 60px 60px !important;}
+        .ppu-tasks {
+            @media (min-width:0) {padding: 15px; max-height: calc(100% - 75px);}
+            @media (min-width:1000px) {padding: 0 5px 0 0; max-height: 333px;}
+            width: 100%; overflow-y: auto;
+            .ppu-task {
+                padding-bottom:15px; margin-bottom:15px; border-bottom: 1px var(--color-border2) solid;
+                &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
+                .pput-name {height: 30px; font-size: 16px; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; font-weight: bold;}
+                .pput-details {
+                    display: flex; flex-wrap: wrap; gap: 5px;
+                    .pput-time {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-txt2); display: flex; align-items: center;
+                        span {
+                            white-space: nowrap; font-size: 12px;
+                            &::before {font-family: "fa-light"; content: "\f017"; display: inline-block; margin-right: 5px;}
+                        }
+                    }
+                    .pput-price {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-shilite1); display: flex; align-items: center;
+                        span {
+                            font-size: 12px; white-space: nowrap; display: inline-flex; align-items: center; font-weight: 600; line-height: 16px;
+                            &::before {width: 16px; height: 16px; display: inline-block; margin-right: 5px; background-image: url("/assets/images/coin.svg"); background-size: cover; content: "";}
+                            &.free {
+                                color: var(--color-ok); text-transform: uppercase;
+                                &::before {display: none;}
+                            }
+                        }
+                    }
+                    .pput-until {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-txt2); display: inline-flex; align-items: center;
+                        span {
+                            font-size: 12px; white-space: nowrap; text-transform: capitalize;
+                            &::before {font-family: "fa-light"; content: "\f073"; display: inline-block; margin-right: 5px;}
+                        }
+                    }
+                }
+            }
+        }
+        .ppu-btnwrap {
+            @media (min-width:0) {padding: 15px;}
+            @media (min-width:1000px) {padding: 30px 0 0 0;}
+            height: 75px; padding: 15px;
+            .btn {height: 100%; width: 100%;}
+        }
+    }
+}

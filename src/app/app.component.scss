@@ -1,0 +1,13 @@
+@import "./styles/var.scss";
+
+html {
+	height: 100%; width: 100%; overflow: hidden;
+    body {      
+		@media (min-width:0) {font-size: 14px;}  
+		@media (min-width:1000px) {font-size: 16px;}  
+        margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; font-family: "segoe", Arial, Helvetica, sans-serif; overflow-anchor: none; overscroll-behavior: none; background-image: var(--gradient-bg); color: var(--color-txt1);
+		@import "./styles/general.scss";		
+		@import "./styles/layout.scss";		
+		@import "./styles/helpers.scss";			
+    }
+}

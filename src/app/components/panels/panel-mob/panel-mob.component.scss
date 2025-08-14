@@ -1,0 +1,78 @@
+.mm {
+    @media (min-width:0) {display: flex;}
+    @media (min-width:1000px) {display: none;}
+    position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; transform: translateX(-100%); transition: 0.3s; user-select: none;
+    &.active {transform: none;}
+    .mm-left {
+        width: 300px; height: 100%; background-color: var(--color-bg-main2);
+        .mm-head {
+            height: 60px; padding: 0 15px; display: flex; align-items: center; border-bottom: 1px var(--color-border2) solid;
+            .mm-close {
+                cursor: pointer; color: var(--color-txt1); font-size: 30px; transition: 0.3s;
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                span::before {font-family: "fa-light"; content: "\f00d";}
+            }
+        }
+        .mm-main {
+            height: calc(100% - 60px); overflow: auto; 
+            .mm-menu {
+                padding: 15px; border-bottom: 1px var(--color-border2) solid;
+                ul {
+                    li {
+                        margin-bottom: 15px;
+                        &:last-child {margin-bottom: 0;}
+                        a {
+                            font-size: 18px; color: var(--color-txt1);                         
+                            &::before {display: none;}
+                            @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                            &.active {background-image: var(--gradient-hilite); background-clip: text; -webkit-text-fill-color: transparent; color: var(--color-hilite2);}
+                        }
+                    }
+                }
+            }
+            .mm-contacts {
+                padding: 15px; border-bottom: 1px var(--color-border2) solid;
+                .mmc-section {
+                    margin-bottom: 15px; 
+                    &:last-child {margin-bottom: 0;}        
+                }
+                .mmc-title {font-size: 14px; margin-bottom: 5px;}
+                .mmc-contacts {
+                    display: flex;
+                    .mmc-contact {
+                        margin-right: 10px; font-size: 20px;
+                        a {
+                            &.tg::before {font-family: "fa-brands"; content: "\f2c6";}
+                            &.do::before {font-family: "fa-brands"; content: "\f392";}
+                            &.tw::before {font-family: "fa-brands"; content: "\e61b";}
+                            &.yt::before {font-family: "fa-brands"; content: "\f167";}
+                            &.li::before {font-family: "fa-brands"; content: "\f08c";}
+                            &.mail::before {font-family: "fa-solid"; content: "\f0e0";}
+                        }                
+                    }
+                }
+                .mmc-gitbook {
+                    a {
+                        font-size: 16px; display: flex;               
+                        img {height: 20px; margin-right: 5px; filter: invert(1);}
+                    }
+                }
+            }
+            .mm-langs {
+                padding: 15px; 
+                ul {
+                    display: flex;
+                    li {
+                        margin-right: 15px;
+                        a {
+                            font-size: 16px; text-transform: uppercase; color: var(--color-txt1);     
+                            @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                            &.active {background-image: var(--gradient-hilite); background-clip: text; -webkit-text-fill-color: transparent;  color: var(--color-hilite2);}
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .mm-right {width: calc(100% - 300px); height: 100%; background-color: var(--color-bg-block1);}
+}

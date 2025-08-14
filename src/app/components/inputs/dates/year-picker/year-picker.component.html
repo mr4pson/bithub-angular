@@ -1,0 +1,17 @@
+<div class="yp">
+    <div class="yp-head">
+        <div class="yph-left">
+            <div class="yph-period">{{from}} - {{to}}</div>
+            <div class="smallbtn compact up" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="yph-right">
+            <div class="smallbtn compact back" [dir]="lang.dir" (mousedown)="onBack();"><span></span></div>
+            <div class="smallbtn compact next" [dir]="lang.dir" (mousedown)="onForward();"><span></span></div>
+        </div>
+    </div>
+    <div class="yp-main">
+        <div class="yp-years">
+            <div *ngFor="let y of years" class="yp-year" [class.current]="y === value" [class.now]="y === now" (click)="onSelect(y)">{{y}}</div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,10 @@
+<ng-container *ngIf="page">
+    <h1 [innerHTML]="h1"></h1>
+    <div class="content">
+        <img *ngIf="img" class="content-img" src="/images/pages/{{img}}" [alt]="title">
+        <div [innerHTML]="content | safe:'html'"></div>
+    </div>
+</ng-container>
+<ng-container *ngIf="!page">
+    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+</ng-container>

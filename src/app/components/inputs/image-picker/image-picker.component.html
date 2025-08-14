@@ -1,0 +1,12 @@
+<div class="image-picker">
+    <div class="ip-main">
+        <div class="ip-img" [class.active]="active">
+            <img *ngIf="value" [src]="img | safe:'resourceUrl'">
+            <div class="ip-ovl" [class.empty]="!value" (click)="onSelect()" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)"></div>
+            <div *ngIf="value" class="ip-btns">
+                <div class="ip-btn delete" (click)="onDelete()"><span></span></div>
+            </div>
+        </div>        
+    </div>
+    <div *ngIf="error" class="ip-error">{{words['errors']?.['img']?.[lang.slug]}}</div>    
+</div>

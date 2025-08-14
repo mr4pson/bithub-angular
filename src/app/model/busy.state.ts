@@ -1,0 +1,1 @@
+export type TBusyState = "busy" | "done" | null;

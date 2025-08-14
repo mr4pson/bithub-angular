@@ -1,0 +1,14 @@
+ul.menu-main {
+    list-style: none; margin: 0; padding: 0;
+    li {
+        a {
+            &::before {font-family: "fa-light"; display: inline-block; margin-right: 5px; font-size: 18px;}
+            &.home::before {content: "\f06d";}
+            &.stats::before {content: "\e473";}
+            &.tasker::before {content: "\e196";}
+            &.education::before {content: "\f19d";}
+            &.shop::before {content: "\f07a";}
+            &.drops::before {content: "\e0e5";}
+        }
+    }
+}

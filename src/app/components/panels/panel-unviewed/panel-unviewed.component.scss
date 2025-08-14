@@ -1,0 +1,56 @@
+.panel.unviewed {
+    @media (min-width:0) {height: 100%; width: 100%;}
+    @media (min-width:1000px) {height: 454px; width: 390px;}
+    .pu-wrap {        
+        height: 100%;
+        .pu-dash {
+            @media (min-width:0) {padding: 15px 15px 0 15px; height: 50px;}
+            @media (min-width:1000px) {padding: 0; height: 30px;}
+        }
+        .pu-tasks {
+            @media (min-width:0) {padding: 0 15px 15px 15px; height: auto; max-height: calc(100% - 50px - 75px);}
+            @media (min-width:1000px) {padding: 0 5px 0 0; height: calc(100% - 30px - 60px); max-height: calc(100% - 30px - 60px);}
+            width: 100%; overflow-y: auto; 
+            .pu-task {
+                padding-bottom:15px; margin-bottom:15px; border-bottom: 1px var(--color-border2) solid;
+                &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
+                .put-gname {height: 20px; font-size: 16px; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis;}
+                .put-name {height: 30px; font-size: 16px; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; font-weight: bold;}                
+                .put-details {
+                    display: flex; flex-wrap: wrap; gap: 5px;
+                    .put-time {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-txt2); display: flex; align-items: center; 
+                        span {
+                            white-space: nowrap; font-size: 12px;
+                            &::before {font-family: "fa-light"; content: "\f017"; display: inline-block; margin-right: 5px;}
+                        }
+                    }
+                    .put-price {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-alert1); display: flex; align-items: center; text-transform: uppercase;
+                        span {
+                            font-size: 12px; white-space: nowrap; display: inline-flex; align-items: center; font-weight: 600; line-height: 16px;
+                            &::before {font-family: "fa-light"; content: "\f056"; margin-inline-end: 5px;}
+                            &.free {
+                                color: var(--color-txt2); 
+                                &::before {display: none;}
+                            }
+                        }
+                    }
+                    .put-until {
+                        height: 30px; border-radius: 10px; padding: 0 10px; background-color: var(--color-input-bg2); color: var(--color-txt2); display: inline-flex; align-items: center; 
+                        span {
+                            font-size: 12px; white-space: nowrap; text-transform: capitalize;
+                            &::before {font-family: "fa-light"; content: "\f073"; display: inline-block; margin-right: 5px;}
+                        }
+                    }
+                }
+            }
+        }
+        .pu-btnwrap {
+            @media (min-width:0) {padding: 15px; height: 75px;}
+            @media (min-width:1000px) {padding: 15px 0 0 0; height: 60px;}
+            .btn {height: 100%; width: 100%;}
+        }
+    }    
+}
+

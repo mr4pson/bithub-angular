@@ -1,0 +1,16 @@
+<div class="stat-guide" (click)="onViewCompletions()">
+    <div class="sg-imgwrap" *ngIf="guide.img"><img src="/images/guides/{{guide.img}}" loading="lazy" [alt]="guide.name[lang.slug]"></div>
+    <div class="sg-details">
+        <div class="sg-head">
+            <div class="sg-name">{{guide.name[lang.slug]}} <!--({{guide.completion_users}} {{words['common']?.['acc']?.[lang.slug]}})--></div>
+            <a stop-propagation class="sg-link" href="/{{lang.slug}}/guide/{{guide.id}}" target="_blank"><span></span></a>
+        </div>
+        <div class="sg-note">
+            <div class="sgn-head">
+                <div class="sgnh-title">{{words['guides']?.['guidenote-shorttitle']?.[lang.slug]}}</div>
+                <div stop-propagation class="sgnh-btn" [title]="words['guides']?.['btn-guidenote']?.[lang.slug]" (click)="onEditGuideNote()"><span></span></div>
+            </div>
+            <div class="sgn-content bscroll-v" [innerHTML]="guide.note || words['guides']?.['guidenote-empty']?.[lang.slug] | eol"></div>
+        </div>
+    </div>
+</div>

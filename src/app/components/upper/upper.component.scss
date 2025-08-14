@@ -1,0 +1,8 @@
+.upper {
+    @media (min-width:0) {right: 15px; bottom: 15px; width: 30px; height: 30px; font-size: 16px;}
+    @media (min-width:1000px) {right: 30px; bottom: 30px; width: 40px; height: 40px; font-size: 20px;}
+    position: fixed; z-index: 10; border-radius: 50%; border:1px var(--color-border2) solid; background-color: var(--color-input-bg1); display: flex; justify-content: center; align-items: center; color: var(--color-txt2); cursor: pointer; user-select: none; transition: 0.3s; opacity: 0; pointer-events: none;
+    @media (hover: hover) and (pointer: fine) {&:hover {border-color: var(--color-hilite2);}} 
+    &.visible {opacity: 1; pointer-events: inherit;}
+    span::before {font-family: "fa-light"; content: "\f062";}
+}

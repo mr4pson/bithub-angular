@@ -1,0 +1,67 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-problem-edit" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['tasker']?.[problem?.id ? 'problem-edition' : 'problem-creation']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['tasker']?.[problem?.id ? 'problem-edition' : 'problem-creation']?.[lang.slug]}}</div>
+            <div class="popup-content"> 
+                <ng-container *ngIf="problem !== null">
+                    <form class="gf" (submit)="onSave()">
+                        <div class="gf-row" *ngIf="mode === 'public'">
+                            <div class="gf-title">{{words['tasker']?.['problem-user']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><select-user [(value)]="problem.user_id" [error]="errors['user_id']"></select-user></div>
+                            <div class="gf-error" *ngIf="errors['user_id']">{{words['errors']?.[errors['user_id']]?.[lang.slug]}}</div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['tasker']?.['problem-guide']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><select-guide [(value)]="problem.guide_id" (valueChange)="problem.task_id = null"></select-guide></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['tasker']?.['problem-task']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><select-task [disabled]="!problem.guide_id" [guide_id]="problem.guide_id" [(value)]="problem.task_id"></select-task></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['tasker']?.['problem-actual-until']?.[lang.slug]}}</div>
+                            <div class="gf-inputwrap"><date-picker [(value)]="problem.actual_until" [resetable]="true" [resetValue]="null"></date-picker></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-title">{{words['tasker']?.['problem-content']?.[lang.slug]}}</div>
+                            <div class="gf-tawrap"><input-textarea [(value)]="problem.content" [maxlength]="1000" [error]="errors['content']"></input-textarea></div>
+                        </div>
+                        <div class="gf-row">
+                            <div *ngIf="!problem.id" class="gf-btnwrap">
+                                <button type="submit" class="btn gold compact" [class.busy]="saving" [class.done]="saved">
+                                    <span class="btn-icon save"></span>
+                                    <span class="btn-text">{{words["common"]?.["save"]?.[lang.slug]}}</span>
+                                    <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                                </button>
+                            </div>
+                            <div *ngIf="problem.id" class="gf-2cols adaptive">
+                                <div class="gf-col">
+                                    <div class="gf-btnwrap">
+                                        <button type="button" class="btn danger" [class.busy]="deleting" [class.done]="deleted" [disabled]="saving || saved" (click)="onDelete()">
+                                            <span class="btn-icon delete"></span>
+                                            <span class="btn-text">{{words["common"]?.["delete"]?.[lang.slug]}}</span>
+                                            <span class="btn-done"><span>{{words["common"]?.["deleted"]?.[lang.slug]}}</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gf-col">
+                                    <div class="gf-btnwrap">
+                                        <button type="submit" class="btn gold" [class.busy]="saving" [class.done]="saved" [disabled]="deleting || deleted">
+                                            <span class="btn-icon save"></span>
+                                            <span class="btn-text">{{words["common"]?.["save"]?.[lang.slug]}}</span>
+                                            <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                                        </button>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-container>                                
+            </div>            
+        </div>        
+    </div>
+</div>

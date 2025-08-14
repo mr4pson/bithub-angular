@@ -1,0 +1,9 @@
+<div class="progress">
+    <div class="p-head">
+        <div class="p-title">{{words['guides']?.['progress']?.[lang.slug]}}</div>
+        <div class="p-value">{{value}}%</div>
+    </div>
+    <div class="p-scale">
+        <div class="ps-content" [style.width]="value+'%'"></div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="histback"><a routerLink="/{{lang.slug}}/shop">{{words['shop']?.['back']?.[lang.slug]}}</a></div>
+<ng-container *ngIf="!shopitem"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+<ng-container *ngIf="shopitem">
+    <div class="the-shopitem">
+        <div class="ts-head">
+            <div class="ts-imgwrap" *ngIf="img"><img src="/images/shopitems/{{img}}" loading="lazy" [alt]="title"></div>
+            <div class="ts-details">
+                <div class="ts-date">{{date}}</div>
+                <h1>{{h1}}</h1>
+                <div class="ts-price" *ngIf="price">
+                    <div class="tsp-title">{{words['shop']?.['price']?.[lang.slug]}}:</div>
+                    <div class="tsp-value">
+                        <img src="/assets/images/usdc.png">
+                        <span>${{price}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ts-content" [innerHTML]="content"></div>
+        <div class="ts-dash">
+            <button type="button" class="btn gold" (click)="onOrder()"><span class="btn-icon cart"></span><span class="btn-text">{{words["shop"]?.["order"]?.[lang.slug]}}</span></button>
+        </div>
+    </div>
+    <popup-shoporder [shopitem_id]="shopitem.id" [(active)]="shoporderPopupActive" />
+</ng-container>

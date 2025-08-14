@@ -1,0 +1,21 @@
+<div class="desk" [class.busy]="reloading">
+    <div class="d-head">
+        <div class="dh-name" [class.wide]="!editable">
+            <div class="dhn-content" *ngIf="!edit">{{desk.name || words['tasker']?.['desk-noname']?.[lang.slug]}}</div>
+            <input *ngIf="edit" type="text" [(ngModel)]="desk.name" id="desknameinput-{{desk.id}}" (keydown)="onNameKeyDown($event)">
+        </div>
+        <div class="dh-dash" *ngIf="editable">
+            <div *ngIf="edit" class="dh-btn update" [class.busy]="updating" [class.inactive]="updating || deleting" id="desknameupdate-{{desk.id}}" (click)="onUpdate()" [title]=" words['common']?.['save']?.[lang.slug]"><span></span></div>
+            <div *ngIf="!edit" class="dh-btn edit" [class.inactive]="deleting" (click)="onEdit()" id="desknameedit-{{desk.id}}" [title]=" words['common']?.['edit']?.[lang.slug]"><span></span></div>
+            <div class="dh-btn delete" [class.busy]="deleting" [class.inactive]="updating || deleting" (click)="onDelete()" [title]=" words['common']?.['delete']?.[lang.slug]"><span></span></div>
+        </div>
+    </div>
+    <div class="d-main bscroll-v">
+        <div class="d-problem" *ngFor="let p of desk.problems; let i = index;"><desk-problem [problem]="p" [mode]="mode" [loading]="editProblemLoadingIndex === i" [deleting]="editProblemDeletingIndex === i" (editProblem)="onEditProblem(i)" (viewProblem)="onViewProblem(i)" (deleteProblem)="onDeleteProblem(i)"></desk-problem></div>        
+        <div class="d-add" *ngIf="editable"><a (click)="onAddProblem()">{{words['tasker']?.['problem-add']?.[lang.slug]}}</a></div>
+    </div>
+    <div class="d-dropable" [class.active]="dropable" [class.drop2me]="drop2me" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"></div>
+</div>
+
+<popup-problem-edit [(active)]="editProblemPopupActive" [problem]="editProblem" [mode]="mode" (updateDesk)="onUpdateDesk()"></popup-problem-edit>
+<popup-problem-view [(active)]="viewProblemPopupActive" [(id)]="viewProblemId" [mode]="mode"></popup-problem-view><!-- viewProblemId будет сброшен при закрытии, это используется при ловле сообщений -->

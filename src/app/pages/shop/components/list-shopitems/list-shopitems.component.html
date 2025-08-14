@@ -1,0 +1,13 @@
+<ng-container *ngIf="shopitems === null"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+<ng-container *ngIf="shopitems !== null">
+    <div class="shopitems">
+        <ng-container *ngIf="!shopitems.length"><span>{{words['common']?.['empty']?.[lang.slug]}}</span></ng-container>
+        <ng-container *ngIf="shopitems.length">
+            <div class="s-items" [class.busy]="loading">
+                <div class="s-item" *ngFor="let shopitem of shopitems; let i = index;">
+                    <the-shopitem [shopitem]="shopitem"></the-shopitem>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

@@ -1,0 +1,15 @@
+.input-search {
+    position: relative; height: 45px;
+    input {height: 100%; width: 100%; padding-inline-end: 60px;}
+    .submit {
+        appearance: none; background: none; border: none; padding: 0; margin: 0; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--color-txt1); transition: 0.3s;    
+        @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+        span::before {font-family: "fa-light"; font-size: 16px; content: "\f002";}
+    }
+    .reset {
+        appearance: none; background: none; border: none; padding: 0; margin: 0; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--color-txt1); transition: 0.3s; opacity: 0; pointer-events: none;   
+        &.active {opacity: 1; pointer-events: inherit;}
+        @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+        span::before {font-family: "fa-light"; font-size: 16px; content: "\f00d";}
+    }
+}

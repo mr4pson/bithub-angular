@@ -1,0 +1,76 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['register']?.['title']?.[lang.slug]}}</div>
+            <div *ngIf="!regMode" class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['register']?.['title']?.[lang.slug]}}</div>
+            <div class="popup-content"> 
+                <form class="gf" (submit)="onSubmit()">
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['name']?.[lang.slug]}}</div>
+                        <div class="gf-inputwrap"><input type="text" name="name" [(ngModel)]="name" [class.error]="errors['name']"></div>
+                        <div class="gf-error" *ngIf="errors['name']">{{words['errors']?.[errors['name']]?.[lang.slug]}}</div>
+                    </div>
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['email']?.[lang.slug]}}</div>
+                        <div class="gf-inputwrap"><input type="email" name="email" [(ngModel)]="email" [class.error]="errors['email']"></div>
+                        <div class="gf-error" *ngIf="errors['email']">{{words['errors']?.[errors['email']]?.[lang.slug]}}</div>
+                    </div>
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['code']?.[lang.slug]}}</div>
+                        <div class="gf-2cols adaptive">
+                            <div class="gf-col">
+                                <div class="gf-inputwrap"><input-password [(value)]="code" [error]="errors['code']"></input-password></div>
+                                <div class="gf-error" *ngIf="errors['code']">{{words['errors']?.[errors['code']]?.[lang.slug]}}</div>
+                            </div>
+                            <div class="gf-col">
+                                <div class="gf-btnwrap">
+                                    <button type="button" tabindex="-1" class="btn gold" [class.busy]="codeSending" [class.done]="codeSent" (click)="onSendCode()">
+                                        <span class="btn-icon code"></span>
+                                        <span class="btn-text">{{words["register"]?.["get-code"]?.[lang.slug]}}</span>
+                                        <span class="btn-done"><span>{{words["register"]?.["code-sent"]?.[lang.slug]}}</span></span>
+                                    </button>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['password']?.[lang.slug]}}</div>
+                        <div class="gf-inputwrap"><input-password [(value)]="password" [error]="errors['password']"></input-password></div>
+                        <div class="gf-error" *ngIf="errors['password']">{{words['errors']?.[errors['password']]?.[lang.slug]}}</div>
+                    </div>
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['password2']?.[lang.slug]}}</div>
+                        <div class="gf-inputwrap"><input-password [(value)]="password2" [error]="errors['password2']"></input-password></div>
+                        <div class="gf-error" *ngIf="errors['password2']">{{words['errors']?.[errors['password2']]?.[lang.slug]}}</div>
+                    </div>
+                    <div class="gf-row">
+                        <div class="gf-title">{{words['register']?.['wallet']?.[lang.slug]}}</div>
+                        <div class="gf-inputwrap"><input type="text" name="wallet" [(ngModel)]="wallet" [class.error]="errors['wallet']"></div>
+                        <div class="gf-error" *ngIf="errors['wallet']">{{words['errors']?.[errors['wallet']]?.[lang.slug]}}</div>
+                    </div>
+                    <div class="gf-row">                        
+                        <the-captcha [(value)]="captchaToken" [error]="errors['captcha-token']" [title]="words['register']?.['not-robot']?.[lang.slug]"></the-captcha>
+                    </div>
+                    <div class="gf-row">
+                        <div *ngIf="!errors['form']" class="gf-btnwrap"><button type="submit" class="btn gold" [class.busy]="formSending"><span class="btn-icon register"></span><span class="btn-text">{{words["register"]?.["submit"]?.[lang.slug]}}</span></button></div>
+                        <div *ngIf="errors['form']" class="gf-denied">{{words['errors']?.[errors['form']]?.[lang.slug]}}</div>  
+                    </div>
+                    <ng-container *ngIf="!regMode">
+                        <div class="gf-row">
+                            <div class="gf-linkwrap"><span>{{words['register']?.['have-acc']?.[lang.slug]}}</span>&nbsp;<a (click)="onLogin()">{{words['register']?.['login']?.[lang.slug]}}</a></div>
+                        </div>    
+                        <div class="gf-row">
+                            <div class="gf-or"><span>{{words['common']?.['or']?.[lang.slug]}}</span></div>
+                        </div>
+                        <div class="gf-row">
+                            <div class="gf-btnwrap"><button type="button" class="btn gold" (click)="onEnterWithGoogle()"><span class="btn-icon google"></span><span class="btn-text">{{words["common"]?.["enter-google"]?.[lang.slug]}}</span></button></div>
+                        </div>                
+                    </ng-container>                    
+                </form>                               
+            </div>            
+        </div>        
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<h1>{{words['account']?.['title']?.[lang.slug]}}</h1>
+
+<ng-container *ngIf="user">
+    <div class="profile">
+        <div class="p-left" [class.wide]="user.parent_id">
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['personal']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-personal [user]="user" [busy]="updating" [done]="updated" (saveData)="updateUser()"></profile-personal>
+                </div>
+            </div>
+            <!--
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['tg-title']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-tg [user]="user" [busy]="tgUpdating" [done]="tgUpdated" (saveData)="updateUserTg()"></profile-tg>                    
+                </div>
+            </div>
+            -->
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['security']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-security></profile-security>
+                </div>
+            </div>
+        </div>
+        <div class="p-right" *ngIf="!user.parent_id">
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['finances']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-finances [user]="user"></profile-finances>
+                </div>
+            </div>
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['prop-title']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-proposal [user]="user"></profile-proposal>
+                </div>
+            </div>
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['children']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-children [user]="user"></profile-children>
+                </div>
+            </div>
+            <div class="p-section">
+                <div class="ps-title">{{words['account']?.['referees']?.[lang.slug]}}</div>
+                <div class="ps-content">
+                    <profile-referees [user]="user"></profile-referees>
+                </div>
+            </div>
+        </div> 
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!user">
+    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+</ng-container>

@@ -1,0 +1,12 @@
+<div class="select-component">
+    <div class="sc-value" id="sc-value-{{unique}}" [class.active]="active" [class.disabled]="disabled" [class.error]="error" (click)="onToggle()">
+        <div class="sc-title">{{words[dict]?.[word+'-'+value]?.[lang.slug]}}</div>
+    </div>
+    <div class="sc-items" [class.active]="active" id="sc-items-{{unique}}">
+        <div class="sci-content expanded">
+            <div *ngFor="let item of items" class="sci-item" [class.active]="item === value" (click)="onSelect(item)">
+                <div class="scii-title"><span>{{words[dict]?.[word+'-'+item]?.[lang.slug]}}</span></div>
+            </div>
+        </div>
+    </div>
+</div>

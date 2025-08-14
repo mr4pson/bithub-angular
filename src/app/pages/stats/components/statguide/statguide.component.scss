@@ -1,0 +1,38 @@
+.stat-guide {
+    display: flex; justify-content: space-between; background-color: var(--color-bg-block1); border:1px var(--color-border2) solid; border-radius: 15px; padding: 15px; color: var(--color-txt1); height: 100%; position: relative; transition: 0.3s; cursor: pointer;
+    @media (hover: hover) and (pointer: fine) {&:hover {border-color: var(--color-hilite2);}}
+    .sg-imgwrap {
+        @media (min-width:0) {display: none;}
+        @media (min-width:1000px) {display: block;}
+        width: 100px; min-width: 100px; height: 100px; margin-right: 15px; 
+        img {width: 100%; height: 100%; object-fit: cover; border-radius: 15px;}
+    }
+    .sg-details {
+        flex: 1; overflow: hidden; 
+        .sg-head {
+            display: flex; justify-content: space-between; gap: 15px;
+            .sg-name {
+                @media (min-width:0) {font-size: 16px; height: auto; margin-bottom: 5px;}
+                @media (min-width:1000px) {font-size: 18px; height: 30px; margin-bottom: 0;}                
+                font-weight: bold; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-txt2);                         
+            }            
+            .sg-link {
+                color: var(--color-txt1);
+                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                span::before {font-family: "fa-light"; content: "\f08e";}
+            }
+        }
+        .sg-note {
+            .sgn-head {
+                display: flex; align-items: flex-end; height: 22px;
+                .sgnh-title {font-size: 14px; font-weight: bold; margin-right: 10px;}
+                .sgnh-btn {
+                    cursor: pointer; user-select: none; color: var(--color-txt1); transition: 0.3s;
+                    @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
+                    span::before {font-family: "fa-light"; content: "\f044";}
+                }
+            }
+            .sgn-content {max-height: 48px; overflow-y: auto; font-size: 12px; line-height: 16px; padding-inline-end: 5px;}                
+        }
+    }
+}

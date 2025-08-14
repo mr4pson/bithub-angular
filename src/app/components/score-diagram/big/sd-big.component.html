@@ -1,0 +1,20 @@
+<div class="bs-big">
+    <div class="bsb-imgwrap">
+        <svg viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="bsb-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" [attr.stop-color]="color3.toString()" />
+                    <stop offset="50%" [attr.stop-color]="color2.toString()" />
+                    <stop offset="100%" [attr.stop-color]="color1.toString()" />
+                </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" [attr.r]="radius" [attr.stroke-dasharray]="strokeDashArray(1000)" stroke-linecap="round" stroke="#21374D" stroke-width="10" fill="none"></circle>
+            <circle cx="50" cy="50" [attr.r]="radius" [attr.stroke-dasharray]="strokeDashArray(currentValue)" stroke-linecap="round" stroke="url(#bsb-grad)" stroke-width="10" fill="none"></circle>
+        </svg>
+    </div>
+    <div class="bsb-value">{{roundedValue}}</div>
+    <div class="bsb-from">0</div>
+    <div class="bsb-to">1000</div>
+    <div class="bsb-title"><a [href]="siteUrl" target="_blank">{{words['guides']?.['bs']?.[lang.slug]}}</a></div>
+    <div class="bsb-status"><span [style.color]="color">{{words['guides']?.[status]?.[lang.slug]}}</span></div>
+</div>

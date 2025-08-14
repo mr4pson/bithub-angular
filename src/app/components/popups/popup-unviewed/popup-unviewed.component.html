@@ -1,0 +1,40 @@
+<div class="popup-wrap" [class.active]="active">
+    <div class="popup popup-unviewed" id="popup-{{unique}}">
+        <div class="popup-head">
+            <div class="popup-headtitle">{{words['guides']?.['unviewed-in-guide']?.[lang.slug]}}</div>
+            <div class="popup-close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="popup-main">
+            <div class="popup-title">{{words['guides']?.['unviewed-in-guide']?.[lang.slug]}}</div>
+            <div class="popup-content">
+                <div class="ppu-tasks bscroll-v" #container>
+                    <ng-container *ngIf="tasks === null">
+                        <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+                    </ng-container>
+                    <ng-container *ngIf="tasks !== null">
+                        <ng-container *ngIf="tasks.length">
+                            <div *ngFor="let task of tasks; let i = index" class="ppu-task">
+                                <a class="pput-name" (click)="onTaskClick(i)">{{task.name[lang.slug]}}</a>
+                                <div class="pput-details">
+                                    <div class="pput-time"><span>{{task.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
+                                    <div class="pput-price"><span [class.free]="!task.price">{{task.price ? '$'+task.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
+                                    <div *ngIf="task.actual_until" class="pput-until" [class.bad]="!task.actual"><span>{{words['common']?.['until']?.[lang.slug]}} {{task.actual_until | date:"dd.MM.yyyy HH:mm"}}</span></div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!tasks.length">
+                            <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="ppu-btnwrap">
+                    <button type="button" class="btn gold" [class.busy]="viewing" [class.done]="viewed" (click)="onViewed()">
+                        <span class="btn-icon view"></span>
+                        <span class="btn-text">{{words["guides"]?.["unviewed-viewed"]?.[lang.slug]}}</span>
+                        <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

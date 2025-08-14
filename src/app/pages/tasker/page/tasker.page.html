@@ -1,0 +1,5 @@
+<h1>{{words['tasker']?.['title']?.[lang.slug]}}</h1>
+<ng-container *ngIf="user"><!-- проверим наличие на этом уровне, чтобы не проверять на нижних по сто раз -->
+    <div class="tasker-menu"><tasker-menu></tasker-menu></div>
+    <list-desks [mode]="mode"></list-desks>
+</ng-container>

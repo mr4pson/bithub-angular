@@ -1,0 +1,57 @@
+<ng-container *ngIf="dailers === null"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+<ng-container *ngIf="dailers !== null">
+    <div class="dailers" [class.busy]="loading">
+        <ng-container *ngIf="!dailers.length"><span>{{words['common']?.['empty']?.[lang.slug]}}</span></ng-container>
+        <ng-container *ngIf="dailers.length">
+            <div class="only-desktop-block">
+                <div class="datatable">
+                    <table>
+                        <tr>
+                            <th>{{words['dailers']?.['name']?.[lang.slug]}}</th>
+                            <th>{{words['dailers']?.['comment']?.[lang.slug]}}</th>
+                            <th>{{words['dailers']?.['completed']?.[lang.slug]}}</th>
+                            <th>{{words['common']?.['actions']?.[lang.slug]}}</th>
+                        </tr>
+                        <tr *ngFor="let dailer of dailers; let i = index;">
+                            <td>
+                                <a *ngIf="dailer.link" target="_blank" [href]="dailer.link">{{dailer.name}}</a>
+                                <span *ngIf="!dailer.link">{{dailer.name}}</span>
+                            </td>
+                            <td><span [innerHTML]="dailer.comment | eol"></span></td>
+                            <td><btn-completion [dailer]="dailer"></btn-completion></td>
+                            <td>
+                                <div class="actions">
+                                    <div class="smallbtn edit" [title]="words['common']?.['edit']?.[lang.slug]" (click)="onEdit(i)"><span></span></div>
+                                    <div class="smallbtn delete2" [title]=" words['common']?.['delete']?.[lang.slug]" (click)="onDelete(i)"><span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="only-mobile-block">
+                <div class="datagrid">
+                    <div *ngFor="let dailer of dailers; let i = index;" class="dg-item">
+                        <div class="dgi-head">
+                            <btn-completion [dailer]="dailer"></btn-completion>
+                            <div class="dgi-actions">
+                                <div class="smallbtn edit" [title]="words['common']?.['edit']?.[lang.slug]" (click)="onEdit(i)"><span></span></div>
+                                <div class="smallbtn delete2" [title]=" words['common']?.['delete']?.[lang.slug]" (click)="onDelete(i)"><span></span></div>
+                            </div>
+                        </div>
+                        <div class="dgi-params">
+                            <div class="dgi-param">
+                                <div class="dgi-title">{{words['dailers']?.['name']?.[lang.slug]}}</div>
+                                <div class="dgi-value">{{dailer.name}}</div>
+                            </div>
+                            <div class="dgi-param">
+                                <div class="dgi-title">{{words['dailers']?.['comment']?.[lang.slug]}}</div>
+                                <div class="dgi-value"><span [innerHTML]="dailer.comment | eol"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

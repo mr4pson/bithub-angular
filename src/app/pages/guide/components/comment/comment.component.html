@@ -1,0 +1,16 @@
+<div class="comment">
+    <div class="c-left">
+        <div class="c-ava">
+            <ng-container *ngIf="comment.is_admin"><img src="/others/{{adminImg}}"></ng-container>
+            <ng-container *ngIf="!comment.is_admin">
+                <ng-container *ngIf="!comment.userImg">{{comment.userLetter}}</ng-container>
+                <ng-container *ngIf="comment.userImg"><img src="/images/users/{{comment.userImg}}"></ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <div class="c-right">
+        <div class="c-name"><span (click)="onNameClick()">{{comment.is_admin ? "DG" : comment.userName}}</span></div>
+        <div class="c-date">{{comment.created_at}}</div>
+        <div class="c-content" [innerHTML]="comment.content"></div>
+    </div>
+</div>

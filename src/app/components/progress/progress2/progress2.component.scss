@@ -1,0 +1,15 @@
+.progress2 {
+    display: flex; flex-wrap: wrap; gap: 5px 0;
+    .p2-mark {
+        width: 30px; min-width: 30px; height: 30px; border-radius: 15px; border: 1px var(--color-border2) solid; display: flex; justify-content: center; align-items: center; position: relative;
+        span {font-size: 14px; font-weight: 600; color: var(--color-txt2);}
+        &::after {position: absolute; left: -1px; top: -1px; right:-1px; bottom: -1px; border-radius: 50%; background: var(--gradient-hilite); transition: 0.3s; opacity: 0; font-family: "fa-solid"; content: "\f00c"; display: flex; justify-content: center; align-items: center; color: var(--color-bg-main2);}
+        &.active::after {opacity: 1;}
+    }
+    .p2-stick {
+        height: 4px; margin-top: 13px; background: var(--color-border2);
+        &.active {background: var(--gradient-hilite);}
+        &.flex {flex: 1;}
+        &.fixed {width: 10px;}
+    }
+}
