@@ -13,7 +13,7 @@ import { CInorderRepository } from 'src/app/services/repositories/inorder.reposi
   ],
 })
 export class CPanelInorderComponent extends CPanelComponent {
-  public amount: number = 10;
+  public amount: number = 20;
   public loading: boolean = false;
 
   constructor(

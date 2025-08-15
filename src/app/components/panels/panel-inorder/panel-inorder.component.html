@@ -1,26 +1,48 @@
-<div class="panel compact" id="panel-{{unique}}" [class.active]="active">
-    <div class="panel-left" (click)="onClose()"></div>
-    <div class="panel-right">
-        <div class="panel-head">    
-            <div class="panel-title">{{words['inorder']?.['title']?.[lang.slug]}}</div>        
-            <div class="panel-close" (click)="onClose()"><span></span></div>
+<div class="panel compact" id="panel-{{ unique }}" [class.active]="active">
+  <div class="panel-left" (click)="onClose()"></div>
+  <div class="panel-right">
+    <div class="panel-head">
+      <div class="panel-title">
+        {{words['inorder']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="panel-close" (click)="onClose()"><span></span></div>
+    </div>
+    <div class="panel-main">
+      <div class="panel-title2">
+        {{words['inorder']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="panel-content">
+        <div class="inorder">
+          <form class="gf" (submit)="onSubmit()">
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['inorder']?.['amount']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input-number [(value)]="amount" [min]="20"></input-number>
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-btnwrap">
+                <button type="submit" class="btn gold" [class.busy]="loading">
+                  <span class="btn-icon pay"></span
+                  ><span
+                    class="btn-text"
+                    >{{words["inorder"]?.["submit"]?.[lang.slug]}}</span
+                  >
+                </button>
+              </div>
+            </div>
+            <div class="gf-row ta-center">
+              <img
+                style="width: 120px"
+                src="/assets/images/one-payments.svg"
+                alt="onepay"
+              />
+            </div>
+          </form>
         </div>
-        <div class="panel-main">
-            <div class="panel-title2">{{words['inorder']?.['title']?.[lang.slug]}}</div>
-            <div class="panel-content">
-                <div class="inorder">
-                    <form class="gf" (submit)="onSubmit()">
-                        <div class="gf-row">
-                            <div class="gf-title">{{words['inorder']?.['amount']?.[lang.slug]}}</div>
-                            <div class="gf-inputwrap"><input-number [(value)]="amount" [min]="10"></input-number></div>
-                        </div>
-                        <div class="gf-row">
-                            <div class="gf-btnwrap"><button type="submit" class="btn gold" [class.busy]="loading"><span class="btn-icon pay"></span><span class="btn-text">{{words["inorder"]?.["submit"]?.[lang.slug]}}</span></button></div>
-                        </div>
-                        <div class="gf-row ta-center"><img src="/assets/images/whitepay.svg" alt="whitepay"></div>
-                    </form>
-                </div>            
-            </div>            
-        </div>          
-    </div>        
+      </div>
+    </div>
+  </div>
 </div>
