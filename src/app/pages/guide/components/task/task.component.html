@@ -1,44 +1,108 @@
-<div class="task" id="task-{{task.id}}" [class.active]="active">
-    <div class="task-head" (click)="onHeadClick()">
-        <div class="th-left">
-            <div class="th-completed" [class.busy]="loadingCompletion" [class.active]="task.completed" (click)="onToggleCompletion($event)"><span></span></div>
-            <div class="th-name">
-                <div class="thn-content">
-                    <div class="thn-yt" *ngIf="task.contenttype === 'yt'"><img src="/assets/images/yt.svg" alt="youtube"></div>
-                    <div class="thn-text"><span class="thn-extra" *ngIf="task.type === 'extra'">{{words['guides']?.['extra']?.[lang.slug]}}&nbsp;</span><span class="thn-main">{{task.name[lang.slug]}}</span></div>
-                </div>
-                <div class="thn-until">
-                    <span>{{words['common']?.['created-at']?.[lang.slug]}} {{task.created_at | date:"dd.MM.yyyy HH:mm"}}</span>
-                    <span *ngIf="task.actual_until">, <span [class.bad]="!task.actual">{{words['common']?.['until']?.[lang.slug]}} {{task.actual_until | date:"dd.MM.yyyy HH:mm"}}</span></span>
-                </div>
-            </div>
+<div class="task" id="task-{{ task.id }}" [class.active]="active">
+  <div class="task-head" (click)="onHeadClick()">
+    <div class="th-left">
+      <div
+        class="th-completed"
+        [class.busy]="loadingCompletion"
+        [class.active]="task.completed"
+        (click)="onToggleCompletion($event)"
+      >
+        <span></span>
+      </div>
+      <div class="th-name">
+        <div class="thn-content">
+          <div class="thn-yt" *ngIf="task.contenttype === 'yt'">
+            <img src="/assets/images/yt.svg" alt="youtube" />
+          </div>
+          <div class="thn-text">
+            <span class="thn-extra" *ngIf="task.type === 'extra'"
+              >{{words['guides']?.['extra']?.[lang.slug]}}&nbsp;</span
+            ><span class="thn-main">{{ task.name[lang.slug] }}</span>
+          </div>
         </div>
-        <div class="th-right">
-            <div class="th-link" [class.done]="linkCopied" (click)="onCopyLink($event)"><span></span></div>
-            <div class="th-indicator" [class.busy]="loading"><span></span></div>
+        <div class="thn-until">
+          <span
+            >{{words['common']?.['created-at']?.[lang.slug]}}
+            {{ task.created_at | date : "dd.MM.yyyy HH:mm" }}</span
+          >
+          <span *ngIf="task.actual_until"
+            >,
+            <span [class.bad]="!task.actual"
+              >{{words['common']?.['until']?.[lang.slug]}}
+              {{ task.actual_until | date : "dd.MM.yyyy HH:mm" }}</span
+            ></span
+          >
         </div>
+      </div>
     </div>
-    <div class="task-main" id="task-main-{{task.id}}" #container>
-        <ng-container *ngIf="loadedTask">
-            <div class="task-params">
-                <div class="tp-left">
-                    <div *ngIf="task.actual_until" class="tp-until" [class.bad]="!loadedTask.actual"><span>{{words['common']?.['until']?.[lang.slug]}} {{loadedTask.actual_until | date:"dd.MM.yyyy HH:mm"}}</span></div>
-                </div>
-                <div class="tp-right">
-                    <div class="tp-time" [title]="words['guides']?.['time']?.[lang.slug]"><span>{{loadedTask.time}} {{words['guides']?.['minutes']?.[lang.slug]}}</span></div>
-                    <div class="tp-price" [title]="words['guides']?.['price']?.[lang.slug]"><span [class.free]="!loadedTask.price">{{loadedTask.price ? '$'+loadedTask.price : words['guides']?.['free']?.[lang.slug]}}</span></div>
-                </div>
-            </div>
-            <div class="task-content" id="task-content-{{task.id}}">
-                <div *ngIf="loadedTask.contenttype === 'html'" [innerHTML]="loadedTask.content[lang.slug] | safe:'html'"></div>
-                <div *ngIf="loadedTask.contenttype === 'yt'" [innerHTML]="loadedTask.yt_content | safe:'html'"></div>
-            </div>
-            <div class="task-completed">
-                <div class="tc-element" (click)="onToggleCompletion($event)">
-                    <div class="tc-btn" [class.busy]="loadingCompletion" [class.active]="task.completed"><span></span></div>
-                    <div class="tc-title">{{words['guides']?.['completed']?.[lang.slug]}}</div>
-                </div>
-            </div>
-        </ng-container>
+    <div class="th-right">
+      <div
+        class="th-link"
+        [class.done]="linkCopied"
+        (click)="onCopyLink($event)"
+      >
+        <span></span>
+      </div>
+      <div class="th-indicator" [class.busy]="loading"><span></span></div>
     </div>
+  </div>
+  <div class="task-main" id="task-main-{{ task.id }}" #container>
+    <ng-container *ngIf="loadedTask">
+      <div class="task-params">
+        <div class="tp-left">
+          <div
+            *ngIf="task.actual_until"
+            class="tp-until"
+            [class.bad]="!loadedTask.actual"
+          >
+            <span
+              >{{words['common']?.['until']?.[lang.slug]}}
+              {{ loadedTask.actual_until | date : "dd.MM.yyyy HH:mm" }}</span
+            >
+          </div>
+        </div>
+        <div class="tp-right">
+          <div class="tp-time" [title]="words['guides']?.['time']?.[lang.slug]">
+            <span
+              >{{ loadedTask.time }}
+              {{words['guides']?.['minutes']?.[lang.slug]}}</span
+            >
+          </div>
+          <div
+            class="tp-price"
+            [title]="words['guides']?.['price']?.[lang.slug]"
+          >
+            <span
+              [class.free]="!loadedTask.price"
+              >{{loadedTask.price ? '$'+loadedTask.price : words['guides']?.['free']?.[lang.slug]}}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="task-content" id="task-content-{{ task.id }}">
+        <div
+          *ngIf="loadedTask.contenttype === 'html'"
+          [innerHTML]="loadedTask.content[lang.slug] | safe : 'html'"
+        ></div>
+        <div
+          *ngIf="loadedTask.contenttype === 'yt'"
+          [innerHTML]="loadedTask.yt_content | safe : 'html'"
+        ></div>
+      </div>
+      <div class="task-completed">
+        <div class="tc-element" (click)="onToggleCompletion($event)">
+          <div
+            class="tc-btn"
+            [class.busy]="loadingCompletion"
+            [class.active]="task.completed"
+          >
+            <span></span>
+          </div>
+          <div class="tc-title">
+            {{words['guides']?.['completed']?.[lang.slug]}}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
