@@ -1,0 +1,33 @@
+<div class="panel cart" id="panel-{{ unique }}" [class.active]="active">
+  <div class="panel-left" (click)="onClose()"></div>
+  <div class="panel-right">
+    <div class="panel-head">
+      <div class="panel-title">{{words["shop"]?.["cart"]?.[lang.slug]}}</div>
+      <div class="panel-close" (click)="onClose()"><span></span></div>
+    </div>
+    <div class="panel-main">
+      <div class="panel-title2">{{words["shop"]?.["cart"]?.[lang.slug]}}</div>
+      <div class="panel-content">
+        <div class="cart-items">
+          <div class="pc-items bscroll-v">
+            <ng-container *ngIf="items.length === 0">
+              <span>{{words["shop"]?.["cart-empty"]?.[lang.slug]}}</span>
+            </ng-container>
+            <ng-container *ngIf="items.length > 0">
+              <div *ngFor="let item of items; let i = index" class="pc-item">
+                <span class="pci-name">{{ item.product.name[lang.slug] }}</span>
+                <span class="pci-price"
+                  >{{ item.quantity }} {{words["shop"]?.["pcs"]?.[lang.slug]}}.
+                  ${{ item.product.price }}</span
+                >
+              </div>
+            </ng-container>
+          </div>
+          <button class="btn gold" (click)="goToCart()">
+            {{words["shop"]?.["go-to-cart"]?.[lang.slug]}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

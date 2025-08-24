@@ -35,6 +35,7 @@ import { CCommentRepository } from './repositories/comment.repository';
 import { CShopcatRepository } from './repositories/shopcat.repository';
 import { CShopitemRepository } from './repositories/shopitem.repository';
 import { CShoporderRepository } from './repositories/shoporder.repository';
+import { CCartService } from './cart.service';
 import { CDatemarkRepository } from './repositories/datemark.repository';
 import { CDropRepository } from './repositories/drop.repository';
 import { GuideGuard } from './guards';
@@ -83,6 +84,7 @@ import { GuideGuard } from './guards';
     CShopcatRepository,
     CShopitemRepository,
     CShoporderRepository,
+    CCartService,
     CDatemarkRepository,
     CDropRepository,
   ],

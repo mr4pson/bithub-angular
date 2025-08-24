@@ -37,6 +37,7 @@ import { CInputTextareaComponent } from './inputs/input-textarea/input-textarea.
 import { CBtnFavoritionComponent } from './buttons/favorition/btn-favorition.component';
 import { CBtnUnviewedComponent } from './buttons/unviewed/btn-unviewed.component';
 import { CPanelUnviewedComponent } from './panels/panel-unviewed/panel-unviewed.component';
+import { PanelCartComponent } from './panels/panel-cart/panel-cart.component';
 import { CPanelUnviewedService } from './panels/panel-unviewed/panel-unviewed.service';
 import { CPopupUnviewedComponent } from './popups/popup-unviewed/popup-unviewed.component';
 import { CSelectUserComponent } from './inputs/select/entity/select-user/select-user.component';
@@ -74,6 +75,7 @@ import { CScoreScaleComponent } from './score-scale/score-scale.component';
     CPanelFavoritesComponent,
     CPanelInorderComponent,
     CPanelUnviewedComponent,
+    PanelCartComponent,
     CPopupLoginComponent,
     CPopupRegisterComponent,
     CPopupRecoverComponent,
@@ -123,6 +125,7 @@ import { CScoreScaleComponent } from './score-scale/score-scale.component';
     CPanelFavoritesComponent,
     CPanelInorderComponent,
     CPanelUnviewedComponent,
+    PanelCartComponent,
     CPopupLoginComponent,
     CPopupRegisterComponent,
     CPopupRecoverComponent,

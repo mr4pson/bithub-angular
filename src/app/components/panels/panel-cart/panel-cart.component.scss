@@ -1,0 +1,43 @@
+.panel.cart {
+  .panel-title {
+    color: #222;
+  }
+
+  .pc-items {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+  }
+
+  .pc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1em;
+  }
+
+  .pci-name {
+    font-weight: 500;
+  }
+
+  .pci-price {
+    color: #888;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.cart-items {
+  @media (min-width: 0) {
+    padding: 15px;
+  }
+
+
+  @media (min-width: 1000px) {
+    padding: 0;
+  }
+}
