@@ -70,10 +70,14 @@ export class CPopupShoporderComponent
       this.sending = false;
       this.cartService.clear();
 
-      window.open(url);
+      if (url) {
+        window.open(url);
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate([this.lang.slug, 'payment-success']);
+      }
 
       this.onClose();
-      this.router.navigate(['/']);
     } catch (err) {
       this.appService.notifyError(err);
       this.sending = false;
