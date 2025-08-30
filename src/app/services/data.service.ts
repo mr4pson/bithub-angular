@@ -100,7 +100,7 @@ export class CDataService {
     return this.post('users/enter-by-token', dto);
   }
   public usersVerify(dto: IUserVerify): Observable<IResponse<void>> {
-    return this.post('users/verify', dto);
+    return this.post('users/create-verification', dto);
   }
   public usersRecover(dto: IUserRecover): Observable<IResponse<void>> {
     return this.post('users/recover', dto);
@@ -124,6 +124,11 @@ export class CDataService {
   }
   public usersIsExists(uuid: string): Observable<IResponse<void>> {
     return this.post(`users/is-exists/${uuid}`);
+  }
+  public verify(
+    code: number
+  ): Observable<{ statusCode: number; error: string }> {
+    return this.post(`users/verify`, { code });
   }
   public usersChildrenChunk(dto: IGetList): Observable<IResponse<IUser[]>> {
     return this.post('users/children-chunk', dto);

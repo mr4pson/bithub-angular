@@ -1,37 +1,136 @@
 <div class="profile-finances">
-    <div class="pf-service">
-        <div class="pfs-note">{{words['account']?.['fss-about']?.[lang.slug]}}</div>
-        <div class="pfs-row">
-            <div class="pfs-title">{{words['account']?.['fss-paid-at']?.[lang.slug]}}</div>
-            <div class="pfs-value"><input type="text" [value]="user.paid_at ? (user.paid_at | date:'dd.MM.yyyy HH:mm') : words['common']?.['empty2']?.[lang.slug]" disabled></div>
-        </div>
-        <div class="pfs-row">
-            <div class="pfs-title">{{words['account']?.['fss-paid-until']?.[lang.slug]}}</div>
-            <div class="pfs-value"><input type="text" [value]="user.paid_until ? (user.paid_until | date:'dd.MM.yyyy HH:mm') : words['common']?.['empty2']?.[lang.slug]" disabled [class.error]="user.overdue"></div>
-        </div>
-        <div class="pfs-row">
-            <div class="pfs-title">{{words['account']?.['fss-freetasks']?.[lang.slug]}}</div>
-            <div class="pfs-value"><input type="text" value="{{user.freetasks}}/{{freetasksLimit}}" disabled></div>
-        </div>
-        <div class="pfs-btnwrap">
-            <button type="button" class="btn gold" (click)="onPaySubscription()"><span class="btn-icon pay"></span><span class="btn-text">{{words['account']?.['fss-pay']?.[lang.slug]}}</span></button>
-        </div>
+  <div class="pf-service">
+    <div class="pfs-note">{{words['account']?.['fss-about']?.[lang.slug]}}</div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fss-paid-at']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input
+          type="text"
+          [value]="user.paid_at ? (user.paid_at | date:'dd.MM.yyyy HH:mm') : words['common']?.['empty2']?.[lang.slug]"
+          disabled
+        />
+      </div>
     </div>
-    <div class="pf-service">
-        <div class="pfs-note">{{words['account']?.['fcl-about']?.[lang.slug]}}</div>
-        <div class="pfs-row">
-            <div class="pfs-title">{{words['account']?.['fcl-length']?.[lang.slug]}}</div>
-            <div class="pfs-value"><input type="text" [value]="user.children_q" disabled></div>
-        </div>
-        <div class="pfs-row">
-            <div class="pfs-title">{{words['account']?.['fcl-limit']?.[lang.slug]}}</div>
-            <div class="pfs-value"><input type="text" [value]="user.children_limit" disabled></div>
-        </div>
-        <div class="pfs-btnwrap">
-            <button type="button" class="btn gold" (click)="onPayLimit()"><span class="btn-icon pay"></span><span class="btn-text">{{words['account']?.['fcl-pay']?.[lang.slug]}}</span></button>
-        </div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fss-paid-until']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input
+          type="text"
+          [value]="user.paid_until ? (user.paid_until | date:'dd.MM.yyyy HH:mm') : words['common']?.['empty2']?.[lang.slug]"
+          disabled
+          [class.error]="user.overdue"
+        />
+      </div>
     </div>
-    <div class="pf-service">
-        <div class="pfs-note" [innerHTML]="words['account']?.['vpn']?.[lang.slug]"></div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fss-freetasks']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input
+          type="text"
+          value="{{ user.freetasks }}/{{ freetasksLimit }}"
+          disabled
+        />
+      </div>
     </div>
+    <div class="pfs-btnwrap">
+      <button type="button" class="btn gold" (click)="onPaySubscription()">
+        <span class="btn-icon pay"></span
+        ><span
+          class="btn-text"
+          >{{words['account']?.['fss-pay']?.[lang.slug]}}</span
+        >
+      </button>
+    </div>
+  </div>
+  <div class="pf-service">
+    <div class="pfs-note">{{words['account']?.['fcl-about']?.[lang.slug]}}</div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fcl-length']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input type="text" [value]="user.children_q" disabled />
+      </div>
+    </div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fcl-limit']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input type="text" [value]="user.children_limit" disabled />
+      </div>
+    </div>
+    <div class="pfs-btnwrap">
+      <button type="button" class="btn gold" (click)="onPayLimit()">
+        <span class="btn-icon pay"></span
+        ><span
+          class="btn-text"
+          >{{words['account']?.['fcl-pay']?.[lang.slug]}}</span
+        >
+      </button>
+    </div>
+  </div>
+  <div class="pf-service">
+    <div
+      class="pfs-note pfs-row"
+      [innerHTML]="words['account']?.['vpn']?.[lang.slug]"
+    ></div>
+  </div>
+  <ng-container *ngIf="verified$ | async as verified">
+    <div *ngIf="!verified.isVerified" class="pf-service">
+      <div class="pfs-note pfs-account-title">
+        {{words['account']?.['not-verified']?.[lang.slug]}}
+      </div>
+      <div class="pfs-flex">
+        <div class="pfs-title pfs-code-title">
+          <input-password
+            [(value)]="code"
+            [error]="errors['code']"
+          ></input-password>
+        </div>
+        <div class="pfs-value">
+          <button
+            type="button"
+            tabindex="-1"
+            class="btn gold"
+            [class.busy]="codeSending"
+            [class.done]="codeSent"
+            (click)="onSendCode()"
+          >
+            <span class="btn-icon code"></span>
+            <span
+              class="btn-text"
+              >{{words["register"]?.["get-code"]?.[lang.slug]}}</span
+            >
+            <span class="btn-done"
+              ><span
+                >{{words["register"]?.["code-sent"]?.[lang.slug]}}</span
+              ></span
+            >
+          </button>
+          <button
+            type="button"
+            tabindex="-1"
+            class="btn gold"
+            style="margin-left: 10px"
+            [disabled]="!code"
+            [class.busy]="verifySending"
+            [class.done]="verifySent"
+            (click)="verifyAccount()"
+          >
+            {{words["account"]?.["verify"]?.[lang.slug]}}
+          </button>
+        </div>
+      </div>
+      <div class="gf-error" *ngIf="errors['code']">
+        {{words['errors']?.[errors['code']]?.[lang.slug]}}
+      </div>
+    </div>
+  </ng-container>
 </div>
