@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.required::after {
+  margin-left: 5px;
+  color: #d52f31;
+  content: "*";
+}

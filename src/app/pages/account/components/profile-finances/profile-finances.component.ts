@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ILang } from 'src/app/model/entities/lang';
-import { CUser, IUserVerify } from 'src/app/model/entities/user';
+import { CUser } from 'src/app/model/entities/user';
 import { IWords } from 'src/app/model/entities/words';
 import { IKeyValue } from 'src/app/model/keyvalue';
 import { CAppService } from 'src/app/services/app.service';
@@ -17,7 +17,7 @@ import { CUserRepository } from 'src/app/services/repositories/user.repository';
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class CProfileFinancesComponent implements OnInit {
+export class CProfileFinancesComponent {
   @Input() public user: CUser;
 
   public code: string = '';
@@ -60,53 +60,5 @@ export class CProfileFinancesComponent implements OnInit {
 
   public onPayLimit(): void {
     this.appService.popupLimitActive = true;
-  }
-
-  public async onSendCode(): Promise<void> {
-    try {
-      this.codeSending = true;
-
-      const dto: IUserVerify = {
-        email: this.user.email,
-        lang_id: this.lang.id,
-      };
-
-      await this.authService.verify(dto);
-      this.codeSending = false;
-      this.codeSent = true;
-      await this.appService.pause(3000);
-      this.codeSent = false;
-    } catch (err) {
-      this.appService.notifyError(err);
-      this.codeSending = false;
-    }
-  }
-
-  public async verifyAccount() {
-    try {
-      this.verifySending = true;
-
-      const resp = await this.userService.verify(
-        this.code as unknown as number
-      );
-
-      this.verifySending = false;
-      this.verifySent = true;
-
-      if (resp.statusCode === 200) {
-        this.verified = { isVerified: true };
-      }
-      if (resp.statusCode === 401) {
-        this.errors['code'] = 'code-invalid';
-        return;
-      }
-    } catch (err) {
-      this.appService.notifyError(err);
-      this.verifySending = false;
-    }
-  }
-
-  ngOnInit(): void {
-    this.verified = { isVerified: this.user.verified };
   }
 }

@@ -1,256 +1,283 @@
-import { Injectable } from "@angular/core";
-import { Meta, Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
-import { BehaviorSubject } from "rxjs";
-import { CColor } from "src/app/model/color";
-import { IFiles } from "src/app/model/entities/files";
-import { ILang } from "src/app/model/entities/lang";
-import { ISettings } from "src/app/model/entities/settings";
-import { IWords } from "src/app/model/entities/words";
-import { IKeyValue } from "src/app/model/keyvalue";
-import { IPoint } from "src/app/model/point";
+import { Injectable } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { CColor } from 'src/app/model/color';
+import { IFiles } from 'src/app/model/entities/files';
+import { ILang } from 'src/app/model/entities/lang';
+import { ISettings } from 'src/app/model/entities/settings';
+import { IWords } from 'src/app/model/entities/words';
+import { IKeyValue } from 'src/app/model/keyvalue';
+import { IPoint } from 'src/app/model/point';
 
 @Injectable()
 export class CAppService {
-    // data   
-    public settings: ISettings = {};     
-    public lang: BehaviorSubject<ILang> = new BehaviorSubject(null);
-    public langs: ILang[] = [];   
-    public words: IWords = {};
-    public files: IFiles = {};
-    // iface
-    public win: HTMLElement = null; 
-    public notifyErrorActive: boolean = false;
-    public notifyErrorMsg: string = "";
-    public notifyErrorTimer: number = null;   
-    public popupLoginActive: boolean = false;  
-    public popupRegisterActive: boolean = false;
-    public popupRecoverActive: boolean = false;
-    public popupSubscriptionActive: boolean = false;
-    public popupLimitActive: boolean = false;
-        
-    constructor(
-        private titleService: Title,     
-        private metaService: Meta,   
-        private router: Router,
-    ) {}        
+  // data
+  public settings: ISettings = {};
+  public lang: BehaviorSubject<ILang> = new BehaviorSubject(null);
+  public langs: ILang[] = [];
+  public words: IWords = {};
+  public files: IFiles = {};
+  // iface
+  public win: HTMLElement = null;
+  public notifyErrorActive: boolean = false;
+  public notifyErrorMsg: string = '';
+  public notifyErrorTimer: number = null;
+  public popupLoginActive: boolean = false;
+  public popupVerifActive: boolean = false;
+  public popupRegisterActive: boolean = false;
+  public popupRecoverActive: boolean = false;
+  public popupSubscriptionActive: boolean = false;
+  public popupLimitActive: boolean = false;
 
-    get url(): string[] {return this.router.url.split("?")[0].split("/");}
-    get headerOffset(): number {return this.win.offsetWidth < 1000 ? 50 : 60;}
-    get regMode(): boolean {return this.url[2] === "register";} // регистрация субаккаунта или реферала
-        
-    ////////////////////////
-    // errors
-    ////////////////////////
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private router: Router
+  ) {}
 
-    public notifyError(error: any): void {
-        this.notifyErrorTimer && window.clearTimeout(this.notifyErrorTimer);
-        this.notifyErrorMsg = typeof(error) !== "string" ? JSON.stringify(error) : error;        
-        this.notifyErrorActive = true;
-        this.notifyErrorTimer = window.setTimeout (() => {
-            this.notifyErrorActive = false;
-            this.notifyErrorTimer = null;
-        }, 3000);         
-        console.log(error);
+  get url(): string[] {
+    return this.router.url.split('?')[0].split('/');
+  }
+  get headerOffset(): number {
+    return this.win.offsetWidth < 1000 ? 50 : 60;
+  }
+  get regMode(): boolean {
+    return this.url[2] === 'register';
+  } // регистрация субаккаунта или реферала
+
+  ////////////////////////
+  // errors
+  ////////////////////////
+
+  public notifyError(error: any): void {
+    this.notifyErrorTimer && window.clearTimeout(this.notifyErrorTimer);
+    this.notifyErrorMsg =
+      typeof error !== 'string' ? JSON.stringify(error) : error;
+    this.notifyErrorActive = true;
+    this.notifyErrorTimer = window.setTimeout(() => {
+      this.notifyErrorActive = false;
+      this.notifyErrorTimer = null;
+    }, 3000);
+    console.log(error);
+  }
+
+  ////////////////////////
+  // langs
+  ////////////////////////
+
+  public setLang(lang: ILang): void {
+    if (this.lang.value?.id !== lang.id) {
+      this.lang.next(lang);
+    }
+  }
+
+  ////////////////////////
+  // SEO, links etc.
+  ////////////////////////
+
+  public setTitle(title: string) {
+    this.titleService.setTitle(`${title}`);
+  }
+
+  // <meta name='{keyfieldvalue}' content='{content}'> or <meta property='{keyfieldvalue}' content='{content}'>
+  public setMeta(
+    keyfield: 'name' | 'property',
+    keyfieldvalue: string,
+    content: string
+  ): void {
+    this.metaService.removeTag(`${keyfield}="${keyfieldvalue}"`);
+    content && this.metaService.addTag({ [keyfield]: keyfieldvalue, content });
+  }
+
+  public getLangLink(
+    lang: ILang,
+    mode: 'url' | 'fragment' | 'queryParams'
+  ): string | IKeyValue<string> {
+    if (mode === 'fragment') return this.getLangLinkFragment(lang);
+    if (mode === 'queryParams') return this.getLangLinkQueryParams(lang);
+    return this.getLangLinkUrl(lang);
+  }
+
+  private getLangLinkUrl(lang: ILang): string {
+    let delimiter = this.router.url.includes('#')
+      ? '#'
+      : this.router.url.includes('?')
+      ? '?'
+      : '';
+    let preurl;
+
+    if (delimiter) {
+      const urlParts = this.router.url.split(delimiter);
+      preurl = urlParts[0].split('/');
+    } else {
+      preurl = this.router.url.split('/');
     }
 
-    ////////////////////////
-    // langs
-    ////////////////////////
+    preurl.splice(0, 2);
+    return `/${lang.slug}/${preurl.join('/')}`;
+  }
 
-    public setLang(lang: ILang): void {
-        if (this.lang.value?.id !== lang.id) {
-            this.lang.next(lang);
-        }
+  private getLangLinkFragment(lang: ILang): string {
+    const urlParts = this.router.url.split('#');
+    const fragment = urlParts[1] ? decodeURI(urlParts[1]) : null;
+    return fragment;
+  }
+
+  private getLangLinkQueryParams(lang: ILang): IKeyValue<string> {
+    const queryParams = {};
+    const urlParts = this.router.url.split('?');
+
+    if (urlParts[1]) {
+      const queryParamsParts = urlParts[1].split('&');
+
+      for (let qpp of queryParamsParts) {
+        const qppParts = qpp.split('=');
+        queryParams[qppParts[0]] = qppParts[1];
+      }
     }
 
-    ////////////////////////
-    // SEO, links etc.
-    ////////////////////////
+    return queryParams;
+  }
 
-    public setTitle (title: string) {        
-        this.titleService.setTitle(`${title}`);
-    }   
-    
-    // <meta name='{keyfieldvalue}' content='{content}'> or <meta property='{keyfieldvalue}' content='{content}'>
-    public setMeta(keyfield: "name" | "property", keyfieldvalue: string, content: string): void {
-        this.metaService.removeTag(`${keyfield}="${keyfieldvalue}"`);
-        content && this.metaService.addTag({[keyfield]: keyfieldvalue, content});                
-    }    
+  ///////////////////
+  // strings
+  ///////////////////
 
-    public getLangLink(lang: ILang, mode: "url" | "fragment" | "queryParams"): string | IKeyValue<string> {
-        if (mode === "fragment") return this.getLangLinkFragment(lang);
-        if (mode === "queryParams") return this.getLangLinkQueryParams(lang);
-        return this.getLangLinkUrl(lang);
-    }
+  public validateEmail(email: string): boolean {
+    const re: RegExp =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email?.toLowerCase());
+  }
 
-    private getLangLinkUrl(lang: ILang): string {
-        let delimiter = this.router.url.includes("#") ? "#" : (this.router.url.includes("?") ? "?" : "");            
-        let preurl;
-        
-        if (delimiter) {
-            const urlParts = this.router.url.split(delimiter);
-            preurl = urlParts[0].split("/");                
-        } else {
-            preurl = this.router.url.split("/");
-        }
+  public twoDigits(n: number): string {
+    return n < 10 ? `0${n}` : `${n}`;
+  }
 
-        preurl.splice(0, 2);      
-        return `/${lang.slug}/${preurl.join("/")}`; 
-    }
-
-    private getLangLinkFragment(lang: ILang): string {
-        const urlParts = this.router.url.split("#");
-        const fragment = urlParts[1] ? decodeURI(urlParts[1]) : null;
-        return fragment;
-    }
-
-    private getLangLinkQueryParams(lang: ILang): IKeyValue<string> {
-        const queryParams = {}; 
-        const urlParts = this.router.url.split("?");        
-
-        if (urlParts[1]) {
-            const queryParamsParts = urlParts[1].split("&");
-
-            for (let qpp of queryParamsParts) {
-                const qppParts = qpp.split("=");
-                queryParams[qppParts[0]] = qppParts[1];
-            }                
-        }
-
-        return queryParams;
-    }
-
-    ///////////////////
-    // strings
-    ///////////////////
-
-    public validateEmail(email: string): boolean {
-        const re: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email?.toLowerCase());
-    }
-
-    public twoDigits(n: number): string {
-        return (n < 10) ? `0${n}` : `${n}`;
-    }
-
-    /*
+  /*
     public onlyDigits(s: string): string {
         return s.replace(/\D/g,'');
     }
     */
 
-    ///////////////////
-    // rnd
-    ///////////////////
+  ///////////////////
+  // rnd
+  ///////////////////
 
-    public rnd(min: number, max: number): number {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+  public rnd(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  public rndId(): number {
+    return this.rnd(1000000000, 9999999999);
+  }
+
+  ///////////////////
+  // DOM
+  ///////////////////
+
+  // when element clicked, check DOM tree for existence of one of class
+  public pathHasClasses(
+    elements: HTMLElement[],
+    classNames: string[]
+  ): boolean {
+    for (let element of elements) {
+      for (let className of classNames) {
+        if (element.classList?.contains(className)) {
+          return true;
+        }
+      }
     }
 
-    public rndId(): number {
-        return this.rnd(1000000000, 9999999999);
+    return false;
+  }
+
+  // when element clicked, check DOM tree for existence of one of ids
+  public pathHasIds(elements: HTMLElement[], ids: string[]): boolean {
+    for (let element of elements) {
+      for (let id of ids) {
+        if (element.id === id) {
+          return true;
+        }
+      }
     }
 
-    ///////////////////
-    // DOM
-    ///////////////////
+    return false;
+  }
 
-    // when element clicked, check DOM tree for existence of one of class
-    public pathHasClasses(elements: HTMLElement[], classNames: string[]): boolean { 
-        for (let element of elements) {
-            for (let className of classNames) {
-                if (element.classList?.contains(className)) {
-                    return true;
-                }
-            }            
+  public getElementById(id: string): Promise<HTMLElement> {
+    return new Promise((resolve, reject) => {
+      const check = () => {
+        const element = document.getElementById(id);
+        element ? resolve(element) : setTimeout(() => check(), 100);
+      };
+      check();
+    });
+  }
+
+  public getElementByClassName(name: string): Promise<HTMLElement> {
+    return new Promise((resolve, reject) => {
+      const check = () => {
+        const elements = document.getElementsByClassName(name);
+        elements.length
+          ? resolve(elements[0] as HTMLElement)
+          : setTimeout(() => check(), 100);
+      };
+      check();
+    });
+  }
+
+  public querySelectorAll(selector: string): Promise<HTMLElement[]> {
+    return new Promise((resolve, reject) => {
+      let counter = 0;
+      const check = () => {
+        const elements = document.querySelectorAll(selector);
+
+        if (elements.length) {
+          resolve(Array.from(elements) as HTMLElement[]);
+          return;
         }
 
-        return false;
-    } 
-
-    // when element clicked, check DOM tree for existence of one of ids
-    public pathHasIds(elements: HTMLElement[], ids: string[]): boolean { 
-        for (let element of elements) {
-            for (let id of ids) {
-                if (element.id === id) {
-                    return true;
-                }
-            }            
+        if (counter < 100) {
+          counter++;
+          setTimeout(() => check(), 100);
+          return;
         }
 
-        return false;
-    }
+        resolve([]);
+      };
+      check();
+    });
+  }
 
-    public getElementById(id: string): Promise<HTMLElement> {
-        return new Promise((resolve, reject) => {
-            const check = () => {
-                const element = document.getElementById(id);
-                element ? resolve(element) : setTimeout(() => check(), 100);
-            };
-            check();
-        });
-    }
+  // ожидание прогрузки всех картинок внутри некого элмента
+  // полезно перед получением scrollHeight при динамической подгрузке
+  public waitForImagesLoading(selector: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const images = Array.from(
+        document.querySelectorAll(`${selector} img`)
+      ) as HTMLImageElement[];
+      !images.length && resolve();
+      let counter = 0;
 
-    public getElementByClassName(name: string): Promise<HTMLElement> {
-        return new Promise((resolve, reject) => {
-            const check = () => {
-                const elements = document.getElementsByClassName(name);
-                elements.length ? resolve(elements[0] as HTMLElement) : setTimeout(() => check(), 100);
-            };
-            check();
-        });
-    }
+      for (let image of images) {
+        if (image.complete) {
+          counter++;
+          counter === images.length && resolve();
+          continue;
+        }
 
-    public querySelectorAll(selector: string): Promise<HTMLElement[]> {
-        return new Promise((resolve, reject) => {
-            let counter = 0;
-            const check = () => {
-                const elements = document.querySelectorAll(selector);
+        image.onload = () => {
+          counter++;
+          counter === images.length && resolve();
+        };
+      }
+    });
+  }
 
-                if (elements.length) {
-                    resolve(Array.from(elements) as HTMLElement[]);
-                    return;
-                }
-                
-                if (counter < 100) {
-                    counter++;
-                    setTimeout(() => check(), 100);
-                    return;
-                } 
-
-                resolve([]);                
-            };
-            check();
-        });
-    }
-
-    // ожидание прогрузки всех картинок внутри некого элмента
-    // полезно перед получением scrollHeight при динамической подгрузке
-    public waitForImagesLoading(selector: string): Promise<void> {
-        return new Promise((resolve, reject) => {
-            const images = Array.from(document.querySelectorAll(`${selector} img`)) as HTMLImageElement[];            
-            !images.length && resolve();
-            let counter = 0;
-
-            for (let image of images) {
-                if (image.complete) {
-                    counter++;
-                    counter === images.length && resolve();
-                    continue;
-                } 
-                
-                image.onload = () => {
-                    counter++;
-                    counter === images.length && resolve();
-                };
-            }                    
-        });
-    }
-    
-    /*
+  /*
     public smoothScroll (from: number, to: number, duration: number, element: HTMLElement | Window): void {		
 		const change = to - from;        
 		const increment = 10;	
@@ -312,110 +339,133 @@ export class CAppService {
     }
     */
 
-    ///////////////////
-    // arrays
-    ///////////////////
+  ///////////////////
+  // arrays
+  ///////////////////
 
-    public range(a: number, b: number): number[] {
-        const arr: number[] = [];
+  public range(a: number, b: number): number[] {
+    const arr: number[] = [];
 
-        for (let i = a; i <= b; i++) {
-            arr.push(i);
-        }
+    for (let i = a; i <= b; i++) {
+      arr.push(i);
+    }
 
-        return arr;
-    } 
+    return arr;
+  }
 
-    /*
+  /*
     public moveArrayElement(arr: any[], from, to) {
         const element = arr.splice(from, 1)[0]; // exclude element
         arr.splice(to, 0, element); // insert element
     }
     */
 
-    //////////////////
-    // dates
-    //////////////////
+  //////////////////
+  // dates
+  //////////////////
 
-    public formattedDate(date: Date, withTime: boolean = false): string {
-        if (date) {
-            const time = withTime ? ` ${this.twoDigits(date.getHours())}:${this.twoDigits(date.getMinutes())}` : '';
-            return `${this.twoDigits(date.getDate())}.${this.twoDigits(date.getMonth()+1)}.${date.getFullYear()}${time}`;
-        }
-        
-        return "";
+  public formattedDate(date: Date, withTime: boolean = false): string {
+    if (date) {
+      const time = withTime
+        ? ` ${this.twoDigits(date.getHours())}:${this.twoDigits(
+            date.getMinutes()
+          )}`
+        : '';
+      return `${this.twoDigits(date.getDate())}.${this.twoDigits(
+        date.getMonth() + 1
+      )}.${date.getFullYear()}${time}`;
     }
 
-    public firstDayOfWeekInMonth(month: number, year: number): number {
-        let firstDayOfMonth: number = new Date(year, month, 1).getDay() - 1;
+    return '';
+  }
 
-        if (firstDayOfMonth === -1) {
-            firstDayOfMonth = 6;
-        }
+  public firstDayOfWeekInMonth(month: number, year: number): number {
+    let firstDayOfMonth: number = new Date(year, month, 1).getDay() - 1;
 
-        return firstDayOfMonth;
+    if (firstDayOfMonth === -1) {
+      firstDayOfMonth = 6;
     }
 
-    public daysInMonth(month: number, year: number): number {
-        return 32 - new Date(year, month, 32).getDate()
-    }
+    return firstDayOfMonth;
+  }
 
-    public mysqlDate(date: Date, withTime: boolean = false): string {
-        return withTime ? 
-            `${date.getFullYear()}-${this.twoDigits(date.getMonth()+1)}-${this.twoDigits(date.getDate())} ${this.twoDigits(date.getHours())}:${this.twoDigits(date.getMinutes())}:${this.twoDigits(date.getSeconds())}` : 
-            `${date.getFullYear()}-${this.twoDigits(date.getMonth()+1)}-${this.twoDigits(date.getDate())}`;
-    } 
+  public daysInMonth(month: number, year: number): number {
+    return 32 - new Date(year, month, 32).getDate();
+  }
 
-    ////////////////////
-    // drawing
-    ////////////////////
+  public mysqlDate(date: Date, withTime: boolean = false): string {
+    return withTime
+      ? `${date.getFullYear()}-${this.twoDigits(
+          date.getMonth() + 1
+        )}-${this.twoDigits(date.getDate())} ${this.twoDigits(
+          date.getHours()
+        )}:${this.twoDigits(date.getMinutes())}:${this.twoDigits(
+          date.getSeconds()
+        )}`
+      : `${date.getFullYear()}-${this.twoDigits(
+          date.getMonth() + 1
+        )}-${this.twoDigits(date.getDate())}`;
+  }
 
-    public polarToCartesian(center: IPoint, radius: number, angleRad: number): IPoint {      
-        return {
-            x: center.x + (radius * Math.cos(angleRad)),
-            y: center.y + (radius * Math.sin(angleRad)),
-        };
-    }
+  ////////////////////
+  // drawing
+  ////////////////////
 
-    // цвет градиента, соответствующий позиции value, для двух или трех цветов
-    public colorGradient(value: number /*[0,1]*/, rgbColor1: CColor, rgbColor2: CColor, rgbColor3?: CColor): CColor {
-        let color1 = rgbColor1;
-        let color2 = rgbColor2;
-        let fade = value;
-      
-        if (rgbColor3) {
-            fade = fade * 2;
-      
-            if (fade >= 1) {
-                fade -= 1;
-                color1 = rgbColor2;
-                color2 = rgbColor3;
-            }
-        }
-      
-        const diffRed = color2.red - color1.red;
-        const diffGreen = color2.green - color1.green;
-        const diffBlue = color2.blue - color1.blue;      
-        const gradient = new CColor(
-            Math.floor(color1.red + diffRed * fade),
-            Math.floor(color1.green + diffGreen * fade),
-            Math.floor(color1.blue + diffBlue * fade)
-        );           
-      
-        return gradient;
+  public polarToCartesian(
+    center: IPoint,
+    radius: number,
+    angleRad: number
+  ): IPoint {
+    return {
+      x: center.x + radius * Math.cos(angleRad),
+      y: center.y + radius * Math.sin(angleRad),
     };
+  }
 
-    ///////////////////
-    // misc
-    ///////////////////
+  // цвет градиента, соответствующий позиции value, для двух или трех цветов
+  public colorGradient(
+    value: number /*[0,1]*/,
+    rgbColor1: CColor,
+    rgbColor2: CColor,
+    rgbColor3?: CColor
+  ): CColor {
+    let color1 = rgbColor1;
+    let color2 = rgbColor2;
+    let fade = value;
 
-    public pause(ms: number): Promise<void> {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(), ms);
-        });
+    if (rgbColor3) {
+      fade = fade * 2;
+
+      if (fade >= 1) {
+        fade -= 1;
+        color1 = rgbColor2;
+        color2 = rgbColor3;
+      }
     }
 
-    /*
+    const diffRed = color2.red - color1.red;
+    const diffGreen = color2.green - color1.green;
+    const diffBlue = color2.blue - color1.blue;
+    const gradient = new CColor(
+      Math.floor(color1.red + diffRed * fade),
+      Math.floor(color1.green + diffGreen * fade),
+      Math.floor(color1.blue + diffBlue * fade)
+    );
+
+    return gradient;
+  }
+
+  ///////////////////
+  // misc
+  ///////////////////
+
+  public pause(ms: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(), ms);
+    });
+  }
+
+  /*
     private easeInOutQuad (t:number, b:number, c:number, d:number): number {
         t /= d/2;
         if (t < 1) return c/2*t*t + b;

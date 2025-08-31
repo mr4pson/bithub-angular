@@ -60,6 +60,12 @@ export class CAppComponent {
   set popupLoginActive(v: boolean) {
     this.appService.popupLoginActive = v;
   }
+  get popupVerifActive(): boolean {
+    return this.appService.popupVerifActive;
+  }
+  set popupVerifActive(v: boolean) {
+    this.appService.popupVerifActive = v;
+  }
   get popupRegisterActive(): boolean {
     return this.appService.popupRegisterActive;
   }

@@ -56,6 +56,7 @@ import { CSelectSimpleComponent } from './inputs/select/simple/select-simple/sel
 import { CDatemarksCalendarComponent } from './inputs/dates/datemarks-calendar/datemarks-calendar.component';
 import { CBtnLinkComponent } from './buttons/link/btn-link.component';
 import { CScoreScaleComponent } from './score-scale/score-scale.component';
+import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import { CScoreScaleComponent } from './score-scale/score-scale.component';
     CPanelUnviewedComponent,
     PanelCartComponent,
     CPopupLoginComponent,
+    CPopupVerifComponent,
     CPopupRegisterComponent,
     CPopupRecoverComponent,
     CPopupErrorComponent,
@@ -127,6 +129,7 @@ import { CScoreScaleComponent } from './score-scale/score-scale.component';
     CPanelUnviewedComponent,
     PanelCartComponent,
     CPopupLoginComponent,
+    CPopupVerifComponent,
     CPopupRegisterComponent,
     CPopupRecoverComponent,
     CPopupErrorComponent,

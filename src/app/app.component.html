@@ -1,19 +1,21 @@
 <div class="win" #win>
-    <ng-container *ngIf="ready">        
-        <ng-container *ngIf="!regMode">
-            <the-header></the-header>
-        </ng-container>        
-        <main><router-outlet></router-outlet></main>
-        <popup-error></popup-error>                
-        <popup-register [(active)]="popupRegisterActive"></popup-register>
-        <ng-container *ngIf="!regMode">            
-            <popup-login [(active)]="popupLoginActive"></popup-login>            
-            <popup-recover [(active)]="popupRecoverActive"></popup-recover>
-            <popup-subscription [(active)]="popupSubscriptionActive"></popup-subscription>
-            <popup-limit [(active)]="popupLimitActive"></popup-limit>
-            <the-upper></the-upper>
-            <the-help></the-help>
-        </ng-container>        
+  <ng-container *ngIf="ready">
+    <ng-container *ngIf="!regMode">
+      <the-header></the-header>
     </ng-container>
+    <main><router-outlet></router-outlet></main>
+    <popup-error></popup-error>
+    <popup-register [(active)]="popupRegisterActive"></popup-register>
+    <ng-container *ngIf="!regMode">
+      <popup-login [(active)]="popupLoginActive"></popup-login>
+      <popup-verif [(active)]="popupVerifActive"></popup-verif>
+      <popup-recover [(active)]="popupRecoverActive"></popup-recover>
+      <popup-subscription
+        [(active)]="popupSubscriptionActive"
+      ></popup-subscription>
+      <popup-limit [(active)]="popupLimitActive"></popup-limit>
+      <the-upper></the-upper>
+      <the-help></the-help>
+    </ng-container>
+  </ng-container>
 </div>
-

@@ -16,7 +16,10 @@
         <form class="gf" (submit)="onSubmit()">
           <div class="gf-row">
             <div class="gf-title">
-              {{words['register']?.['name']?.[lang.slug]}}
+              <span
+                class="required"
+                >{{words['register']?.['name']?.[lang.slug]}}</span
+              >
             </div>
             <div class="gf-inputwrap">
               <input
@@ -32,7 +35,9 @@
           </div>
           <div class="gf-row">
             <div class="gf-title">
-              {{words['register']?.['email']?.[lang.slug]}}
+              <span class="required">
+                {{words['register']?.['email']?.[lang.slug]}}
+              </span>
             </div>
             <div class="gf-inputwrap">
               <input
@@ -48,7 +53,9 @@
           </div>
           <div class="gf-row">
             <div class="gf-title">
-              {{words['register']?.['password']?.[lang.slug]}}
+              <span class="required">
+                {{words['register']?.['password']?.[lang.slug]}}
+              </span>
             </div>
             <div class="gf-inputwrap">
               <input-password
@@ -62,7 +69,9 @@
           </div>
           <div class="gf-row">
             <div class="gf-title">
-              {{words['register']?.['password2']?.[lang.slug]}}
+              <span class="required">
+                {{words['register']?.['password2']?.[lang.slug]}}
+              </span>
             </div>
             <div class="gf-inputwrap">
               <input-password
