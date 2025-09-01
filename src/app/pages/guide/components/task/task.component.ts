@@ -143,19 +143,18 @@ export class CTaskComponent implements OnInit {
       this.loadingCompletion = true;
       await this.appService.pause(300);
 
-      if (this.authService.authData) {
-        await this.taskRepository.updateCompletion({
-          task_id: this.task.id,
-          completed,
-        });
-      } else {
-        const currentCompletions: number[] = JSON.parse(
-          localStorage.getItem('completions') ?? '[]'
-        );
-        currentCompletions.push(this.task.id);
+      if (!this.authService.authData) {
+        this.appService.popupLoginActive = true;
+        this.loadingCompletion = false;
 
-        localStorage.setItem('completions', JSON.stringify(currentCompletions));
+        return;
       }
+
+      await this.taskRepository.updateCompletion({
+        task_id: this.task.id,
+        completed,
+      });
+
       this.loadingCompletion = false;
       this.task.completed = completed;
       this.updateProgress.emit();

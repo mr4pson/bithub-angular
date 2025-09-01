@@ -72,22 +72,6 @@ export class CGuidePage implements OnInit {
       const tasksNum = this.guide.tasks.length;
       const isAuthed = !!this.authService.authData;
 
-      if (!this.authService.authData) {
-        const currentCompletions: number[] = JSON.parse(
-          localStorage.getItem('completions') ?? '[]'
-        );
-
-        this.guide.tasks = this.guide.tasks.map(
-          (task) =>
-            ({
-              ...task,
-              completed: currentCompletions.includes(task.id),
-            } as CTask)
-        );
-
-        console.log(currentCompletions, this.guide.tasks);
-      }
-
       switch (this.guide.type) {
         case GuideTypes.FullStepsAvaliable:
           stepsLimit = tasksNum;
