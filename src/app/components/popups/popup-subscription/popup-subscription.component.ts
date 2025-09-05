@@ -108,6 +108,7 @@ export class CPopupSubscriptionComponent
       this.error = null;
       const dto: IOutorderCreate = {
         subscriptionType: this.selectedSubscription.type,
+        tariff_id: this.selectedTariff.id,
         code: this.promocode?.code,
         q: 1,
       };
