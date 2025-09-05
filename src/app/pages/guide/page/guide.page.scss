@@ -359,6 +359,15 @@
   }
 
   .g-calendar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .btn-make-for-you {
+      background-color: var(--color-ok);
+      background-image: none;
+    }
+
     @media (min-width:0) {
       margin-bottom: 15px;
     }

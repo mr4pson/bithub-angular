@@ -28,7 +28,6 @@ const routes: Routes = [
   {
     path: ':lang/shop',
     loadChildren: () => CShopModule,
-    canActivate: [CAuthGuard],
   },
   { path: ':lang/drops', loadChildren: () => CDropsModule },
   {

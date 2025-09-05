@@ -24,18 +24,11 @@ export class GuideGuard {
     state: RouterStateSnapshot
   ) {
     const id = Number(route.paramMap.get('id'));
-
-    console.log(id);
-
     const guide = await this.guideRepository.loadOne(id);
-
-    console.log(guide.type !== GuideTypes.Gem, !!this.authService.authData);
     const isActivated =
       (guide.type !== GuideTypes.Gem &&
         guide.type !== GuideTypes.LimitAfterAuthAvailable) ||
       !!this.authService.authData;
-
-    console.log('isActivated', isActivated);
 
     if (!isActivated) {
       this.appService.popupLoginActive = true;

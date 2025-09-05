@@ -29,6 +29,7 @@ export class CAppService {
   public popupRecoverActive: boolean = false;
   public popupSubscriptionActive: boolean = false;
   public popupLimitActive: boolean = false;
+  public popupIsGemType: boolean = false;
 
   constructor(
     private titleService: Title,

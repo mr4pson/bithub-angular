@@ -7,6 +7,7 @@ import { CAppService } from 'src/app/services/app.service';
 import { CShopitemRepository } from 'src/app/services/repositories/shopitem.repository';
 import { CCartService } from 'src/app/services/cart.service';
 import { ICartItem } from 'src/app/model/cart-item.interface';
+import { CAuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'item-shop-page',
@@ -21,6 +22,7 @@ export class CItemShopPage {
 
   constructor(
     private appService: CAppService,
+    private authService: CAuthService,
     private shopitemRepository: CShopitemRepository,
     private cartService: CCartService,
     private route: ActivatedRoute,
@@ -31,6 +33,10 @@ export class CItemShopPage {
     return this.cartService
       .getItems()
       .some((item) => item.product.id === this.shopitem?.id);
+  }
+
+  get isLoggedIn(): boolean {
+    return !!this.authService.authData;
   }
 
   get words(): IWords {
@@ -98,6 +104,12 @@ export class CItemShopPage {
   }
 
   public onOrder(): void {
+    if (!this.isLoggedIn) {
+      this.appService.popupLoginActive = true;
+
+      return;
+    }
+
     this.shoporderPopupActive = true;
   }
 

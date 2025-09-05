@@ -279,6 +279,18 @@
     overflow: hidden;
     transition: 0.3s;
 
+    .no-subscription-info {
+      @media (min-width:0) {
+        padding: 0 15px 15px;
+      }
+
+      @media (min-width:1000px) {
+        padding: 0 30px 30px;
+      }
+
+      color: #ff1400;
+    }
+
     .task-params {
       @media (min-width:0) {
         padding: 15px;

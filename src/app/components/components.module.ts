@@ -57,6 +57,7 @@ import { CDatemarksCalendarComponent } from './inputs/dates/datemarks-calendar/d
 import { CBtnLinkComponent } from './buttons/link/btn-link.component';
 import { CScoreScaleComponent } from './score-scale/score-scale.component';
 import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component';
+import { CSubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
   imports: [
@@ -104,6 +105,7 @@ import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component
     CBtnLinkComponent,
     CEntitySortingComponent,
     CTariffComponent,
+    CSubscriptionComponent,
     CPromocodeComponent,
     CImagePickerComponent,
     CUpperComponent,
@@ -155,6 +157,7 @@ import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component
     CBtnLinkComponent,
     CEntitySortingComponent,
     CTariffComponent,
+    CSubscriptionComponent,
     CPromocodeComponent,
     CImagePickerComponent,
     CUpperComponent,

@@ -87,7 +87,16 @@
         <the-progress2 [tasks]="guide.tasks" />
       </div>
     </div>
-    <div class="g-calendar" *ngIf="user"><the-datemarks [guide]="guide" /></div>
+    <div class="g-calendar" *ngIf="user">
+      <a [routerLink]="'/'+lang.slug+'/shop'">
+        <button type="button" class="btn gold btn-make-for-you">
+          <span class="btn-text">
+            {{words["guides"]?.["make-for-you"]?.[lang.slug]}}
+          </span>
+        </button>
+      </a>
+      <the-datemarks [guide]="guide" />
+    </div>
     <div class="g-content">
       <expandable-text [value]="guide.content[lang.slug]"></expandable-text>
     </div>

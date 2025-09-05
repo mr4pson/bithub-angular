@@ -56,6 +56,10 @@ export class CHeaderComponent implements OnInit {
     this[`panel${name}Active`] ? this.hidePanel(name) : this.showPanel(name);
   }
 
+  public handleSubscriptionToggle() {
+    this.appService.popupSubscriptionActive = true;
+  }
+
   private hidePanel(name: string): void {
     this[`panel${name}Active`] = false;
   }

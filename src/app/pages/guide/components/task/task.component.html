@@ -47,7 +47,19 @@
     </div>
   </div>
   <div class="task-main" id="task-main-{{ task.id }}" #container>
-    <ng-container *ngIf="loadedTask">
+    <div
+      class="no-subscription-info"
+      *ngIf="!user?.subType && task.availableWithSubscription"
+    >
+      {{words['guides']?.['need-subscription']?.[lang.slug]}}
+    </div>
+    <ng-container
+      *ngIf="
+        loadedTask &&
+        ((user?.subType && task.availableWithSubscription) ||
+          !task.availableWithSubscription)
+      "
+    >
       <div class="task-params">
         <div class="tp-left">
           <div

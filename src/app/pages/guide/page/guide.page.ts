@@ -67,30 +67,37 @@ export class CGuidePage implements OnInit {
       await this.appService.pause(300);
       this.guide = await this.guideRepository.loadOne(id);
       this.isGemType = this.guide.type === GuideTypes.Gem;
+      this.appService.popupSubscriptionActive =
+        this.guide.type === GuideTypes.Gem;
+      this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
 
-      let stepsLimit: number;
+      let stepsLimit = 2;
       const tasksNum = this.guide.tasks.length;
       const isAuthed = !!this.authService.authData;
 
-      switch (this.guide.type) {
-        case GuideTypes.FullStepsAvaliable:
-          stepsLimit = tasksNum;
-          break;
-        case GuideTypes.TwoStepsAvailable:
-          stepsLimit = !isAuthed ? 2 : tasksNum;
-          break;
-        case GuideTypes.LimitAfterAuthAvailable:
-          stepsLimit = isAuthed ? this.guide.steps_limit : 0;
-          break;
-        case GuideTypes.Gem:
-          stepsLimit = 0;
-          break;
-        default:
-          stepsLimit = tasksNum;
-          break;
+      if (this.authService.authData) {
+        switch (this.guide.type) {
+          case GuideTypes.FullStepsAvaliable:
+            stepsLimit = tasksNum;
+            break;
+          case GuideTypes.TwoStepsAvailable:
+            stepsLimit = !isAuthed ? 2 : tasksNum;
+            break;
+          case GuideTypes.LimitAfterAuthAvailable:
+            stepsLimit = isAuthed ? this.guide.steps_limit : 0;
+            break;
+          case GuideTypes.Gem:
+            stepsLimit = 0;
+            break;
+          default:
+            stepsLimit = tasksNum;
+            break;
+        }
       }
       // const stepsLimit = this.guide.type === GuideTypes.FullStepsAvaliable ? this.guide.tasks : thi
       this.limitedTasks = this.guide.tasks.slice(0, stepsLimit);
+
+      console.log(this.guide.tasks, this.user.subType);
     } catch (err) {
       err === 404
         ? this.router.navigateByUrl(`/${this.lang.slug}/errors/404`)

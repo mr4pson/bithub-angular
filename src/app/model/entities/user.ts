@@ -11,6 +11,7 @@ export class CUser extends CEntity {
   public img: string;
   public money: number;
   public points: number;
+  public subType?: 'dg-pro' | 'dg-team';
   public paid_at: Date;
   public paid_until: Date;
   public freetasks: number;

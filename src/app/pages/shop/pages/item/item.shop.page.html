@@ -40,7 +40,7 @@
         ><span class="btn-text">{{words["shop"]?.["order"]?.[lang.slug]}}</span>
       </button>
       <button
-        *ngIf="!isInCart"
+        *ngIf="!isInCart && isLoggedIn"
         type="button"
         class="btn gold"
         (click)="addToCart()"
@@ -51,7 +51,7 @@
         >
       </button>
       <span
-        *ngIf="isInCart"
+        *ngIf="isInCart && isLoggedIn"
         style="margin-left: 10px; font-weight: bold; color: green"
       >
         {{words["shop"]?.["added-to-cart"]?.[lang.slug]}}

@@ -1,0 +1,27 @@
+<div class="subscription" [class.active]="active">
+  <div class="subscription-head">
+    <div class="t-left">
+      <div class="t-mark"><span></span></div>
+      <div class="t-details">
+        <div class="t-name">{{ subscription.name }}</div>
+        <!-- <div class="t-note">{{ tariff.note[lang.slug] }}</div> -->
+        <div class="t-note">Итого: ${{ subscriptionTotalPrice }}</div>
+      </div>
+    </div>
+    <div class="t-right">
+      <div class="t-price">${{ subscriptionMonthPrice }} / мес.</div>
+    </div>
+    <div class="t-top" *ngIf="subscription.type === 'dg-pro'">
+      <span>TOP</span>
+    </div>
+  </div>
+  <div class="subscription-body">
+    <div
+      *ngFor="let feature of subscription.features"
+      class="subscription-feature"
+    >
+      <div class="check-mark" [class.active]="feature.available"></div>
+      {{ feature.translations[lang.slug] }}
+    </div>
+  </div>
+</div>

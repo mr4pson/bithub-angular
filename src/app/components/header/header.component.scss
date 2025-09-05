@@ -497,3 +497,53 @@ header {
     }
   }
 }
+
+.hl-links a {
+  &.hl-link {
+    display: flex;
+    align-items: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 2px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+    transition: 0.3s;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.tw::before {
+      width: 15px;
+      height: 15px;
+      font-family: "fa-brands";
+      content: "\e61b";
+    }
+  }
+
+  &.mail {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    opacity: 0.6;
+    transition: 0.3s;
+    margin-left: 4px;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &::before {
+      display: block;
+      transform: scale(1.4);
+      font-family: "fa-solid";
+      content: "\f0e0";
+    }
+  }
+}

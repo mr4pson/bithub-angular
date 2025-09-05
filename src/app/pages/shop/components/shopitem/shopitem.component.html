@@ -1,11 +1,17 @@
-<a class="shopitem" routerLink="/{{lang.slug}}/shop/{{shopitem.id}}">
-    <div class="s-imgwrap" *ngIf="shopitem.img"><img src="/images/shopitems/{{shopitem.img}}" loading="lazy" [alt]="shopitem.name[lang.slug]"></div>
-    <div class="s-details" [class.wide]="!shopitem.img">
-        <div class="s-name">{{shopitem.name[lang.slug]}}</div>
-        <div class="s-content">{{shopitem.contentshort[lang.slug]}}</div>
-        <div class="s-price" *ngIf="shopitem.price">
-            <img src="/assets/images/usdc.png">
-            <span>${{shopitem.price}}</span>
-        </div>
+<a class="shopitem" (click)="handleOpenShopitem($event)">
+  <div class="s-imgwrap" *ngIf="shopitem.img">
+    <img
+      src="/images/shopitems/{{ shopitem.img }}"
+      loading="lazy"
+      [alt]="shopitem.name[lang.slug]"
+    />
+  </div>
+  <div class="s-details" [class.wide]="!shopitem.img">
+    <div class="s-name">{{ shopitem.name[lang.slug] }}</div>
+    <div class="s-content">{{ shopitem.contentshort[lang.slug] }}</div>
+    <div class="s-price" *ngIf="shopitem.price">
+      <img src="/assets/images/usdc.png" />
+      <span>${{ shopitem.price }}</span>
     </div>
+  </div>
 </a>

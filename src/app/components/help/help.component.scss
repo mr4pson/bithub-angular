@@ -1,40 +1,135 @@
 .help {
-    @media (min-width:0) {display: none;}
-    @media (min-width:1000px) {display: block;}
-    position: fixed; z-index: 10; left: 30px; bottom: 30px;
-    .h-btn {
-        display: flex; width: 40px; height: 40px; font-size: 20px; border-radius: 50%; border:1px var(--color-border2) solid; background-color: var(--color-input-bg1); justify-content: center; align-items: center; color: var(--color-txt2); cursor: pointer; user-select: none; transition: 0.3s;
-        @media (hover: hover) and (pointer: fine) {&:hover {border-color: var(--color-hilite2);}}
-        span::before {font-family: "fa-light"; content: "\e1e7";}
+  @media (min-width:0) {
+    display: none;
+  }
+
+  @media (min-width:1000px) {
+    display: block;
+  }
+
+  position: fixed;
+  z-index: 10;
+  left: 30px;
+  bottom: 30px;
+
+  .h-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px var(--color-border2) solid;
+    background-color: var(--color-input-bg1);
+    justify-content: center;
+    align-items: center;
+    color: var(--color-txt2);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: var(--color-hilite2);
+      }
     }
-    .h-panel {
-        position: absolute; bottom: calc(100% + 5px); left: 0; padding: 15px; background-color: var(--color-bg-block2); border-radius: 15px; border:1px var(--color-border2) solid; opacity: 0; pointer-events: none; transition: 0.3s;
-        &.active {opacity: 1; pointer-events: inherit;}
-        .hp-section {
-            margin-bottom: 15px; 
-            &:last-child {margin-bottom: 0;}        
-        }
-        .hp-title {font-size: 14px; margin-bottom: 5px;}
-        .hp-contacts {
-            display: flex;
-            .hp-contact {
-                margin-right: 10px; font-size: 20px;
-                a {
-                    &.tg::before {font-family: "fa-brands"; content: "\f2c6";}
-                    &.do::before {font-family: "fa-brands"; content: "\f392";}
-                    &.tw::before {font-family: "fa-brands"; content: "\e61b";}
-                    &.yt::before {font-family: "fa-brands"; content: "\f167";}
-                    &.li::before {font-family: "fa-brands"; content: "\f08c";}
-                    &.mail::before {font-family: "fa-solid"; content: "\f0e0";}
-                }                
-            }
-        }
-        .hp-gitbook {
-            a {
-                font-size: 16px; display: flex;               
-                img {height: 20px; margin-right: 5px; filter: invert(1); transition: 0.3s;}
-                @media (hover: hover) and (pointer: fine) {&:hover {img {filter: invert(81%) sepia(0%) saturate(0%) hue-rotate(158deg) brightness(94%) contrast(96%);}}}
-            }
-        }
+
+    span::before {
+      font-family: "fa-light";
+      content: "\e1e7";
     }
+  }
+
+  .h-panel {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 0;
+    padding: 15px;
+    background-color: var(--color-bg-block2);
+    border-radius: 15px;
+    border: 1px var(--color-border2) solid;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+
+    &.active {
+      opacity: 1;
+      pointer-events: inherit;
+    }
+
+    .hp-section {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .hp-title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .hp-contacts {
+      display: flex;
+
+      .hp-contact {
+        margin-right: 10px;
+        font-size: 20px;
+
+        a {
+          &.tg::before {
+            font-family: "fa-brands";
+            content: "\f2c6";
+          }
+
+          &.do::before {
+            font-family: "fa-brands";
+            content: "\f392";
+          }
+
+          &.tw::before {
+            font-family: "fa-brands";
+            content: "\e61b";
+          }
+
+          &.yt::before {
+            font-family: "fa-brands";
+            content: "\f167";
+          }
+
+          &.li::before {
+            font-family: "fa-brands";
+            content: "\f08c";
+          }
+
+          &.mail::before {
+            font-family: "fa-solid";
+            content: "\f0e0";
+          }
+        }
+      }
+    }
+
+    .hp-gitbook {
+      a {
+        font-size: 16px;
+        display: flex;
+
+        img {
+          height: 20px;
+          margin-right: 5px;
+          filter: invert(1);
+          transition: 0.3s;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            img {
+              filter: invert(81%) sepia(0%) saturate(0%) hue-rotate(158deg) brightness(94%) contrast(96%);
+            }
+          }
+        }
+      }
+    }
+  }
 }

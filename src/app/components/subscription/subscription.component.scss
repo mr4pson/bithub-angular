@@ -1,7 +1,4 @@
-.tariff {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.subscription {
   background-color: var(--color-input-bg1);
   border: 1px var(--color-border2) solid;
   border-radius: 15px;
@@ -10,6 +7,26 @@
   cursor: pointer;
   user-select: none;
   position: relative;
+
+  .subscription-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .subscription-body {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .subscription-feature {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      align-items: center;
+    }
+  }
 
   .t-left {
     display: flex;
@@ -140,5 +157,37 @@
       margin-right: 3px;
       content: "\f06d";
     }
+  }
+}
+
+.check-mark {
+  width: 10px;
+  min-width: 10px;
+  height: 10px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-hilite2);
+    background: none;
+    transition: 0.3s;
+    opacity: 0;
+    font-family: "fa-solid";
+    content: "\f00c";
+    font-size: 16px;
+  }
+
+  &.active::after {
+    opacity: 1;
   }
 }

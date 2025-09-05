@@ -50,7 +50,6 @@ export abstract class CSimplePage {
     try {
       this.page = null;
       await this.appService.pause(300);
-      console.log(slug);
       this.page = await this.pageRepository.loadOne(slug);
     } catch (err) {
       console.log(err);
