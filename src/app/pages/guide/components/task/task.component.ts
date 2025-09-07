@@ -30,6 +30,7 @@ export class CTaskComponent implements OnInit {
   @Input() public task: CTask; // тут заголовок и статус таска
   @Input() public no: number;
   @Input() public n: number;
+  @Input() public stepsLimit: number;
   @Output() private updateProgress: EventEmitter<void> = new EventEmitter();
 
   public loadedTask: CTask = null; // подгружаемый контент таска - текст и параметры
@@ -86,10 +87,21 @@ export class CTaskComponent implements OnInit {
 
   public async open(): Promise<void> {
     try {
+      if (this.no - 1 >= this.stepsLimit) {
+        if (this.user) {
+          this.appService.popupSubscriptionActive = true;
+        } else {
+          this.appService.popupLoginActive = true;
+        }
+
+        return;
+      }
+
       if (!this.loadedTask) {
         if (this.loading) return;
         this.loading = true;
         this.loadedTask = await this.taskRepository.loadPaidOne(this.task.id);
+
         await this.appService.pause(300);
         await this.appService.waitForImagesLoading(
           `#task-content-${this.task.id}`

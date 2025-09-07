@@ -1,6 +1,7 @@
 export type TSubscription = {
   name: string;
   type?: 'dg-pro' | 'dg-team';
+  isDisabled?: boolean;
   price?: Array<{
     period: number;
     value: number;

@@ -33,6 +33,7 @@ export class CPopupSubscriptionComponent
   public tariffs: ISubscriptionTariff[] = null;
   public subscriptions = SUBSCRIPTION_LIST;
   public selectedTariff: ISubscriptionTariff = null;
+  public paidSubscription: TSubscription = null;
   public selectedSubscription: TSubscription = this.subscriptions[0];
   public promocode: IPromocode = null;
   public loading: boolean = false;
@@ -76,9 +77,43 @@ export class CPopupSubscriptionComponent
     return this.appService.formattedDate(date);
   }
 
+  public getSubscriptionDisabled(sub: TSubscription): boolean {
+    const subType = this.user?.subType;
+    if (!subType) {
+      // Если нет подписки, дизейблим текущую, выбираем dg-pro
+      return !sub.type;
+    }
+    if (subType === 'dg-pro') {
+      // dg-free и dg-pro дизейблим, выбираем dg-team
+      return sub.type !== 'dg-team';
+    }
+    if (subType === 'dg-team') {
+      // dg-free и dg-pro дизейблим, dg-team оставляем
+      return sub.type !== 'dg-team';
+    }
+    return false;
+  }
+
   public override ngOnInit(): void {
     super.ngOnInit();
     this.initTariffs();
+    // Выбор подписки по subType
+    const subType = this.user?.subType;
+    console.log(subType);
+
+    if (!subType) {
+      this.selectedSubscription = this.subscriptions.find(
+        (s) => s.type === 'dg-pro'
+      );
+    } else if (subType === 'dg-pro') {
+      this.selectedSubscription = this.subscriptions.find(
+        (s) => s.type === 'dg-team'
+      );
+    } else if (subType === 'dg-team') {
+      this.selectedSubscription = this.subscriptions.find(
+        (s) => s.type === 'dg-team'
+      );
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -91,6 +126,17 @@ export class CPopupSubscriptionComponent
     try {
       this.tariffs = await this.tariffRepository.loadSubscriptionAll();
       this.selectedTariff = this.tariffs[0] || null;
+      this.paidSubscription = this.subscriptions.find(
+        (subscription) =>
+          subscription.type === this.user?.subType ||
+          (!subscription.type && !this.user.subType)
+      );
+
+      // console.log(
+      //   this.paidSubscription,
+      //   this.subscriptions,
+      //   this.user?.subType
+      // );
     } catch (err) {
       this.appService.notifyError(err);
     }

@@ -100,9 +100,9 @@
     <div class="g-content">
       <expandable-text [value]="guide.content[lang.slug]"></expandable-text>
     </div>
-    <div class="g-warning" *ngIf="user && !user.paid_at">
+    <!-- <div class="g-warning" *ngIf="!user">
       <div class="gw-txt" [innerHTML]="warningTxt"></div>
-      <div class="gw-btnwrap" *ngIf="!user.parent_id">
+      <div class="gw-btnwrap" *ngIf="!user?.parent_id">
         <button type="button" class="btn gold" (click)="onSubscribe()">
           <span class="btn-icon pay"></span
           ><span class="btn-text"
@@ -110,12 +110,13 @@
           >
         </button>
       </div>
-    </div>
+    </div> -->
     <div class="g-tasks">
       <div class="g-task" *ngFor="let t of limitedTasks; let i = index;">
         <the-task
           [task]="t"
           [no]="i + 1"
+          [stepsLimit]="stepsLimit"
           [n]="limitedTasks.length"
           (updateProgress)="onUpdateProgress()"
         ></the-task>

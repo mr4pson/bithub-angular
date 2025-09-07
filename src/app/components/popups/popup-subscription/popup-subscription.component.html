@@ -19,6 +19,7 @@
             <div class="pcs-section">
               <div class="pcs-title">
                 {{words['subscription']?.['tariff']?.[lang.slug]}}
+                {{ paidSubscription?.name }}
               </div>
               <div *ngIf="selectedSubscription?.type" class="pcs-tariffs">
                 <the-tariff
@@ -34,7 +35,11 @@
                   [subscription]="subscription"
                   [active]="subscription.name === selectedSubscription?.name"
                   [tariff]="selectedTariff"
-                  (click)="selectedSubscription = subscription"
+                  [disabled]="getSubscriptionDisabled(subscription)"
+                  (click)="
+                    !getSubscriptionDisabled(subscription) &&
+                      (selectedSubscription = subscription)
+                  "
                 ></app-subscription>
               </div>
             </div>

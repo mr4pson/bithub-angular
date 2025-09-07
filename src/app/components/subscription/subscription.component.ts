@@ -13,6 +13,7 @@ export class CSubscriptionComponent {
   @Input() public subscription: TSubscription;
   @Input() public tariff: ISubscriptionTariff;
   @Input() public active: boolean;
+  @Input() public disabled: boolean = false;
 
   get subscriptionMonthPrice() {
     const price = this.subscription.price?.find(

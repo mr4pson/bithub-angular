@@ -8,6 +8,10 @@
   user-select: none;
   position: relative;
 
+  &.disabled {
+    border: 1px var(--color-border3) solid;
+  }
+
   .subscription-head {
     display: flex;
     justify-content: space-between;

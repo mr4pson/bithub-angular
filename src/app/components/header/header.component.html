@@ -57,18 +57,55 @@
             style="width: 25px; margin-top: 5px"
             (click)="handleSubscriptionToggle()"
           >
+            <svg width="0" height="0">
+              <defs>
+                <!-- Градиент для фильтра -->
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="var(--color-hilite1)" />
+                  <stop offset="50%" stop-color="var(--color-hilite3)" />
+                  <stop offset="100%" stop-color="var(--color-hilite1)" />
+                </linearGradient>
+
+                <!-- Фильтр для применения градиента к обводке -->
+                <filter id="gradient-filter" x="0" y="0" width="1" height="1">
+                  <feFlood flood-color="#4f46e5" result="color1" />
+                  <feFlood flood-color="#ec4899" result="color2" />
+                  <feBlend
+                    mode="lighten"
+                    in="color1"
+                    in2="color2"
+                    result="blended"
+                  />
+                  <feComposite in="blended" in2="SourceGraphic" operator="in" />
+                </filter>
+              </defs>
+            </svg>
+
             <svg
-              viewBox="0 0 32 32"
-              fill="none"
+              class="gradient-icon"
+              viewBox="-2 -2 28 28"
               xmlns="http://www.w3.org/2000/svg"
-              style="width: 100%; stroke-width: 1.5px"
             >
               <path
-                d="M5 16C8.09524 15.5357 18.1857 12.2857 26.3571 3M26.3571 3H21.7143M26.3571 3V7.64286M22.6429 29H25.4286C25.9414 29 26.3571 28.5843 26.3571 28.0714V12.2857C26.3571 11.7729 25.9414 11.3571 25.4286 11.3571H22.6429C22.13 11.3571 21.7143 11.7729 21.7143 12.2857V28.0714C21.7143 28.5843 22.13 29 22.6429 29ZM15.2143 29H18C18.5128 29 18.9286 28.5843 18.9286 28.0714V18.7857C18.9286 18.2729 18.5128 17.8571 18 17.8571H15.2143C14.7015 17.8571 14.2857 18.2729 14.2857 18.7857V28.0714C14.2857 28.5843 14.7015 29 15.2143 29ZM7.78571 29H10.5714C11.0843 29 11.5 28.5843 11.5 28.0714V22.5C11.5 21.9872 11.0843 21.5714 10.5714 21.5714H7.78571C7.27288 21.5714 6.85714 21.9872 6.85714 22.5V28.0714C6.85714 28.5843 7.27288 29 7.78571 29Z"
-                stroke="currentColor"
+                d="M4.54845 16.9968C3.80845 17.2268 3.08837 17.6567 2.46837 18.2667C1.84837 18.8867 1.42835 19.6068 1.19835 20.3468C0.968354 21.0868 0.938388 21.8467 1.10839 22.5367C1.79839 22.7067 2.55845 22.6768 3.29845 22.4468C4.03845 22.2168 4.75841 21.7868 5.37841 21.1768C5.99841 20.5568 6.41843 19.8368 6.64843 19.0968"
+                stroke="url(#gradient)"
+                stroke-miterlimit="10"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                _ngcontent-ng-c2132949282=""
+              ></path>
+              <path
+                d="M4.63855 10.5167L1.80859 13.3468H4.63855C7.17855 14.2968 9.11858 16.1068 10.2986 19.0068V21.8368L13.1285 19.0068L11.7185 14.7667C15.1385 14.5267 18.0685 13.3067 20.2085 10.5267C22.2285 7.72671 22.8785 4.64677 22.3285 1.33677C18.8185 0.526768 15.7285 1.15676 13.1385 3.45676C10.6285 6.08676 9.20856 8.91675 8.89856 11.9468L4.63855 10.5167Z"
+                stroke="url(#gradient)"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M17.3684 8.27673C18.473 8.27673 19.3684 7.3813 19.3684 6.27673C19.3684 5.17216 18.473 4.27673 17.3684 4.27673C16.2638 4.27673 15.3684 5.17216 15.3684 6.27673C15.3684 7.3813 16.2638 8.27673 17.3684 8.27673Z"
+                stroke="url(#gradient)"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               ></path>
             </svg>
           </div>

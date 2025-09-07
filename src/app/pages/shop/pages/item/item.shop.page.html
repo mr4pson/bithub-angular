@@ -31,15 +31,6 @@
     <div class="ts-content" [innerHTML]="content"></div>
     <div class="ts-dash">
       <button
-        *ngIf="!isInCart"
-        type="button"
-        class="btn gold"
-        (click)="onOrder()"
-      >
-        <span class="btn-icon cart"></span
-        ><span class="btn-text">{{words["shop"]?.["order"]?.[lang.slug]}}</span>
-      </button>
-      <button
         *ngIf="!isInCart && isLoggedIn"
         type="button"
         class="btn gold"

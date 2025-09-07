@@ -1,4 +1,9 @@
-<div class="subscription" [class.active]="active">
+<div
+  class="subscription"
+  [class.active]="active"
+  [class.disabled]="disabled"
+  [style.pointer-events]="disabled ? 'none' : null"
+>
   <div class="subscription-head">
     <div class="t-left">
       <div class="t-mark"><span></span></div>

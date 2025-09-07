@@ -103,16 +103,6 @@ export class CItemShopPage {
     this.appService.setMeta('name', 'description', '');
   }
 
-  public onOrder(): void {
-    if (!this.isLoggedIn) {
-      this.appService.popupLoginActive = true;
-
-      return;
-    }
-
-    this.shoporderPopupActive = true;
-  }
-
   public redirectoTgSupport(): void {
     window.open('http://google.com', '_blank');
   }
