@@ -38,8 +38,8 @@ export class CCartShopPage implements OnInit {
     this.calcTotal();
   }
 
-  onAmountChange(item: ICartItem, i: number) {
-    if (item.quantity < 1) item.quantity = 1;
+  handleQuantityChange(value: number, item: ICartItem) {
+    item.quantity = value;
     this.calcTotal();
   }
 

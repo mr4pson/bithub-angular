@@ -16,11 +16,16 @@
           <div class="cart-item-title">{{item.product.name[lang.slug]}}</div>
           <div class="cart-item-qty">
             <label>{{words["shop"]?.["quantity"]?.[lang.slug]}}:</label>
-            <input
+            <!-- <input
               type="number"
               [min]="item.product.min_items_num > 0 ? item.product.min_items_num : 1"
               [(ngModel)]="item.quantity"
               (change)="onAmountChange(item, i)"
+            /> -->
+            <app-quantity-selector
+              [quantity]="item.quantity"
+              [step]="item.product.priceStep ? item.product.priceStep : 1"
+              (change)="handleQuantityChange($event, item)"
             />
           </div>
         </div>

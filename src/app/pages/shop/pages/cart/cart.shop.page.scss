@@ -56,19 +56,27 @@
 }
 
 .cart-item-qty {
-  input {
-    max-width: 85px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (min-width:0) {
+    flex-direction: column;
   }
 
-  label {
-    margin-right: 8px;
+  @media (min-width:1000px) {
+    flex-direction: row;
+  }
+
+  input {
+    max-width: 85px;
   }
 }
 
 .cart-item-price {
   font-size: 1.1em;
   font-weight: 500;
-  min-width: 80px;
+  min-width: 50px;
   text-align: right;
 }
 
