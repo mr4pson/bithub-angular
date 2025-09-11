@@ -96,6 +96,7 @@ export class CPopupRegisterComponent
 
           if (statusCode === 201) {
             this.activeChange.emit(false); // не onClose!
+            (window as any).fbq('track', 'CompleteRegistration');
             const url =
               this.authGuard.getBlockedUrl() || `/${this.lang.slug}/account`;
             this.router.navigateByUrl(url);
