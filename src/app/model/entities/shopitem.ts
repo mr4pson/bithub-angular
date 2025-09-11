@@ -5,6 +5,7 @@ export interface IShopitem extends IEntity {
   readonly date: string;
   readonly img: string;
   readonly price: number;
+  readonly discount?: number;
   readonly name: IMultilangable;
   readonly min_items_num?: number;
   readonly available_for?: string;

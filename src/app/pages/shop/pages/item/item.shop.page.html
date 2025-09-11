@@ -17,13 +17,18 @@
       <div class="ts-details">
         <div class="ts-date">{{date}}</div>
         <h1>{{h1}}</h1>
-        <div class="ts-price" *ngIf="price">
+        <div class="ts-price" *ngIf="calculatedPrice">
           <div class="tsp-title">
             {{words['shop']?.['price']?.[lang.slug]}}:
           </div>
           <div class="tsp-value">
             <img src="/assets/images/usdc.png" />
-            <span>${{price}}</span>
+            <span
+              *ngIf="shopitem.discount"
+              style="text-decoration: line-through"
+              >${{shopitem.price}}</span
+            >
+            <span>${{calculatedPrice}}</span>
           </div>
         </div>
       </div>

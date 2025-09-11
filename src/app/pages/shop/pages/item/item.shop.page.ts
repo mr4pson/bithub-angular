@@ -60,8 +60,9 @@ export class CItemShopPage {
   get date(): string {
     return this.shopitem.date;
   }
-  get price(): number {
-    return this.shopitem.price;
+  get calculatedPrice(): number {
+    const { discount, price } = this.shopitem;
+    return discount ? price - (price * discount) / 100 : price;
   }
 
   public async ngOnInit(): Promise<void> {

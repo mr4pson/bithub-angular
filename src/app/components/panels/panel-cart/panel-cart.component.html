@@ -18,7 +18,7 @@
                 <span class="pci-name">{{ item.product.name[lang.slug] }}</span>
                 <span class="pci-price"
                   >{{ item.quantity }} {{words["shop"]?.["pcs"]?.[lang.slug]}}.
-                  ${{ item.product.price }}</span
+                  ${{ getShopItemPrice(item) }}</span
                 >
               </div>
             </ng-container>

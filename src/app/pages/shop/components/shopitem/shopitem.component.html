@@ -11,7 +11,12 @@
     <div class="s-content">{{ shopitem.contentshort[lang.slug] }}</div>
     <div class="s-price" *ngIf="shopitem.price">
       <img src="/assets/images/usdc.png" />
-      <span>${{ shopitem.price }}</span>
+      <span
+        *ngIf="shopitem.discount && isDgTeam"
+        style="text-decoration: line-through"
+        >${{ shopitem.price }}</span
+      >
+      <span>${{ calculatedPrice }}</span>
     </div>
   </div>
 </a>

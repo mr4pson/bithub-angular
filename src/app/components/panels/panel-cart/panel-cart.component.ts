@@ -25,6 +25,11 @@ export class PanelCartComponent extends CPanelComponent {
     return this.cartService.getItems();
   }
 
+  getShopItemPrice(cartItem: ICartItem) {
+    const { discount, price } = cartItem.product;
+    return discount ? price - (price * discount) / 100 : price;
+  }
+
   goToCart() {
     this.router.navigate([`/${this.appService.lang.value.slug}/shop/cart`]);
     this.onClose();

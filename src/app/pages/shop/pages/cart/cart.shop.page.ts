@@ -23,6 +23,11 @@ export class CCartShopPage implements OnInit {
     return this.appService.words;
   }
 
+  getShopItemPrice(cartItem: ICartItem) {
+    const { discount, price } = cartItem.product;
+    return discount ? price - (price * discount) / 100 : price;
+  }
+
   constructor(
     public cartService: CCartService,
     private appService: CAppService
@@ -40,14 +45,13 @@ export class CCartShopPage implements OnInit {
 
   calcTotal() {
     this.total = this.items.reduce(
-      (sum, item, i) => sum + item.product.price * item.quantity,
+      (sum, item, i) => sum + this.getShopItemPrice(item) * item.quantity,
       0
     );
   }
 
   removeItem(i: number) {
     this.cartService.remove(i);
-    this.items.splice(i, 1);
     this.calcTotal();
   }
 

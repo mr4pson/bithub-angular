@@ -29,6 +29,13 @@ export class CShopitemComponent {
   get authenticated(): boolean {
     return this.authService.authData !== null;
   }
+  get calculatedPrice(): number {
+    const { discount, price } = this.shopitem;
+    return discount && this.isDgTeam ? price - (price * discount) / 100 : price;
+  }
+  get isDgTeam() {
+    return this.authService.user.subType === 'dg-team';
+  }
 
   public handleOpenShopitem(event: PointerEvent) {
     event.preventDefault();
