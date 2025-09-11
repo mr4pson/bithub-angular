@@ -40,6 +40,9 @@ export class CHeaderComponent implements OnInit {
   get user(): CUser {
     return this.authService.user;
   }
+  get canLvlUp() {
+    return this.user.subType !== 'dg-team';
+  }
 
   public ngOnInit(): void {
     this.initBehavior();

@@ -58,6 +58,7 @@ import { CBtnLinkComponent } from './buttons/link/btn-link.component';
 import { CScoreScaleComponent } from './score-scale/score-scale.component';
 import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component';
 import { CSubscriptionComponent } from './subscription/subscription.component';
+import { CLvlUpBtnComponent } from './header/lvl-up-btn/lvl-up-btn.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { CSubscriptionComponent } from './subscription/subscription.component';
     CDirectivesModule,
   ],
   declarations: [
+    CLvlUpBtnComponent,
     CHeaderComponent,
     CMenuMainComponent,
     CMenuLangsComponent,
@@ -120,6 +122,7 @@ import { CSubscriptionComponent } from './subscription/subscription.component';
     CDatemarksCalendarComponent,
   ],
   exports: [
+    CLvlUpBtnComponent,
     CHeaderComponent,
     CMenuMainComponent,
     CMenuLangsComponent,
