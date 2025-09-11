@@ -17,17 +17,19 @@
               {{words['subscription']?.['description']?.[lang.slug]}}
             </div>
             <div class="pcs-section">
-              <div class="pcs-title">
-                {{words['subscription']?.['tariff']?.[lang.slug]}}
-                {{ paidSubscription?.name }}
-              </div>
-              <div *ngIf="selectedSubscription?.type" class="pcs-tariffs">
-                <the-tariff
-                  *ngFor="let t of tariffs"
-                  [tariff]="t"
-                  [active]="t.id === selectedTariff?.id"
-                  (click)="selectedTariff = t"
-                ></the-tariff>
+              <div class="tariff-header">
+                <div class="pcs-title">
+                  {{words['subscription']?.['tariff']?.[lang.slug]}}
+                  {{ paidSubscription?.name }}
+                </div>
+                <div *ngIf="selectedSubscription?.type" class="pcs-tariffs">
+                  <the-tariff
+                    *ngFor="let t of tariffs"
+                    [tariff]="t"
+                    [active]="t.id === selectedTariff?.id"
+                    (click)="selectedTariff = t"
+                  ></the-tariff>
+                </div>
               </div>
               <div class="pcs-subscriptions">
                 <app-subscription

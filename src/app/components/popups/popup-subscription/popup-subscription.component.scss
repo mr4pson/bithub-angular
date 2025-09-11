@@ -34,6 +34,35 @@
       margin-bottom: 0;
     }
 
+    .tariff-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: column;
+
+      @media (min-width:1000px) {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .pcs-tariffs {
+        width: 100%;
+
+        @media (min-width:1000px) {
+          display: flex;
+          width: auto;
+        }
+      }
+
+      .pcs-title {
+        margin-bottom: 15px;
+
+        @media (min-width:1000px) {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     .pcs-title {
       color: var(--color-txt2);
       font-weight: 600;
