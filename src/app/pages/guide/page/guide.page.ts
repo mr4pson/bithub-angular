@@ -68,9 +68,12 @@ export class CGuidePage implements OnInit {
       await this.appService.pause(300);
       this.guide = await this.guideRepository.loadOne(id);
       this.isGemType = this.guide.type === GuideTypes.Gem;
-      this.appService.popupSubscriptionActive =
-        this.guide.type === GuideTypes.Gem;
-      this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
+
+      if (!this.authService.user.subType) {
+        this.appService.popupSubscriptionActive =
+          this.guide.type === GuideTypes.Gem;
+        this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
+      }
 
       const tasksNum = this.guide.tasks.length;
       const isAuthed = !!this.authService.authData;
