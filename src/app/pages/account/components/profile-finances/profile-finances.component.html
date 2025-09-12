@@ -1,6 +1,16 @@
 <div class="profile-finances">
   <div class="pf-service">
-    <div class="pfs-note">{{words['account']?.['fss-about']?.[lang.slug]}}</div>
+    <div class="pfs-note">
+      {{words['account']?.['fss-about']?.[lang.slug]}}
+    </div>
+    <div class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['fss-sub-type']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input type="text" [value]="subscriptionName" disabled />
+      </div>
+    </div>
     <div class="pfs-row">
       <div class="pfs-title">
         {{words['account']?.['fss-paid-at']?.[lang.slug]}}
@@ -40,16 +50,17 @@
     </div> -->
     <div class="pfs-btnwrap">
       <button type="button" class="btn gold" (click)="onPaySubscription()">
-        <span class="btn-icon pay"></span
-        ><span
-          class="btn-text"
-          >{{words['account']?.['fss-pay']?.[lang.slug]}}</span
-        >
+        <span class="btn-icon pay"></span>
+        <span class="btn-text">
+          {{words['account']?.['fss-pay']?.[lang.slug]}}
+        </span>
       </button>
     </div>
   </div>
   <div class="pf-service">
-    <div class="pfs-note">{{words['account']?.['fcl-about']?.[lang.slug]}}</div>
+    <div class="pfs-note">
+      {{words['account']?.['fcl-about']?.[lang.slug]}}
+    </div>
     <div class="pfs-row">
       <div class="pfs-title">
         {{words['account']?.['fcl-length']?.[lang.slug]}}
@@ -68,11 +79,10 @@
     </div>
     <div class="pfs-btnwrap">
       <button type="button" class="btn gold" (click)="onPayLimit()">
-        <span class="btn-icon pay"></span
-        ><span
-          class="btn-text"
-          >{{words['account']?.['fcl-pay']?.[lang.slug]}}</span
-        >
+        <span class="btn-icon pay"></span>
+        <span class="btn-text">
+          {{words['account']?.['fcl-pay']?.[lang.slug]}}
+        </span>
       </button>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { SUBSCRIPTION_LIST } from 'src/app/components/popups/popup-subscription/constants';
 import { ILang } from 'src/app/model/entities/lang';
 import { CUser } from 'src/app/model/entities/user';
 import { IWords } from 'src/app/model/entities/words';
@@ -38,6 +39,15 @@ export class CProfileFinancesComponent {
     this.verified$$.next(value);
   }
 
+  get subscriptionName() {
+    const subscription = SUBSCRIPTION_LIST.find(
+      (sub) =>
+        sub.type === this.user.subType || (!this.user.subType && !sub.type)
+    );
+
+    return subscription?.name;
+  }
+
   constructor(
     private appService: CAppService,
     private authService: CAuthService,
@@ -59,6 +69,13 @@ export class CProfileFinancesComponent {
   }
 
   public onPayLimit(): void {
+    if (this.user.subType !== 'dg-team') {
+      this.appService.popupSubscriptionActive = true;
+      this.appService.popupIsGemType = true;
+
+      return;
+    }
+
     this.appService.popupLimitActive = true;
   }
 }

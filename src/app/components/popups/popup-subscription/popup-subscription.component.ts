@@ -78,20 +78,7 @@ export class CPopupSubscriptionComponent
   }
 
   public getSubscriptionDisabled(sub: TSubscription): boolean {
-    const subType = this.user?.subType;
-    if (!subType) {
-      // Если нет подписки, дизейблим текущую, выбираем dg-pro
-      return !sub.type;
-    }
-    if (subType === 'dg-pro') {
-      // dg-free и dg-pro дизейблим, выбираем dg-team
-      return sub.type !== 'dg-team';
-    }
-    if (subType === 'dg-team') {
-      // dg-free и dg-pro дизейблим, dg-team оставляем
-      return sub.type !== 'dg-team';
-    }
-    return false;
+    return !sub.type;
   }
 
   public override ngOnInit(): void {
