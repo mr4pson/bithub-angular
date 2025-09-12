@@ -87,6 +87,7 @@ export class CTaskComponent implements OnInit {
 
   public async open(): Promise<void> {
     try {
+      console.log(this.no - 1, this.stepsLimit);
       if (this.no - 1 >= this.stepsLimit) {
         if (this.user) {
           this.appService.popupSubscriptionActive = true;

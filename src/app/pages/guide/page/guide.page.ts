@@ -90,7 +90,7 @@ export class CGuidePage implements OnInit {
             this.stepsLimit = isAuthed ? this.guide.steps_limit : 0;
             break;
           case GuideTypes.Gem:
-            this.stepsLimit = 0;
+            this.stepsLimit = this.user.subType ? tasksNum : 0;
             break;
           default:
             this.stepsLimit = tasksNum;
