@@ -4,6 +4,7 @@ import { ILang } from 'src/app/model/entities/lang';
 import { IWords } from 'src/app/model/entities/words';
 import { CUser } from 'src/app/model/entities/user';
 import { CAuthService } from '../../services/auth.service';
+import { CCartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'the-header',
@@ -20,9 +21,14 @@ export class CHeaderComponent implements OnInit {
   public panelUnviewedActive: boolean = false;
   public panelMobActive: boolean = false;
 
+  get cartItemsQty() {
+    return this.cartService.getItems().length;
+  }
+
   constructor(
     private appService: CAppService,
-    private authService: CAuthService
+    private authService: CAuthService,
+    private cartService: CCartService
   ) {}
 
   get lang(): ILang {

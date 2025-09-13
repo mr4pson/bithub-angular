@@ -79,6 +79,7 @@
             (click)="onTogglePanel('Cart', $event)"
           >
             <span></span>
+            <div *ngIf="cartItemsQty" class="quantity">{{ cartItemsQty }}</div>
           </div>
           <panel-cart [(active)]="panelCartActive"></panel-cart>
         </div>
