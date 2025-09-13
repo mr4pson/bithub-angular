@@ -1,65 +1,166 @@
 <div class="personal">
-    <div class="p-form">
-        <form class="gf" (submit)="onSubmit()">
-            <div class="gf-row"><image-picker [(value)]="user.img" folder="users"></image-picker></div>
-            <div class="gf-row"><div class="gf-linkwrap">{{user.email}}</div></div>
-            <div class="gf-row">
-                <div class="gf-title">{{words['account']?.['name']?.[lang.slug]}}</div>
-                <div class="gf-inputwrap"><input type="text" name="name" [(ngModel)]="user.name" [class.error]="errors['name']"></div>
-                <div class="gf-error" *ngIf="errors['name']">{{words['errors']?.[errors['name']]?.[lang.slug]}}</div>
-            </div>
-            <div class="gf-row">
-                <div class="gf-title">{{words['account']?.['wallet']?.[lang.slug]}}</div>
-                <div class="gf-inputwrap"><input type="text" name="wallet" [(ngModel)]="user.wallet" [class.error]="errors['wallet']"></div>
-                <div class="gf-error" *ngIf="errors['wallet']">{{words['errors']?.[errors['wallet']]?.[lang.slug]}}</div>
-            </div>
-            <div class="gf-row">
-                <div class="gf-title">{{words['account']?.['lang']?.[lang.slug]}}</div>
-                <div class="gf-inputwrap">
-                    <div class="selectwrap">
-                        <select [(ngModel)]="user.lang_id" name="lang">
-                            <option *ngFor="let l of langs" [ngValue]="l.id">{{l.title}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="gf-row">
-                <div class="gf-title">{{words['account']?.['tz']?.[lang.slug]}}</div>
-                <div class="gf-inputwrap">
-                    <div class="selectwrap">
-                        <select [(ngModel)]="user.tz" name="tz">
-                            <option *ngFor="let tz of timezones" [ngValue]="tz.offset">{{tz.title}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="gf-row">
-                <div class="gf-title">{{words['account']?.['tg-settings']?.[lang.slug]}}</div>
-                <div class="gf-radio">
-                    <div class="gfr-item"><input-radio [(value)]="user.tg_tasks" [title]="words['account']?.['tg-settings-tasks']?.[lang.slug]"></input-radio></div>
-                    <div class="gfr-item"><input-radio [(value)]="user.tg_guides" [title]="words['account']?.['tg-settings-guides']?.[lang.slug]"></input-radio></div>
-                    <div class="gfr-item"><input-radio [(value)]="user.tg_articles" [title]="words['account']?.['tg-settings-articles']?.[lang.slug]"></input-radio></div>
-                    <div class="gfr-item"><input-radio [(value)]="user.tg_deadlines" [title]="words['account']?.['tg-settings-deadlines']?.[lang.slug]"></input-radio></div>
-                </div>
-            </div>
-            <div class="gf-row">
-                <div class="gf-btnwrap">
-                    <button type="submit" class="btn gold" [class.busy]="busy" [class.done]="done">
-                        <span class="btn-icon save"></span>
-                        <span class="btn-text">{{words["common"]?.["save"]?.[lang.slug]}}</span>
-                        <span class="btn-done"><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span>
-                    </button>
-                </div>
-            </div>
-        </form>
+  <div class="p-form">
+    <form class="gf" (submit)="onSubmit()">
+      <div class="gf-row">
+        <image-picker [(value)]="user.img" folder="users"></image-picker>
+      </div>
+      <div class="gf-row">
+        <div class="gf-linkwrap">{{ user.email }}</div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">{{words['account']?.['name']?.[lang.slug]}}</div>
+        <div class="gf-inputwrap">
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="user.name"
+            [class.error]="errors['name']"
+          />
+        </div>
+        <div class="gf-error" *ngIf="errors['name']">
+          {{words['errors']?.[errors['name']]?.[lang.slug]}}
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">
+          {{words['account']?.['wallet']?.[lang.slug]}}
+        </div>
+        <div class="gf-inputwrap">
+          <input
+            type="text"
+            name="wallet"
+            [(ngModel)]="user.wallet"
+            [class.error]="errors['wallet']"
+          />
+        </div>
+        <div class="gf-error" *ngIf="errors['wallet']">
+          {{words['errors']?.[errors['wallet']]?.[lang.slug]}}
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">
+          <!-- {{words['account']?.['tg_username']?.[lang.slug]}} -->
+          Telegram username
+        </div>
+        <div class="gf-inputwrap">
+          <input
+            type="text"
+            name="tg_username"
+            [(ngModel)]="user.tg_username"
+            [class.error]="errors['tg_username']"
+          />
+        </div>
+        <div class="gf-error" *ngIf="errors['tg_username']">
+          {{words['errors']?.[errors['tg_username']]?.[lang.slug]}}
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">{{words['account']?.['lang']?.[lang.slug]}}</div>
+        <div class="gf-inputwrap">
+          <div class="selectwrap">
+            <select [(ngModel)]="user.lang_id" name="lang">
+              <option *ngFor="let l of langs" [ngValue]="l.id">
+                {{ l.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">{{words['account']?.['tz']?.[lang.slug]}}</div>
+        <div class="gf-inputwrap">
+          <div class="selectwrap">
+            <select [(ngModel)]="user.tz" name="tz">
+              <option *ngFor="let tz of timezones" [ngValue]="tz.offset">
+                {{ tz.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-title">
+          {{words['account']?.['tg-settings']?.[lang.slug]}}
+        </div>
+        <div class="gf-radio">
+          <div class="gfr-item">
+            <input-radio
+              [(value)]="user.tg_tasks"
+              [title]="words['account']?.['tg-settings-tasks']?.[lang.slug]"
+            ></input-radio>
+          </div>
+          <div class="gfr-item">
+            <input-radio
+              [(value)]="user.tg_guides"
+              [title]="words['account']?.['tg-settings-guides']?.[lang.slug]"
+            ></input-radio>
+          </div>
+          <div class="gfr-item">
+            <input-radio
+              [(value)]="user.tg_articles"
+              [title]="words['account']?.['tg-settings-articles']?.[lang.slug]"
+            ></input-radio>
+          </div>
+          <div class="gfr-item">
+            <input-radio
+              [(value)]="user.tg_deadlines"
+              [title]="words['account']?.['tg-settings-deadlines']?.[lang.slug]"
+            ></input-radio>
+          </div>
+        </div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-btnwrap">
+          <button
+            type="submit"
+            class="btn gold"
+            [class.busy]="busy"
+            [class.done]="done"
+          >
+            <span class="btn-icon save"></span>
+            <span
+              class="btn-text"
+              >{{words["common"]?.["save"]?.[lang.slug]}}</span
+            >
+            <span class="btn-done"
+              ><span>{{words["common"]?.["saved"]?.[lang.slug]}}</span></span
+            >
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="p-tg">
+    <div class="p-tgdesc">
+      {{words['account']?.['tg-description']?.[lang.slug]}}
     </div>
-    <div class="p-tg">
-        <div class="p-tgdesc">{{words['account']?.['tg-description']?.[lang.slug]}}</div>
-        <div class="p-tgbtn"><a class="btn gold" [href]="tgLink" target="_blank"><span class="btn-icon tg"></span><span class="btn-text">{{words['account']?.['tg-subscribe']?.[lang.slug]}}</span></a></div>
+    <div class="p-tgbtn">
+      <a class="btn gold" [href]="tgLink" target="_blank"
+        ><span class="btn-icon tg"></span
+        ><span
+          class="btn-text"
+          >{{words['account']?.['tg-subscribe']?.[lang.slug]}}</span
+        ></a
+      >
     </div>
-    <div class="p-tg">
-        <div class="p-tgdesc">{{words['account']?.['tgg-description']?.[lang.slug]}}</div>
-        <div class="p-tgbtn"><button type="button" class="btn gold" [class.busy]="gettingTgInvite" (click)="onGetTgInvite()"><span class="btn-icon tg"></span><span class="btn-text">{{words['account']?.['tgg-btn']?.[lang.slug]}}</span></button></div>
+  </div>
+  <div class="p-tg">
+    <div class="p-tgdesc">
+      {{words['account']?.['tgg-description']?.[lang.slug]}}
     </div>
+    <div class="p-tgbtn">
+      <button
+        type="button"
+        class="btn gold"
+        [class.busy]="gettingTgInvite"
+        (click)="onGetTgInvite()"
+      >
+        <span class="btn-icon tg"></span
+        ><span
+          class="btn-text"
+          >{{words['account']?.['tgg-btn']?.[lang.slug]}}</span
+        >
+      </button>
+    </div>
+  </div>
 </div>
-

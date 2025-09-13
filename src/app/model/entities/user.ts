@@ -19,6 +19,7 @@ export class CUser extends CEntity {
   public children_q: number;
   public overdue: boolean;
   public referral_percent: number;
+  public tg_username: string;
   public tg_tasks: boolean;
   public tg_guides: boolean;
   public tg_articles: boolean;
@@ -110,6 +111,7 @@ export interface IUserUpdate {
   readonly name: string;
   readonly wallet: string;
   readonly img: string;
+  readonly tg_username: string;
   readonly tg_tasks: boolean;
   readonly tg_guides: boolean;
   readonly tg_articles: boolean;

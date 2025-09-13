@@ -24,7 +24,31 @@
                 {{words['shop']?.['order-tg']?.[lang.slug]}}
               </div>
               <div class="gf-inputwrap">
-                <input type="text" name="tg" [(ngModel)]="tg" />
+                <input
+                  type="text"
+                  name="tg"
+                  [(ngModel)]="tg"
+                  [class.error]="errors['tg']"
+                />
+              </div>
+              <div class="gf-error" *ngIf="errors['tg']">
+                {{words['errors']?.[errors['tg']]?.[lang.slug]}}
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['shop']?.['wallet']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input
+                  type="text"
+                  name="wallet"
+                  [(ngModel)]="wallet"
+                  [class.error]="errors['wallet']"
+                />
+              </div>
+              <div class="gf-error" *ngIf="errors['wallet']">
+                {{words['errors']?.[errors['wallet']]?.[lang.slug]}}
               </div>
             </div>
             <div class="gf-row">

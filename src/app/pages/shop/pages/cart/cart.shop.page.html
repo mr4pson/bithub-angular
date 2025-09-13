@@ -49,10 +49,14 @@
       <div class="cart-summary-total">
         <b>{{words["shop"]?.["total"]?.[lang.slug]}}: ${{total}}</b>
       </div>
-      <button class="btn gold" (click)="order()" [disabled]="!total">
+      <button class="btn gold" (click)="order()" [disabled]="!total || sending">
         {{words["shop"]?.["order"]?.[lang.slug]}}
       </button>
     </div>
   </div>
 </div>
-<popup-shoporder [cartItems]="items" [(active)]="shoporderPopupActive" />
+<popup-shoporder
+  *ngIf="user"
+  [cartItems]="items"
+  [(active)]="shoporderPopupActive"
+/>

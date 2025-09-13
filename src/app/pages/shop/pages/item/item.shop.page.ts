@@ -64,6 +64,9 @@ export class CItemShopPage {
     const { discount, price } = this.shopitem;
     return discount ? price - (price * discount) / 100 : price;
   }
+  get user() {
+    return this.authService.user;
+  }
 
   public async ngOnInit(): Promise<void> {
     this.route.params.subscribe(async (p) => {

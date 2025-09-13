@@ -60,6 +60,7 @@
     </div>
   </div>
   <popup-shoporder
+    *ngIf="user"
     [cartItems]="selectedShopItems"
     [(active)]="shoporderPopupActive"
   />

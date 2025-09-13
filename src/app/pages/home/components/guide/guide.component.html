@@ -1,4 +1,8 @@
-<a class="guide" routerLink="/{{ lang.slug }}/guide/{{ guide.id }}">
+<a
+  class="guide"
+  [class.blured]="guide.type === 'gem'"
+  routerLink="/{{ lang.slug }}/guide/{{ guide.id }}"
+>
   <div
     class="g-hit"
     *ngIf="guide.hit"
