@@ -49,7 +49,7 @@
       <div class="cart-summary-total">
         <b>{{words["shop"]?.["total"]?.[lang.slug]}}: ${{total}}</b>
       </div>
-      <button class="btn gold" (click)="order()" [disabled]="!total || sending">
+      <button class="btn gold" (click)="order()" [disabled]="!total">
         {{words["shop"]?.["order"]?.[lang.slug]}}
       </button>
     </div>

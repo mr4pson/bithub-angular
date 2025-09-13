@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ICartItem } from 'src/app/model/cart-item.interface';
-import { IShoporderCreate } from 'src/app/model/dto/shoporder.create';
 import { CAppService } from 'src/app/services/app.service';
 import { CAuthService } from 'src/app/services/auth.service';
 import { CCartService } from 'src/app/services/cart.service';
-import { CShoporderRepository } from 'src/app/services/repositories/shoporder.repository';
 
 @Component({
   selector: 'cart-shop-page',
@@ -15,7 +12,6 @@ import { CShoporderRepository } from 'src/app/services/repositories/shoporder.re
 export class CCartShopPage implements OnInit {
   public items: ICartItem[] = [];
   public total: number = 0;
-  public sending = false;
   public shoporderPopupActive: boolean = false;
 
   get lang() {
@@ -38,9 +34,7 @@ export class CCartShopPage implements OnInit {
   constructor(
     public cartService: CCartService,
     private appService: CAppService,
-    private authService: CAuthService,
-    protected shoporderRepository: CShoporderRepository,
-    protected router: Router
+    private authService: CAuthService
   ) {}
 
   ngOnInit() {
@@ -66,35 +60,6 @@ export class CCartShopPage implements OnInit {
   }
 
   async order() {
-    if (!this.user.tg_username || !this.user.wallet) {
-      this.shoporderPopupActive = true;
-
-      return;
-    }
-
-    this.sending = true;
-
-    const payload: IShoporderCreate = {
-      items: this.items.map((cartItem) => ({
-        shopitem_id: cartItem.product.id,
-        qty: cartItem.quantity,
-      })),
-      tg: this.user.tg_username,
-      wallet: this.user.wallet,
-      comment: '',
-      lang_slug: this.lang.slug,
-    };
-
-    const url = await this.shoporderRepository.create(payload);
-
-    this.sending = false;
-    this.cartService.clear();
-
-    if (url) {
-      window.open(url);
-      this.router.navigate(['/']);
-    } else {
-      this.router.navigate([this.lang.slug, 'payment-success']);
-    }
+    this.shoporderPopupActive = true;
   }
 }
