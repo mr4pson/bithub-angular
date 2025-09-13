@@ -69,7 +69,7 @@ export class CGuidePage implements OnInit {
       this.guide = await this.guideRepository.loadOne(id);
       this.isGemType = this.guide.type === GuideTypes.Gem;
 
-      if (!this.authService.user.subType) {
+      if (!this.authService.user?.subType) {
         this.appService.popupSubscriptionActive =
           this.guide.type === GuideTypes.Gem;
         this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
@@ -100,6 +100,7 @@ export class CGuidePage implements OnInit {
       // const stepsLimit = this.guide.type === GuideTypes.FullStepsAvaliable ? this.guide.tasks : thi
       // this.limitedTasks = this.guide.tasks.slice(0, stepsLimit);
       this.limitedTasks = this.guide.tasks;
+      console.log(this.limitedTasks);
     } catch (err) {
       err === 404
         ? this.router.navigateByUrl(`/${this.lang.slug}/errors/404`)
