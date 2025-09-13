@@ -1,6 +1,6 @@
 <a
   class="guide"
-  [class.blured]="guide.type === 'gem'"
+  [class.blured]="isGuideBlured"
   routerLink="/{{ lang.slug }}/guide/{{ guide.id }}"
 >
   <div
