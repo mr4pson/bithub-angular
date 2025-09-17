@@ -1,22 +1,42 @@
-<div class="histback"><a routerLink="/{{lang.slug}}/education">{{words['articles']?.['back']?.[lang.slug]}}</a></div>
-<ng-container *ngIf="!article"><div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div></ng-container>
+<div class="histback">
+  <a routerLink="/{{lang.slug}}/education"
+    >{{words['articles']?.['back']?.[lang.slug]}}</a
+  >
+</div>
+<ng-container *ngIf="!article"
+  ><div class="loading">
+    <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+  </div></ng-container
+>
 <ng-container *ngIf="article">
-    <div class="article">
-        <div class="a-head">
-            <div class="a-imgwrap" *ngIf="img"><img src="/images/articles/{{img}}" loading="lazy" [alt]="title"></div>
-            <div class="a-details">
-                <div class="a-date">{{date}}</div>
-                <h1>{{h1}}</h1>
-                <div class="a-dash">
-                    <div class="a-time" *ngIf="readtime"><span>{{readtime}} {{words['common']?.['minutes']?.[lang.slug]}}</span></div>
-                    <div class="a-wasread" *ngIf="authenticated">
-                        <div class="aw-btn"><btn-reading [article]="article"></btn-reading></div>
-                        <span>{{words['articles']?.['was-read']?.[lang.slug]}}</span>
-                    </div>
-                </div>
+  <div class="article">
+    <div class="a-head">
+      <div class="a-imgwrap" *ngIf="img">
+        <img src="/images/articles/{{img}}" loading="lazy" [alt]="title" />
+      </div>
+      <div class="a-details">
+        <div class="a-date">{{date}}</div>
+        <h1>{{h1}}</h1>
+        <div class="a-dash">
+          <div class="a-time" *ngIf="readtime">
+            <span
+              >{{readtime}} {{words['common']?.['minutes']?.[lang.slug]}}</span
+            >
+          </div>
+          <div class="a-wasread" *ngIf="authenticated">
+            <div class="aw-btn">
+              <btn-reading [article]="article"></btn-reading>
             </div>
+            <span>{{words['articles']?.['was-read']?.[lang.slug]}}</span>
+          </div>
         </div>
-        <div class="a-content" [innerHTML]="content"></div>
-        <div *ngIf="yt_content" class="a-yt" [innerHTML]="yt_content | safe:'html'"></div>
+      </div>
     </div>
+    <div class="a-content" [innerHTML]="content"></div>
+    <div
+      *ngIf="yt_content"
+      class="a-yt"
+      [innerHTML]="yt_content | safe:'html'"
+    ></div>
+  </div>
 </ng-container>

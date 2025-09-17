@@ -23,8 +23,8 @@ export class GuideGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    const id = Number(route.paramMap.get('id'));
-    const guide = await this.guideRepository.loadOne(id);
+    const slug = route.paramMap.get('slug');
+    const guide = await this.guideRepository.loadOneBySlug(slug);
     const isActivated =
       (guide.type !== GuideTypes.Gem &&
         guide.type !== GuideTypes.LimitAfterAuthAvailable) ||

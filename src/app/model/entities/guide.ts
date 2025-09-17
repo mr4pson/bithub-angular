@@ -10,6 +10,7 @@ export enum GuideTypes {
 }
 
 export class CGuide extends CEntity {
+  public slug?: string;
   public img?: string;
   public invest?: number;
   public bh_score?: number;

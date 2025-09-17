@@ -12,7 +12,7 @@ import { CDatemarksComponent } from './components/datemarks/datemarks.component'
 import { GuideGuard } from 'src/app/services/guards';
 
 let routes = RouterModule.forChild([
-  { path: ':id', component: CGuidePage, canActivate: [GuideGuard] },
+  { path: ':slug', component: CGuidePage, canActivate: [GuideGuard] },
   { path: '**', redirectTo: '/ru/errors/404' },
 ]);
 

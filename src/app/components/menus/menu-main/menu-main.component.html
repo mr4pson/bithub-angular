@@ -1,5 +1,10 @@
 <ul class="menu-main">
-    <li *ngFor="let page of pages">
-        <a [routerLink]="getPageLink(page)" [class.active]="isPageActive(page)" [class]="page.slug">{{page.name[lang.slug]}}</a>
-    </li>
+  <li *ngFor="let page of pages">
+    <a
+      [routerLink]="getPageLink(page)"
+      [class.active]="isPageActive(page)"
+      [class]="page.slug"
+      >{{ page.name[lang.slug] }}</a
+    >
+  </li>
 </ul>

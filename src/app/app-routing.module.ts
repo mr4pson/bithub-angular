@@ -17,6 +17,7 @@ import { CAuthGuard } from './services/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: CHomePage, data: { mark: 'home' } }, // mark for reuse
+  { path: ':lang/guides/:slug', component: CHomePage, data: { mark: 'home' } }, // mark for reuse
   { path: 'ru', pathMatch: 'full', redirectTo: '/' },
   { path: ':lang', component: CHomePage, data: { mark: 'home' } }, // mark for reuse
   {

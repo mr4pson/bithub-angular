@@ -56,17 +56,17 @@ export class CGuidePage implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     this.route.params.subscribe(async (p) => {
-      await this.initGuide(parseInt(p['id']));
+      await this.initGuide(p['slug']);
       this.initSEO();
     });
   }
 
-  private async initGuide(id: number): Promise<void> {
+  private async initGuide(slug: string): Promise<void> {
     try {
-      if (id === this.guide?.id) return;
+      if (slug === this.guide?.slug) return;
       this.guide = null;
       await this.appService.pause(300);
-      this.guide = await this.guideRepository.loadOne(id);
+      this.guide = await this.guideRepository.loadOneBySlug(slug);
       this.isGemType = this.guide.type === GuideTypes.Gem;
 
       if (!this.authService.user?.subType) {

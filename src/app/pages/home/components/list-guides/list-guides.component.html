@@ -1,19 +1,25 @@
 <ng-container *ngIf="guides !== null">
-    <div class="guides">
-        <ng-container *ngIf="guides.length">
-            <div class="g-items" [class.busy]="loading">
-                <div class="g-item" *ngFor="let guide of guides; let i = index;">
-                    <the-guide [guide]="guide" (getUnviewed)="onGetUnviewed(i)" (editDatemarks)="onEditDatemarks(i)"></the-guide>
-                </div>
-            </div>
-        </ng-container>
-        <ng-container *ngIf="!guides.length">
-            <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
-        </ng-container>
-    </div>
+  <div class="guides">
+    <ng-container *ngIf="guides.length">
+      <div class="g-items" [class.busy]="loading">
+        <div class="g-item" *ngFor="let guide of guides; let i = index">
+          <the-guide
+            [guide]="guide"
+            (getUnviewed)="onGetUnviewed(i)"
+            (editDatemarks)="onEditDatemarks(i)"
+          ></the-guide>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!guides.length">
+      <span>{{words['common']?.['empty']?.[lang.slug]}}</span>
+    </ng-container>
+  </div>
 </ng-container>
 <ng-container *ngIf="guides === null">
-    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+  <div class="loading">
+    <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+  </div>
 </ng-container>
 
 <popup-unviewed [(active)]="puActive" [guide_id]="puGuideId" />
