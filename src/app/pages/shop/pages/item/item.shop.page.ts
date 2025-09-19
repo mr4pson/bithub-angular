@@ -108,6 +108,6 @@ export class CItemShopPage {
   }
 
   public redirectoTgSupport(): void {
-    window.open('http://google.com', '_blank');
+    window.open('https://t.me/usdeurcny', '_blank');
   }
 }
