@@ -102,9 +102,9 @@ export class CHomePage extends CSimplePage implements OnInit, OnDestroy {
       .pipe(
         tap(async (p) => {
           this.slug = p['slug'];
-          this.initSEO();
           this.initGuides();
           await this.initPage('home');
+          this.initSEO();
         })
       )
       .subscribe();

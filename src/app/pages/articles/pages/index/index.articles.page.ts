@@ -64,7 +64,6 @@ export class CIndexArticlesPage extends CSimplePage implements OnInit {
     return {
       search: this.search,
       artcat_id: this.artcat_id,
-      is_for_landing: false,
     };
   }
   get authenticated(): boolean {
