@@ -72,7 +72,7 @@ export class CPopupSubscriptionComponent
   }
   get tariffUntil(): string {
     if (!this.selectedTariff) return '';
-    const date = new Date();
+    const date = new Date(this.user?.paid_until);
     date.setDate(date.getDate() + this.selectedTariff.period);
     return this.appService.formattedDate(date);
   }
