@@ -28,6 +28,7 @@ export class CAppService {
   public popupRegisterActive: boolean = false;
   public popupRecoverActive: boolean = false;
   public popupSubscriptionActive: boolean = false;
+  public popupInorderActive: boolean = false;
   public popupLimitActive: boolean = false;
   public popupIsGemType: boolean = false;
 

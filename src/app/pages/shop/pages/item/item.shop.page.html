@@ -46,12 +46,23 @@
           >{{words["shop"]?.["add-to-cart"]?.[lang.slug]}}</span
         >
       </button>
-      <span
+      <app-quantity-selector
+        *ngIf="cartItem"
+        [quantity]="cartItem?.quantity"
+        [step]="cartItem?.product.priceStep ? cartItem?.product.priceStep : 1"
+        (change)="handleQuantityChange($event, cartItem)"
+        (remove)="hadleRemoveCartItem(cartItem)"
+      />
+      <button
         *ngIf="isInCart && isLoggedIn"
-        style="margin-left: 10px; font-weight: bold; color: green"
+        type="button"
+        class="btn gold"
+        (click)="goToCart()"
       >
-        {{words["shop"]?.["added-to-cart"]?.[lang.slug]}}
-      </span>
+        <span class="btn-text"
+          >{{words["shop"]?.["go-to-cart"]?.[lang.slug]}}</span
+        >
+      </button>
       <button type="button" class="btn gold" (click)="redirectoTgSupport()">
         <span class="btn-text"
           >{{words["shop"]?.["open-tg-support"]?.[lang.slug]}}</span

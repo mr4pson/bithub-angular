@@ -1,20 +1,73 @@
 .shop-dash {
-    @media (min-width:0) {display: block; margin-bottom: 0;}
-    @media (min-width:1000px) {display: flex; margin-bottom: 15px;}
-    justify-content: space-between; flex-wrap: wrap;
-    .s-left {margin-bottom: 15px;}
-    .s-right {
-        @media (min-width:0) {grid-template-columns: 1fr; }
-        @media (min-width:1000px) {grid-template-columns: 1fr 1fr;}
-        display: grid; gap: 15px; margin-bottom: 15px;
-        .sr-block {
-            @media (min-width:0) {width: 100%;}
-            @media (min-width:1000px) {width: 225px;}
-        }
+  @media (min-width:0) {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  @media (min-width:1000px) {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .s-left {
+    margin-bottom: 15px;
+  }
+
+  .s-right {
+    @media (min-width:0) {
+      grid-template-columns: 1fr;
     }
+
+    @media (min-width:1000px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    display: grid;
+    gap: 15px;
+    margin-bottom: 15px;
+
+    .sr-block {
+      @media (min-width:0) {
+        width: 100%;
+      }
+
+      @media (min-width:1000px) {
+        width: 225px;
+      }
+    }
+  }
 }
+
 .shop-list {
-    @media (min-width:0) {margin-bottom: 15px;}
-    @media (min-width:1000px) {margin-bottom: 30px;}
+  @media (min-width:0) {
+    margin-bottom: 15px;
+  }
+
+  @media (min-width:1000px) {
+    margin-bottom: 30px;
+  }
 }
-.shop-pagination {display: flex; justify-content: center;}
+
+.shop-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 0 30px;
+
+  .banner-btn {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 6px;
+    padding: 12px 10px;
+  }
+}

@@ -1,20 +1,38 @@
 <div class="profile-referees">
-    <div class="pr-reward">
-        <div class="prr-info">{{words['account']?.['r-percent']?.[lang.slug]}}</div>
-        <div class="prr-inputwrap"><input type="text" disabled [value]="user.referral_percent+'%'"></div>
+  <div class="pr-reward">
+    <div class="prr-title">
+      {{words['account']?.['r-percent']?.[lang.slug]}}
     </div>
-    <div class="pr-link">
-        <div class="prl-info">{{words['account']?.['r-info']?.[lang.slug]}}</div>
-        <div class="prl-btnwrap">
-            <button type="inputwrap" class="btn gold" [class.done]="copied" (click)="onCopy()">
-                <span class="btn-icon copy"></span>
-                <span class="btn-text">{{words['common']?.['copy']?.[lang.slug]}}</span>
-                <span class="btn-done"><span>{{words["common"]?.["copied"]?.[lang.slug]}}</span></span>
-            </button>
-        </div>
+  </div>
+  <div class="pr-reward">
+    <!-- <div class="prr-info">{{words['account']?.['r-percent']?.[lang.slug]}}</div> -->
+    <div class="prr-info">За подписки</div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="user.referral_percent + '%'" />
     </div>
-    <div class="pr-referees">
-        <div class="prr-title">{{words['account']?.['r-title']?.[lang.slug]}}</div>
-        <list-referees></list-referees>
+    <div class="prr-info">За покупки</div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="10 + '%'" />
     </div>
+  </div>
+  <div class="pr-link">
+    <div class="prl-info">{{words['account']?.['r-info']?.[lang.slug]}}</div>
+    <div class="prl-btnwrap">
+      <button
+        type="inputwrap"
+        class="btn gold"
+        [class.done]="copied"
+        (click)="onCopy()"
+      >
+        <span class="btn-icon copy"></span>
+        <span class="btn-text">{{words['common']?.['copy']?.[lang.slug]}}</span>
+        <span class="btn-done"
+          ><span>{{words["common"]?.["copied"]?.[lang.slug]}}</span></span
+        >
+      </button>
+    </div>
+  </div>
+  <div class="pr-referees">
+    <list-referees></list-referees>
+  </div>
 </div>

@@ -30,7 +30,7 @@ export class CCartService {
     this.save();
   }
 
-  private save(): void {
+  public save(): void {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.items));
     } catch (e) {

@@ -136,6 +136,9 @@ export class CDataService {
   public usersRefereesChunk(dto: IGetList): Observable<IResponse<IUser[]>> {
     return this.post('users/referees-chunk', dto);
   }
+  public usersRemoveSubacc(id: number): Observable<IResponse<IUser[]>> {
+    return this.post(`users/remove-subacc/${id}`);
+  }
   public usersDeactivate(): Observable<IResponse<void>> {
     return this.post('users/deactivate');
   }

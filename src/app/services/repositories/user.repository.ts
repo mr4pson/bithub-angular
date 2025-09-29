@@ -109,4 +109,16 @@ export class CUserRepository {
       })
     );
   }
+
+  public removeSubacc(
+    id: number
+  ): Promise<{ statusCode: number; error: string }> {
+    return new Promise((resolve, reject) =>
+      this.dataService.usersRemoveSubacc(id).subscribe({
+        next: (res) =>
+          res.statusCode === 200 ? resolve(res as any) : reject(res.error),
+        error: (err) => reject(err.message),
+      })
+    );
+  }
 }

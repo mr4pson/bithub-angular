@@ -67,12 +67,37 @@ export class CItemShopPage {
   get user() {
     return this.authService.user;
   }
+  get cartItem() {
+    const cartItems = this.cartService.getItems();
+    const curCartItem = cartItems.find(
+      (cartItem) => cartItem.product.id === this.shopitem.id
+    );
+
+    return curCartItem;
+  }
 
   public async ngOnInit(): Promise<void> {
     this.route.params.subscribe(async (p) => {
       await this.initShopitem(parseInt(p['id']));
       this.initSEO();
     });
+  }
+
+  public handleQuantityChange(value: number, item: ICartItem) {
+    item.quantity = value;
+    this.cartService.save();
+  }
+
+  public hadleRemoveCartItem(cartItem: ICartItem) {
+    const index = this.cartService
+      .getItems()
+      .findIndex((item) => item.product.id === cartItem.product.id);
+
+    this.cartService.remove(index);
+  }
+
+  goToCart() {
+    this.router.navigate([`/${this.appService.lang.value.slug}/shop/cart`]);
   }
 
   private async initShopitem(id: number): Promise<void> {

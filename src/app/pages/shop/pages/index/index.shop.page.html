@@ -1,10 +1,38 @@
 <h1 class="only-mobile-block">{{words['shop']?.['title']?.[lang.slug]}}</h1>
 <div class="shop-dash">
-    <div class="s-left"><list-shopcats [(value)]="shopcat_id" (valueChange)="onCatChange()" /></div>
-    <div class="s-right">
-        <div class="sr-block"><entity-sorting [items]="sortings" [(value)]="sorting" (valueChange)="onSortingChange()"></entity-sorting></div>
-        <div class="sr-block"><input-search [(value)]="search" (valueChange)="onSearchChange()"></input-search></div>
+  <div class="s-left">
+    <list-shopcats [(value)]="shopcat_id" (valueChange)="onCatChange()" />
+  </div>
+  <div class="s-right">
+    <div class="sr-block">
+      <entity-sorting
+        [items]="sortings"
+        [(value)]="sorting"
+        (valueChange)="onSortingChange()"
+      ></entity-sorting>
     </div>
+    <div class="sr-block">
+      <input-search
+        [(value)]="search"
+        (valueChange)="onSearchChange()"
+      ></input-search>
+    </div>
+  </div>
 </div>
-<div class="shop-list"><list-shopitems [shopitems]="shopitems" [loading]="loading"></list-shopitems></div>
-<div class="shop-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()"></the-pagination></div>
+<div class="shop-list">
+  <list-shopitems [shopitems]="shopitems" [loading]="loading"></list-shopitems>
+</div>
+<div *ngIf="!loading" class="banner">
+  {{words['shop']?.['banner-title']?.[lang.slug]}}
+  <a class="btn gold banner-btn" href="https://t.me/usdeurcny" target="_blank">
+    {{words['shop']?.['banner-btn']?.[lang.slug]}}</a
+  >
+</div>
+<div class="shop-pagination">
+  <the-pagination
+    *ngIf="pagesQuantity > 1"
+    [n]="pagesQuantity"
+    [(value)]="part"
+    (valueChange)="onPartChange()"
+  ></the-pagination>
+</div>

@@ -5,6 +5,7 @@ import { IWords } from 'src/app/model/entities/words';
 import { CUser } from 'src/app/model/entities/user';
 import { CAuthService } from '../../services/auth.service';
 import { CCartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'the-header',
@@ -28,7 +29,8 @@ export class CHeaderComponent implements OnInit {
   constructor(
     private appService: CAppService,
     private authService: CAuthService,
-    private cartService: CCartService
+    private cartService: CCartService,
+    private router: Router
   ) {}
 
   get lang(): ILang {
@@ -65,8 +67,17 @@ export class CHeaderComponent implements OnInit {
     this[`panel${name}Active`] ? this.hidePanel(name) : this.showPanel(name);
   }
 
+  public goToCart(event: PointerEvent) {
+    event.stopPropagation();
+    this.router.navigate([`/${this.appService.lang.value.slug}/shop/cart`]);
+  }
+
   public handleSubscriptionToggle() {
     this.appService.popupSubscriptionActive = true;
+  }
+
+  public showInorderPopup() {
+    this.appService.popupInorderActive = true;
   }
 
   private hidePanel(name: string): void {

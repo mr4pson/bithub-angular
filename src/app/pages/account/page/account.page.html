@@ -44,10 +44,10 @@
       </div>
       <div class="p-section">
         <div class="ps-title">
-          {{words['account']?.['prop-title']?.[lang.slug]}}
+          {{words['account']?.['referees']?.[lang.slug]}}
         </div>
         <div class="ps-content">
-          <profile-proposal [user]="user"></profile-proposal>
+          <profile-referees [user]="user"></profile-referees>
         </div>
       </div>
       <div class="p-section">
@@ -60,10 +60,10 @@
       </div>
       <div class="p-section">
         <div class="ps-title">
-          {{words['account']?.['referees']?.[lang.slug]}}
+          {{words['account']?.['prop-title']?.[lang.slug]}}
         </div>
         <div class="ps-content">
-          <profile-referees [user]="user"></profile-referees>
+          <profile-proposal [user]="user"></profile-proposal>
         </div>
       </div>
     </div>

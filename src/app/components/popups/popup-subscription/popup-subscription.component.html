@@ -86,7 +86,11 @@
                   </div>
                 </div>
                 <ng-container
-                  *ngIf="!!subscriptionTotalPrice && total > user.money"
+                  *ngIf="
+                    !!subscriptionTotalPrice &&
+                    total > user.money &&
+                    user.money > 0
+                  "
                 >
                   <div class="pcs-insufficient">
                     <div class="pcsi-note">
@@ -114,10 +118,15 @@
                   </div>
                 </ng-container>
                 <ng-container
-                  *ngIf="!!subscriptionTotalPrice && total <= user.money"
+                  *ngIf="
+                    (!!subscriptionTotalPrice && total <= user.money) ||
+                    user.money === 0
+                  "
                 >
-                  {{ total }}
-                  <div class="pcs-pay" *ngIf="total <= user.money">
+                  <div
+                    class="pcs-pay"
+                    *ngIf="total <= user.money || user.money === 0"
+                  >
                     <div class="pcsp-btnwrap">
                       <button
                         type="button"

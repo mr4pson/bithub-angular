@@ -84,6 +84,12 @@ export class CAppComponent {
   set popupSubscriptionActive(v: boolean) {
     this.appService.popupSubscriptionActive = v;
   }
+  get popupInorderActive(): boolean {
+    return this.appService.popupInorderActive;
+  }
+  set popupInorderActive(v: boolean) {
+    this.appService.popupInorderActive = v;
+  }
   get popupLimitActive(): boolean {
     return this.appService.popupLimitActive;
   }

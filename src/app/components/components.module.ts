@@ -60,6 +60,7 @@ import { CPopupVerifComponent } from './popups/popup-verif/popup-verif.component
 import { CSubscriptionComponent } from './subscription/subscription.component';
 import { CLvlUpBtnComponent } from './header/lvl-up-btn/lvl-up-btn.component';
 import { CQuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
+import { CPopupInorderComponent } from './popups/popup-inorder/popup-inorder.component';
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { CQuantitySelectorComponent } from './quantity-selector/quantity-selecto
     CPopupLoginComponent,
     CPopupVerifComponent,
     CPopupRegisterComponent,
+    CPopupInorderComponent,
     CPopupRecoverComponent,
     CPopupErrorComponent,
     CPopupSubscriptionComponent,
@@ -139,6 +141,7 @@ import { CQuantitySelectorComponent } from './quantity-selector/quantity-selecto
     CPopupLoginComponent,
     CPopupVerifComponent,
     CPopupRegisterComponent,
+    CPopupInorderComponent,
     CPopupRecoverComponent,
     CPopupErrorComponent,
     CPopupSubscriptionComponent,

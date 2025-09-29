@@ -44,6 +44,7 @@ export class CCartShopPage implements OnInit {
 
   handleQuantityChange(value: number, item: ICartItem) {
     item.quantity = value;
+    this.cartService.save();
     this.calcTotal();
   }
 

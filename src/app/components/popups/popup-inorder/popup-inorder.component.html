@@ -1,0 +1,55 @@
+<div class="popup-wrap" [class.active]="active">
+  <div class="popup popup-subscription" id="popup-{{ unique }}">
+    <div class="popup-head">
+      <div class="popup-headtitle">
+        {{words['inorder']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="popup-close" (click)="onClose()"><span></span></div>
+    </div>
+    <div class="popup-main">
+      <div class="popup-title">
+        {{words['inorder']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="popup-content">
+        <div class="inorder">
+          <form class="gf" (submit)="onSubmit()">
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['inorder']?.['current-balance']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap pfs-value">
+                <input type="text" [value]="user?.money" disabled />
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['inorder']?.['amount']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input-number [(value)]="amount" [min]="20"></input-number>
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-btnwrap">
+                <button type="submit" class="btn gold" [class.busy]="loading">
+                  <span class="btn-icon pay"></span
+                  ><span
+                    class="btn-text"
+                    >{{words["inorder"]?.["submit"]?.[lang.slug]}}</span
+                  >
+                </button>
+              </div>
+            </div>
+            <div class="gf-row ta-center">
+              <img
+                style="width: 120px"
+                src="/assets/images/one-payments.svg"
+                alt="onepay"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

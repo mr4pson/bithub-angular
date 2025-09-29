@@ -143,11 +143,16 @@ export class CPopupSubscriptionComponent
         subscriptionType: this.selectedSubscription.type,
         tariff_id: this.selectedTariff.id,
         code: this.promocode?.code,
+        lang_slug: this.lang.slug,
         q: 1,
       };
       await this.appService.pause(300);
-      const statusCode = await this.outourderRepository.create(dto);
+      const { statusCode, data } = await this.outourderRepository.create(dto);
       this.loading = false;
+
+      if (data) {
+        window.open(data, '_blank');
+      }
 
       if (statusCode === 201) {
         this.done = true;

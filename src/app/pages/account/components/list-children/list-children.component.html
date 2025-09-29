@@ -1,23 +1,39 @@
-<div class="list-children bscroll-v" [class.padded]="users?.length > 5" #container>
-    <ng-container *ngIf="users === null">
-        <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
+<div
+  class="list-children bscroll-v"
+  [class.padded]="users?.length > 5"
+  #container
+>
+  <ng-container *ngIf="users === null">
+    <div class="loading">
+      <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="users !== null">
+    <ng-container *ngIf="!users.length">
+      <span>{{words['common']?.['empty2']?.[lang.slug]}}</span>
     </ng-container>
-    <ng-container *ngIf="users !== null">
-        <ng-container *ngIf="!users.length">
-            <span>{{words['common']?.['empty2']?.[lang.slug]}}</span>
-        </ng-container>
-        <ng-container *ngIf="users.length">
-            <div *ngFor="let user of users" class="lc-item">
-                <div class="lci-imgwrap">
-                    <img *ngIf="user.img" [alt]="user.name" src="/images/users/{{user.img}}" loading="lazy">
-                    <span *ngIf="!user.img">{{user.name?.[0]}}</span>
-                </div>
-                <div class="lci-details">
-                    <div class="lci-name">{{user.name}}</div>
-                    <div class="lci-wallet">{{user.wallet}}</div>
-                </div>
-            </div>
-            <div class="loading" *ngIf="loadingMore"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
-        </ng-container>
-    </ng-container>    
+    <ng-container *ngIf="users.length">
+      <div *ngFor="let user of users" class="lc-item">
+        <div class="lci-imgwrap">
+          <img
+            *ngIf="user.img"
+            [alt]="user.name"
+            src="/images/users/{{ user.img }}"
+            loading="lazy"
+          />
+          <span *ngIf="!user.img">{{user.name?.[0]}}</span>
+        </div>
+        <div class="lci-details">
+          <div class="lci-name">{{ user.name }}</div>
+          <div class="lci-wallet">{{ user.wallet }}</div>
+        </div>
+        <button class="cart-item-remove btn gold" (click)="removeSubacc(user)">
+          ✕
+        </button>
+      </div>
+      <div class="loading" *ngIf="loadingMore">
+        <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+      </div>
+    </ng-container>
+  </ng-container>
 </div>

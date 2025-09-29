@@ -76,7 +76,7 @@
           <div
             class="hrd-btn hrd-cart"
             [class.active]="panelCartActive"
-            (click)="onTogglePanel('Cart', $event)"
+            (click)="goToCart($event)"
           >
             <span></span>
             <div *ngIf="cartItemsQty" class="quantity">{{ cartItemsQty }}</div>
@@ -87,11 +87,11 @@
           <div
             class="hrd-amount"
             [class.active]="panelInorderActive"
-            (click)="onTogglePanel('Inorder', $event)"
+            (click)="showInorderPopup()"
           >
             <span>${{ user.money | number : "1.2-2" }}</span>
           </div>
-          <panel-inorder [(active)]="panelInorderActive"></panel-inorder>
+          <!-- <panel-inorder [(active)]="panelInorderActive"></panel-inorder> -->
         </div>
       </div>
       <div class="hr-ava" [class.active]="panelAccountActive">
