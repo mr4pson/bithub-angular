@@ -6,11 +6,15 @@
   </div>
   <div class="pr-reward">
     <!-- <div class="prr-info">{{words['account']?.['r-percent']?.[lang.slug]}}</div> -->
-    <div class="prr-info">За подписки</div>
+    <div class="prr-info">
+      {{words['account']?.['r-subs']?.[lang.slug]}}
+    </div>
     <div class="prr-inputwrap">
       <input type="text" disabled [value]="user.referral_percent + '%'" />
     </div>
-    <div class="prr-info">За покупки</div>
+    <div class="prr-info">
+      {{words['account']?.['r-purchase']?.[lang.slug]}}
+    </div>
     <div class="prr-inputwrap">
       <input type="text" disabled [value]="10 + '%'" />
     </div>

@@ -2,7 +2,7 @@
   {{words['account']?.['r-title']?.[lang.slug]}}({{ users?.length ?? 0 }})
 </div>
 <div class="prr-title">
-  Сколько я заработал
+  {{words['account']?.['how-much-i-earn']?.[lang.slug]}}
   <span class="lsm-tooltip">
     <div
       [lsm-tooltip]="'$' + refEarnings"
