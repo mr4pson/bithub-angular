@@ -2,7 +2,17 @@
   {{words['account']?.['r-title']?.[lang.slug]}}({{ users?.length ?? 0 }})
 </div>
 <div class="prr-title">
-  Сколько я заработал <span class="question-circle">?</span>
+  Сколько я заработал
+  <span class="lsm-tooltip">
+    <div
+      [lsm-tooltip]="'$' + refEarnings"
+      placement="top"
+      delay="500"
+      class="question-circle"
+    >
+      ?
+    </div></span
+  >
 </div>
 <div
   class="list-referees bscroll-v"

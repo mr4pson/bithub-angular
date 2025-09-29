@@ -61,6 +61,7 @@ import { CSubscriptionComponent } from './subscription/subscription.component';
 import { CLvlUpBtnComponent } from './header/lvl-up-btn/lvl-up-btn.component';
 import { CQuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
 import { CPopupInorderComponent } from './popups/popup-inorder/popup-inorder.component';
+import { TooltipDirective } from './tooltip/tooltip.directive';
 
 @NgModule({
   imports: [
@@ -124,6 +125,7 @@ import { CPopupInorderComponent } from './popups/popup-inorder/popup-inorder.com
     CDatePickerComponent,
     CYearPickerComponent,
     CDatemarksCalendarComponent,
+    TooltipDirective,
   ],
   exports: [
     CQuantitySelectorComponent,
@@ -179,6 +181,7 @@ import { CPopupInorderComponent } from './popups/popup-inorder/popup-inorder.com
     CDatePickerComponent,
     CYearPickerComponent,
     CDatemarksCalendarComponent,
+    TooltipDirective,
   ],
   providers: [
     CMenuMainService,

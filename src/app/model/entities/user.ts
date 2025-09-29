@@ -19,6 +19,7 @@ export class CUser extends CEntity {
   public children_q: number;
   public overdue: boolean;
   public referral_percent: number;
+  public refEarnings?: number; // сумма заработанная на рефералах
   public tg_username: string;
   public tg_tasks: boolean;
   public tg_guides: boolean;
