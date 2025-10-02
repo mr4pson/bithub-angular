@@ -90,6 +90,12 @@ export class CAppComponent {
   set popupInorderActive(v: boolean) {
     this.appService.popupInorderActive = v;
   }
+  get popupWithdrawActive(): boolean {
+    return this.appService.popupWithdrawActive;
+  }
+  set popupWithdrawActive(v: boolean) {
+    this.appService.popupWithdrawActive = v;
+  }
   get popupLimitActive(): boolean {
     return this.appService.popupLimitActive;
   }

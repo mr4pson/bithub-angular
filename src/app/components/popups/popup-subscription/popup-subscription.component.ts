@@ -137,6 +137,9 @@ export class CPopupSubscriptionComponent
 
   public async onPay(): Promise<void> {
     try {
+      if (!window.confirm(this.words['common']?.['sure']?.[this.lang.slug]))
+        return;
+
       this.loading = true;
       this.error = null;
       const dto: IOutorderCreate = {

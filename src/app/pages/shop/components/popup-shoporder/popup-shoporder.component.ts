@@ -56,6 +56,9 @@ export class CPopupShoporderComponent
     try {
       if (!this.validate()) return;
 
+      if (!window.confirm(this.words['common']?.['sure']?.[this.lang.slug]))
+        return;
+
       this.sending = true;
 
       await this.appService.pause(300);

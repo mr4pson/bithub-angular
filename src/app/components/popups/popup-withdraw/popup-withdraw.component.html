@@ -1,0 +1,84 @@
+<div class="popup-wrap" [class.active]="active">
+  <div class="popup popup-subscription" id="popup-{{ unique }}">
+    <div class="popup-head">
+      <div class="popup-headtitle">
+        {{words['withdrawal']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="popup-close" (click)="onClose()"><span></span></div>
+    </div>
+    <div class="popup-main">
+      <div class="popup-title">
+        {{words['withdrawal']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="popup-content">
+        <ng-container *ngIf="sent"
+          ><div
+            class="ta-center"
+            [innerHTML]="words['withdrawal']?.['order-thankyou']?.[lang.slug]"
+          ></div
+        ></ng-container>
+        <div *ngIf="!sent" class="inorder">
+          <form class="gf" (submit)="onSubmit()">
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['withdrawal']?.['order-tg']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input
+                  type="text"
+                  name="tg"
+                  [(ngModel)]="tg"
+                  [class.error]="errors['tg']"
+                />
+              </div>
+              <div class="gf-error" *ngIf="errors['tg']">
+                {{words['errors']?.[errors['tg']]?.[lang.slug]}}
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['withdrawal']?.['wallet']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input
+                  type="text"
+                  name="wallet"
+                  [(ngModel)]="wallet"
+                  [class.error]="errors['wallet']"
+                />
+              </div>
+              <div class="gf-error" *ngIf="errors['wallet']">
+                {{words['errors']?.[errors['wallet']]?.[lang.slug]}}
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['withdrawal']?.['amount']?.[lang.slug]}}
+              </div>
+              <div class="gf-inputwrap">
+                <input-number [(value)]="amount" [min]="20"></input-number>
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-title">
+                {{words['withdrawal']?.['order-comment']?.[lang.slug]}}
+              </div>
+              <div class="gf-tawrap">
+                <input-textarea [(value)]="comment" [maxlength]="1000" />
+              </div>
+            </div>
+            <div class="gf-row">
+              <div class="gf-btnwrap">
+                <button type="submit" class="btn gold" [class.busy]="loading">
+                  <span class="btn-text">
+                    {{words["withdrawal"]?.["submit"]?.[lang.slug]}}
+                  </span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

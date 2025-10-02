@@ -53,6 +53,7 @@ import { IShoporderCreate } from '../model/dto/shoporder.create';
 import { ICompletion } from '../model/entities/completion';
 import { IDatemarkGetList, IDatemarkToggle } from '../model/dto/datemarks';
 import { IDrop } from '../model/entities/drop';
+import { IWithdraworderCreate } from '../model/dto/withxdraworder.create';
 
 @Injectable()
 export class CDataService {
@@ -221,6 +222,12 @@ export class CDataService {
 
   public inordersCreate(dto: IInorderCreate): Observable<IResponse<string>> {
     return this.post('inorders/create', dto);
+  }
+
+  public withdrawordersCreate(
+    dto: IWithdraworderCreate
+  ): Observable<IResponse<string>> {
+    return this.post('withdraworders/create', dto);
   }
 
   public outordersCreate(dto: IOutorderCreate): Observable<IResponse<void>> {

@@ -60,7 +60,8 @@ export class CPopupInorderComponent
     }
   }
 
-  public override onClose(): void {
-    super.onClose();
+  public async handleWithdraw() {
+    this.onClose();
+    this.appService.popupWithdrawActive = true;
   }
 }

@@ -39,6 +39,7 @@ import { CCartService } from './cart.service';
 import { CDatemarkRepository } from './repositories/datemark.repository';
 import { CDropRepository } from './repositories/drop.repository';
 import { GuideGuard } from './guards';
+import { CWithdraworderRepository } from './repositories/withdraworder.repository';
 
 @NgModule({
   declarations: [],
@@ -71,6 +72,7 @@ import { GuideGuard } from './guards';
     CTariffRepository,
     CPromocodeRepository,
     CInorderRepository,
+    CWithdraworderRepository,
     COutorderRepository,
     CDeskRepository,
     CProblemRepository,
