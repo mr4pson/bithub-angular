@@ -46,7 +46,6 @@
           >{{words["shop"]?.["add-to-cart"]?.[lang.slug]}}</span
         >
       </button>
-      {{ shopitem.priceStep }}
       <app-quantity-selector
         *ngIf="cartItem"
         [quantity]="cartItem?.quantity"
