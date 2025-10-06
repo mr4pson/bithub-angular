@@ -123,6 +123,13 @@ export class CItemShopPage {
 
   public async addToCart(): Promise<void> {
     if (!this.shopitem) return;
+
+    if (!this.isLoggedIn) {
+      this.appService.popupLoginActive = true;
+
+      return;
+    }
+
     this.cartService.add(this.shopitem, this.quantity);
     // this.appService.notifyError('Товар добавлен в корзину!'); // Можно заменить на notifySuccess, если есть
   }

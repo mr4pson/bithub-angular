@@ -106,6 +106,9 @@ export class CDataService {
   public usersRecover(dto: IUserRecover): Observable<IResponse<void>> {
     return this.post('users/recover', dto);
   }
+  public usersUnsubscribe(uuid: string): Observable<IResponse<void>> {
+    return this.post(`users/unsubscribe/${uuid}`);
+  }
   public usersMe(): Observable<IResponse<IUser>> {
     return this.post(`users/me`);
   }
@@ -120,8 +123,11 @@ export class CDataService {
   ): Observable<IResponse<void>> {
     return this.post('users/update-password', dto);
   }
-  public usersCanBeParent(uuid: string): Observable<IResponse<void>> {
-    return this.post(`users/can-be-parent/${uuid}`);
+  public usersCanBeParent(
+    uuid: string,
+    index: number
+  ): Observable<IResponse<void>> {
+    return this.post(`users/can-be-parent/${uuid}/${index}`);
   }
   public usersIsExists(uuid: string): Observable<IResponse<void>> {
     return this.post(`users/is-exists/${uuid}`);

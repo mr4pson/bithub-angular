@@ -24,8 +24,9 @@ export class CProfileRefereesComponent {
   }
 
   public async onCopy(): Promise<void> {
+    const ref_link = this.user.ref_link ?? this.user.uuid;
     window.navigator.clipboard.writeText(
-      `${cfg.siteUrl}/${this.lang.slug}/register/ref/${this.user.uuid}`
+      `${cfg.siteUrl}/${this.lang.slug}/register/ref/${ref_link}`
     );
     this.copied = true;
     await this.appService.pause(1000);

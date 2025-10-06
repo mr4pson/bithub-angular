@@ -14,6 +14,7 @@ import { CStaticModule } from './pages/static/static.module';
 import { CStatsModule } from './pages/stats/stats.module';
 import { CTaskerModule } from './pages/tasker/tasker.module';
 import { CAuthGuard } from './services/guards/auth.guard';
+import { CUnsubscribeModule } from './pages/unsubscribe/unsubscribe.module';
 
 const routes: Routes = [
   { path: '', component: CHomePage, data: { mark: 'home' } }, // mark for reuse
@@ -25,6 +26,7 @@ const routes: Routes = [
     loadChildren: () => CGuideModule,
     canActivate: [],
   },
+  { path: ':lang/unsubscribe', loadChildren: () => CUnsubscribeModule },
   { path: ':lang/education', loadChildren: () => CArticlesModule },
   {
     path: ':lang/shop',

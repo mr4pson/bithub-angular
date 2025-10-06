@@ -9,6 +9,7 @@ export class CUser extends CEntity {
   public name: string;
   public wallet: string;
   public img: string;
+  public ref_link: string;
   public money: number;
   public points: number;
   public subType?: 'dg-pro' | 'dg-team';
@@ -112,6 +113,7 @@ export interface IUserUpdate {
   readonly name: string;
   readonly wallet: string;
   readonly img: string;
+  readonly ref_link: string;
   readonly tg_username: string;
   readonly tg_tasks: boolean;
   readonly tg_guides: boolean;

@@ -56,6 +56,7 @@ export class CAccountPage extends CSimplePage implements OnInit, OnDestroy {
         wallet: this.user.wallet,
         lang_id: this.user.lang_id,
         img: this.user.img,
+        ref_link: this.user.ref_link,
         tg_username: this.user.tg_username,
         tg_tasks: this.user.tg_tasks,
         tg_guides: this.user.tg_guides,

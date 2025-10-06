@@ -55,6 +55,23 @@
         </div>
       </div>
       <div class="gf-row">
+        <div class="gf-title">
+          <!-- {{words['account']?.['tg_username']?.[lang.slug]}} -->
+          Referral username
+        </div>
+        <div class="gf-inputwrap">
+          <input
+            type="text"
+            name="ref_link"
+            [(ngModel)]="user.ref_link"
+            [class.error]="errors['ref_link']"
+          />
+        </div>
+        <div class="gf-error" *ngIf="errors['ref_link']">
+          {{words['errors']?.[errors['ref_link']]?.[lang.slug]}}
+        </div>
+      </div>
+      <div class="gf-row">
         <div class="gf-title">{{words['account']?.['lang']?.[lang.slug]}}</div>
         <div class="gf-inputwrap">
           <div class="selectwrap">

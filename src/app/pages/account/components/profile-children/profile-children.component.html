@@ -1,16 +1,23 @@
 <div class="profile-children">
-    <div class="pc-link">
-        <div class="pcl-info">{{words['account']?.['c-info']?.[lang.slug]}}:</div>
-        <div class="pcl-btnwrap">
-            <button type="button" class="btn gold" [class.done]="copied" (click)="onCopy()">
-                <span class="btn-icon copy"></span>
-                <span class="btn-text">{{words['common']?.['copy']?.[lang.slug]}}</span>
-                <span class="btn-done"><span>{{words["common"]?.["copied"]?.[lang.slug]}}</span></span>
-            </button>
-        </div>
+  <div class="pc-link">
+    <div class="pcl-info">{{words['account']?.['c-info']?.[lang.slug]}}:</div>
+    <div class="pcl-btnwrap">
+      <button
+        type="button"
+        class="btn gold"
+        [class.done]="copied"
+        (click)="onCopy()"
+      >
+        <span class="btn-icon copy"></span>
+        <span class="btn-text">{{words['common']?.['copy']?.[lang.slug]}}</span>
+        <span class="btn-done"
+          ><span>{{words["common"]?.["copied"]?.[lang.slug]}}</span></span
+        >
+      </button>
     </div>
-    <div class="pc-children">
-        <div class="pcc-title">{{words['account']?.['c-title']?.[lang.slug]}}</div>
-        <list-children></list-children>
-    </div>
+  </div>
+  <div class="pc-children">
+    <div class="pcc-title">{{words['account']?.['c-title']?.[lang.slug]}}</div>
+    <list-children></list-children>
+  </div>
 </div>

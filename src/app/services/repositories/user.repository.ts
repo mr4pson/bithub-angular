@@ -82,9 +82,9 @@ export class CUserRepository {
     );
   }
 
-  public canBeParent(uuid: string): Promise<number> {
+  public canBeParent(uuid: string, index: number): Promise<number> {
     return new Promise((resolve, reject) =>
-      this.dataService.usersCanBeParent(uuid).subscribe({
+      this.dataService.usersCanBeParent(uuid, index).subscribe({
         next: (res) => resolve(res.statusCode),
         error: (err) => reject(err.message),
       })
