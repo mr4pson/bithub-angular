@@ -17,6 +17,7 @@ import { CTask } from 'src/app/model/entities/task';
 import { CAuthService } from 'src/app/services/auth.service';
 import { CUser } from 'src/app/model/entities/user';
 import { cfg } from 'src/app/app.config';
+import { CGuide } from 'src/app/model/entities/guide';
 
 @Component({
   selector: 'the-task',
@@ -28,6 +29,7 @@ export class CTaskComponent implements OnInit {
   @ViewChild('container', { static: false }) private containerRef: ElementRef;
 
   @Input() public task: CTask; // тут заголовок и статус таска
+  @Input() public guide: CGuide; // тут заголовок и статус таска
   @Input() public no: number;
   @Input() public n: number;
   @Input() public stepsLimit: number;
@@ -183,7 +185,7 @@ export class CTaskComponent implements OnInit {
     //const link = `${window.location.origin}${window.location.pathname}?task=${this.task.id}`;
     //window.navigator.clipboard.writeText(link);
     window.navigator.clipboard.writeText(
-      `${cfg.siteUrl}/${this.lang.slug}/register/ref/${this.user.uuid}?redirect=/${this.lang.slug}/guide/${this.task.guide_id}?task=${this.task.id}`
+      `${cfg.siteUrl}/${this.lang.slug}/register/ref/${this.user.uuid}?redirect=/${this.lang.slug}/guide/${this.guide.slug}?task=${this.task.id}`
     );
     this.linkCopied = true;
     await this.appService.pause(1000);

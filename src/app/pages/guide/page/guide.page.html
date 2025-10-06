@@ -111,6 +111,7 @@
       <div class="g-task" *ngFor="let t of limitedTasks; let i = index;">
         <the-task
           [task]="t"
+          [guide]="guide"
           [no]="i + 1"
           [stepsLimit]="stepsLimit"
           [n]="limitedTasks.length"
