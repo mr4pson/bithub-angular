@@ -15,6 +15,7 @@ import { CStatsModule } from './pages/stats/stats.module';
 import { CTaskerModule } from './pages/tasker/tasker.module';
 import { CAuthGuard } from './services/guards/auth.guard';
 import { CUnsubscribeModule } from './pages/unsubscribe/unsubscribe.module';
+import { CTgLoginModule } from './pages/tg-login/tg-login.module';
 
 const routes: Routes = [
   { path: '', component: CHomePage, data: { mark: 'home' } }, // mark for reuse
@@ -33,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => CShopModule,
   },
   { path: ':lang/drops', loadChildren: () => CDropsModule },
+  {
+    path: ':lang/login/:tgId',
+    loadChildren: () => CTgLoginModule,
+  },
   {
     path: ':lang/stats',
     loadChildren: () => CStatsModule,

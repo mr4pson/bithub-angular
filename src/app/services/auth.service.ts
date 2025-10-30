@@ -180,7 +180,7 @@ export class CAuthService {
   // utils
   //////////////////
 
-  private init(data: IUserAuthData): void {
+  public init(data: IUserAuthData): void {
     this.authData = data;
     this.load();
     this.lid = this.socketService.on(`user:reload:${this.authData.id}`, () =>
@@ -188,7 +188,7 @@ export class CAuthService {
     ); // реакция на пополнение
   }
 
-  private save(): void {
+  public save(): void {
     localStorage.setItem('authdata', JSON.stringify(this.authData));
   }
 
