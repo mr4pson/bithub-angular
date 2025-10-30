@@ -31,7 +31,7 @@ export class CTgLoginPage implements OnInit {
         .login(tgId, params)
         .pipe(
           tap((data: any) => {
-            this.authService.init(data);
+            this.authService.init(data.data);
             this.authService.save();
             console.log(data);
           }),
