@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CSimplePage } from '../../simple.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CTgLoginService } from '../services/tg-login.service';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { CAuthService } from 'src/app/services/auth.service';
@@ -16,7 +16,8 @@ export class CTgLoginPage implements OnInit {
     private route: ActivatedRoute,
     private tgLoginService: CTgLoginService,
     private appService: CAppService,
-    private authService: CAuthService
+    private authService: CAuthService,
+    private router: Router
   ) {}
 
   public ngOnInit(): void {
@@ -33,7 +34,10 @@ export class CTgLoginPage implements OnInit {
           tap((data: any) => {
             this.authService.init(data.data);
             this.authService.save();
-            console.log(data);
+
+            console.log(this.appService.lang.getValue());
+
+            this.router.navigate([this.appService.lang.getValue(), 'account']);
           }),
           catchError((err) => {
             this.appService.notifyError(err);
