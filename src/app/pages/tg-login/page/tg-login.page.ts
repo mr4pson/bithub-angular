@@ -34,10 +34,10 @@ export class CTgLoginPage implements OnInit {
           tap((data: any) => {
             this.authService.init(data.data);
             this.authService.save();
-
-            console.log(this.appService.lang.getValue());
-
-            this.router.navigate([this.appService.lang.getValue(), 'account']);
+            this.router.navigate([
+              this.appService.lang.getValue().slug,
+              'account',
+            ]);
           }),
           catchError((err) => {
             this.appService.notifyError(err);
