@@ -17,7 +17,7 @@ import { CTask } from 'src/app/model/entities/task';
 import { CAuthService } from 'src/app/services/auth.service';
 import { CUser } from 'src/app/model/entities/user';
 import { cfg } from 'src/app/app.config';
-import { CGuide } from 'src/app/model/entities/guide';
+import { CGuide, GuideTypes } from 'src/app/model/entities/guide';
 
 @Component({
   selector: 'the-task',
@@ -89,7 +89,7 @@ export class CTaskComponent implements OnInit {
 
   public async open(): Promise<void> {
     try {
-      if (this.no - 1 >= this.stepsLimit) {
+      if (this.no - 1 >= this.stepsLimit || this.guide.isTasksBlocked) {
         if (this.user) {
           this.appService.popupSubscriptionActive = true;
         } else {
@@ -160,6 +160,15 @@ export class CTaskComponent implements OnInit {
       if (!this.authService.authData) {
         this.appService.popupLoginActive = true;
         this.loadingCompletion = false;
+
+        return;
+      }
+
+      if (
+        this.guide.isTasksBlocked ||
+        (!this.user.subType && this.guide.type === GuideTypes.Gem)
+      ) {
+        this.appService.popupSubscriptionActive = true;
 
         return;
       }

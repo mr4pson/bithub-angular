@@ -123,9 +123,9 @@ export class CGuideRepository {
     );
   }
 
-  public loadOneBySlug(slug: string): Promise<CGuide> {
+  public loadOneBySlug(slug: string, viewed = false): Promise<CGuide> {
     return new Promise((resolve, reject) =>
-      this.dataService.guidesOneBySlug(slug).subscribe({
+      this.dataService.guidesOneBySlug(slug, viewed).subscribe({
         next: (res) =>
           res.statusCode === 200
             ? resolve(new CGuide().build(res.data))

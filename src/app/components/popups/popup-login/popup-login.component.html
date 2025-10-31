@@ -9,86 +9,24 @@
     <div class="popup-main">
       <div class="popup-title">{{words['login']?.['title']?.[lang.slug]}}</div>
       <div class="popup-content">
-        <form class="gf" (submit)="onSubmit()">
+        <div class="gf">
           <div class="gf-row">
-            <div class="gf-title">
-              {{words['login']?.['email']?.[lang.slug]}}
-            </div>
-            <div class="gf-inputwrap">
-              <input
-                type="email"
-                name="email"
-                [(ngModel)]="email"
-                [class.error]="errors['email']"
-              />
-            </div>
-            <div class="gf-error" *ngIf="errors['email']">
-              {{words['errors']?.[errors['email']]?.[lang.slug]}}
-            </div>
-          </div>
-          <div class="gf-row">
-            <div class="gf-title">
-              <span>{{words['login']?.['password']?.[lang.slug]}}</span>
+            <div class="gf-btnwrap">
               <a
-                (click)="onRecover()"
-                >{{words['login']?.['forgot']?.[lang.slug]}}</a
+                href="https://t.me/bithab_bot?start=auth_1"
+                target="_blank"
+                class="btn gold"
+                style="width: 100%"
               >
-            </div>
-            <div class="gf-inputwrap">
-              <input-password
-                [(value)]="password"
-                [error]="errors['password']"
-              ></input-password>
-            </div>
-            <div class="gf-error" *ngIf="errors['password']">
-              {{words['errors']?.[errors['password']]?.[lang.slug]}}
-            </div>
-          </div>
-          <!-- reCAPTCHA v3 интеграция, поле убрано -->
-          <div class="gf-row">
-            <div *ngIf="!errors['form']" class="gf-btnwrap">
-              <button type="submit" class="btn gold" [class.busy]="sending">
                 <span class="btn-icon login"></span
                 ><span
                   class="btn-text"
                   >{{words["login"]?.["submit"]?.[lang.slug]}}</span
                 >
-              </button>
-            </div>
-            <div *ngIf="errors['form']" class="gf-denied">
-              {{words['errors']?.[errors['form']]?.[lang.slug]}}
+              </a>
             </div>
           </div>
-          <div class="gf-row">
-            <div class="gf-linkwrap">
-              <span>{{words['login']?.['no-acc']?.[lang.slug]}}</span
-              >&nbsp;<a
-                (click)="onRegister()"
-                >{{words['login']?.['register']?.[lang.slug]}}</a
-              >
-            </div>
-          </div>
-          <div class="gf-row">
-            <div class="gf-or">
-              <span>{{words['common']?.['or']?.[lang.slug]}}</span>
-            </div>
-          </div>
-          <div class="gf-row">
-            <div class="gf-btnwrap">
-              <button
-                type="button"
-                class="btn gold"
-                (click)="onEnterWithGoogle()"
-              >
-                <span class="btn-icon google"></span
-                ><span
-                  class="btn-text"
-                  >{{words["common"]?.["enter-google"]?.[lang.slug]}}</span
-                >
-              </button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

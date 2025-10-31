@@ -107,7 +107,10 @@
         </button>
       </div>
     </div> -->
-    <div class="g-tasks">
+    <div class="sub-info" *ngIf="!isGuideAvailable">
+      {{words['guides']?.['to-view-activities']?.[lang.slug]}}
+    </div>
+    <div class="g-tasks" [class.blured]="!isGuideAvailable">
       <div class="g-task" *ngFor="let t of limitedTasks; let i = index;">
         <the-task
           [task]="t"
@@ -128,3 +131,8 @@
     <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
   </div>
 </ng-container>
+<popup-guide-viewed
+  [(active)]="popupGuideViewedActive"
+  [guidesViewedCount]="guide.guidesViewedCount"
+></popup-guide-viewed>
+<popup-guide-expired [(active)]="popupGuideExpiredActive"></popup-guide-expired>

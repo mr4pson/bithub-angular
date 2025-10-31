@@ -31,6 +31,8 @@ export class CAppService {
   public popupInorderActive: boolean = false;
   public popupWithdrawActive: boolean = false;
   public popupLimitActive: boolean = false;
+  public popupGuideViewedActive: boolean = false;
+  public popupGuideExpiredActive: boolean = false;
   public popupIsGemType: boolean = false;
 
   constructor(

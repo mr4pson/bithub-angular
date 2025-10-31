@@ -1,8 +1,4 @@
-<a
-  class="guide"
-  [class.blured]="isGuideBlured"
-  routerLink="/{{ lang.slug }}/guide/{{ guide.slug }}"
->
+<a class="guide" routerLink="/{{ lang.slug }}/guide/{{ guide.slug }}">
   <div
     class="g-hit"
     *ngIf="guide.hit"

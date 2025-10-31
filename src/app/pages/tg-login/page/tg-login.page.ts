@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CSimplePage } from '../../simple.page';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CTgLoginService } from '../services/tg-login.service';
 import { catchError, EMPTY, tap } from 'rxjs';

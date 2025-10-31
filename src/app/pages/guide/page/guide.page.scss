@@ -348,7 +348,16 @@
     }
   }
 
+  .sub-info {
+    padding-bottom: 20px;
+    color: var(--color-alert1);
+  }
+
   .g-tasks {
+    &.blured {
+      filter: blur(5px);
+    }
+
     .g-task {
       margin-bottom: 15px;
 

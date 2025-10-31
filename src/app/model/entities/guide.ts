@@ -34,6 +34,10 @@ export class CGuide extends CEntity {
   // relations
   public links?: IGuideLink[];
   public tasks?: CTask[];
+  public isTasksBlocked?: boolean;
+  public isJustViewed?: boolean;
+  public isTestPeriodEnded?: boolean;
+  public guidesViewedCount?: number;
 
   public override build(o: IGuide): CGuide {
     for (let field in o) {
@@ -72,6 +76,10 @@ export interface IGuide extends IEntity {
   // relations
   links?: IGuideLink[];
   tasks?: ITask[];
+  isTasksBlocked?: boolean;
+  isJustViewed?: boolean;
+  isTestPeriodEnded?: boolean;
+  guidesViewedCount?: number;
 }
 
 export interface IGuideLink extends IEntity {

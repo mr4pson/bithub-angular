@@ -174,8 +174,11 @@ export class CDataService {
   public guidesOne(id: number): Observable<IResponse<IGuide>> {
     return this.post(`guides/one/${id}`);
   }
-  public guidesOneBySlug(slug: string): Observable<IResponse<IGuide>> {
-    return this.post(`guides/one-by-slug/${slug}`);
+  public guidesOneBySlug(
+    slug: string,
+    viewed = false
+  ): Observable<IResponse<IGuide>> {
+    return this.post(`guides/one-by-slug/${slug}?viewed=${viewed ?? ''}`);
   }
   public guidesProgress(id: number): Observable<IResponse<number>> {
     return this.post(`guides/progress/${id}`);

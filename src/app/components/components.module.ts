@@ -63,6 +63,8 @@ import { CQuantitySelectorComponent } from './quantity-selector/quantity-selecto
 import { CPopupInorderComponent } from './popups/popup-inorder/popup-inorder.component';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { CPopupWithdrawComponent } from './popups/popup-withdraw/popup-withdraw.component';
+import { CPopupGuideViewedComponent } from './popups/popup-guide-viewed/popup-guide-viewed.component';
+import { CPopupGuideExpiredComponent } from './popups/popup-guide-expired/popup-guide-expired.component';
 
 @NgModule({
   imports: [
@@ -86,6 +88,8 @@ import { CPopupWithdrawComponent } from './popups/popup-withdraw/popup-withdraw.
     CPanelUnviewedComponent,
     PanelCartComponent,
     CPopupLoginComponent,
+    CPopupGuideExpiredComponent,
+    CPopupGuideViewedComponent,
     CPopupVerifComponent,
     CPopupRegisterComponent,
     CPopupInorderComponent,
@@ -143,6 +147,8 @@ import { CPopupWithdrawComponent } from './popups/popup-withdraw/popup-withdraw.
     CPanelUnviewedComponent,
     PanelCartComponent,
     CPopupLoginComponent,
+    CPopupGuideExpiredComponent,
+    CPopupGuideViewedComponent,
     CPopupVerifComponent,
     CPopupRegisterComponent,
     CPopupInorderComponent,

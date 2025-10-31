@@ -38,9 +38,6 @@ export class CGuideComponent implements OnInit, OnDestroy {
   get authenticated(): boolean {
     return this.authService.authData !== null;
   }
-  get isGuideBlured() {
-    return !this.authService.user?.subType && this.guide.type === 'gem';
-  }
 
   public ngOnInit(): void {
     window.addEventListener(

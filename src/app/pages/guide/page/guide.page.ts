@@ -49,16 +49,36 @@ export class CGuidePage implements OnInit {
       )
       ?.replace(/{{user_freetasks}}/g, this.user?.freetasks?.toString());
   }
+  get hasSubscripition() {
+    return !!this.authService.user?.subType;
+  }
+  get isGuideAvailable() {
+    return (
+      ((this.guide.type === GuideTypes.Gem && this.hasSubscripition) ||
+        this.guide.type !== GuideTypes.Gem) &&
+      !this.guide.isTasksBlocked
+    );
+  }
+  get popupGuideViewedActive(): boolean {
+    return this.appService.popupGuideViewedActive;
+  }
+  set popupGuideViewedActive(v: boolean) {
+    this.appService.popupGuideViewedActive = v;
+  }
+  get popupGuideExpiredActive(): boolean {
+    return this.appService.popupGuideExpiredActive;
+  }
+  set popupGuideExpiredActive(v: boolean) {
+    this.appService.popupGuideExpiredActive = v;
+  }
 
   /////////////////////
   // lifecycle
   /////////////////////
 
   public async ngOnInit(): Promise<void> {
-    this.route.params.subscribe(async (p) => {
-      await this.initGuide(p['slug']);
-      this.initSEO();
-    });
+    await this.initGuide(this.route.snapshot.params['slug']);
+    this.initSEO();
   }
 
   private async initGuide(slug: string): Promise<void> {
@@ -66,14 +86,22 @@ export class CGuidePage implements OnInit {
       if (slug === this.guide?.slug) return;
       this.guide = null;
       await this.appService.pause(300);
-      this.guide = await this.guideRepository.loadOneBySlug(slug);
+      this.guide = await this.guideRepository.loadOneBySlug(slug, true);
       this.isGemType = this.guide.type === GuideTypes.Gem;
 
-      if (!this.authService.user?.subType) {
-        this.appService.popupSubscriptionActive =
-          this.guide.type === GuideTypes.Gem;
-        this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
+      if (this.guide.isJustViewed) {
+        this.appService.popupGuideViewedActive = true;
       }
+
+      if (this.guide.isTestPeriodEnded) {
+        this.appService.popupGuideExpiredActive = true;
+      }
+
+      // if (!this.authService.user?.subType) {
+      //   this.appService.popupSubscriptionActive =
+      //     this.guide.type === GuideTypes.Gem;
+      //   this.appService.popupIsGemType = this.guide.type === GuideTypes.Gem;
+      // }
 
       const tasksNum = this.guide.tasks.length;
       const isAuthed = !!this.authService.authData;
@@ -100,7 +128,6 @@ export class CGuidePage implements OnInit {
       // const stepsLimit = this.guide.type === GuideTypes.FullStepsAvaliable ? this.guide.tasks : thi
       // this.limitedTasks = this.guide.tasks.slice(0, stepsLimit);
       this.limitedTasks = this.guide.tasks;
-      console.log(this.limitedTasks);
     } catch (err) {
       err === 404
         ? this.router.navigateByUrl(`/${this.lang.slug}/errors/404`)
