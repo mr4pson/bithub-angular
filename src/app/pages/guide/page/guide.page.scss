@@ -351,6 +351,11 @@
   .sub-info {
     padding-bottom: 20px;
     color: var(--color-alert1);
+
+    .btn-sub {
+      color: #ffbc09;
+      cursor: pointer;
+    }
   }
 
   .g-tasks {

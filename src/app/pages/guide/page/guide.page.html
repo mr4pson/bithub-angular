@@ -109,9 +109,9 @@
     </div> -->
     <div class="sub-info" *ngIf="!isGuideAvailable">
       {{words['guides']?.['to-view-activities']?.[lang.slug]}}
-      <button class="btn gold" (click)="onSubscribe()">
+      <span class="btn-sub" (click)="onSubscribe()">
         {{words['guides']?.['subscription']?.[lang.slug]}}
-      </button>
+      </span>
     </div>
     <div class="g-tasks" [class.blured]="!isGuideAvailable">
       <div class="g-task" *ngFor="let t of limitedTasks; let i = index;">

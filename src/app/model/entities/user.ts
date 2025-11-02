@@ -4,6 +4,7 @@ export class CUser extends CEntity {
   public uuid: string;
   public lang_id: number;
   public parent_id: number;
+  public parent_email: string;
   public referrer_id: number;
   public email: string;
   public name: string;

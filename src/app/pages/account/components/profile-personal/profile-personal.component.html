@@ -71,6 +71,22 @@
           {{words['errors']?.[errors['ref_link']]?.[lang.slug]}}
         </div>
       </div>
+      <div *ngIf="user.parent_id" class="gf-row">
+        <div class="gf-title">
+          {{words['account']?.['subacc-title']?.[lang.slug]}}
+        </div>
+        <div class="gf-inputwrap">
+          <input
+            type="text"
+            name="parent_email"
+            [value]="user.parent_email"
+            readonly
+          />
+        </div>
+        <div class="gf-error" *ngIf="errors['ref_link']">
+          {{words['errors']?.[errors['ref_link']]?.[lang.slug]}}
+        </div>
+      </div>
       <div class="gf-row">
         <div class="gf-title">{{words['account']?.['lang']?.[lang.slug]}}</div>
         <div class="gf-inputwrap">
