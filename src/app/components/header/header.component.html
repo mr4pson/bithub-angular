@@ -37,17 +37,11 @@
   </div>
   <div class="h-right">
     <ng-container *ngIf="!authenticated">
-      <button
-        type="button"
-        class="hr-btn btn gold"
-        (click)="popupLoginActive = true"
-      >
-        <span class="btn-icon login"></span
-        ><span
-          class="btn-text"
-          >{{words["login"]?.["title"]?.[lang.slug]}}</span
-        >
-      </button>
+      <div class="hr-ava">
+        <div class="hra-img" (click)="popupLoginActive = true">
+          <img src="/assets/images/user.svg" />
+        </div>
+      </div>
     </ng-container>
     <ng-container *ngIf="user">
       <div class="hr-dash">

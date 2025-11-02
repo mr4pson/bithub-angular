@@ -26,10 +26,11 @@ export class GuideGuard {
     const slug = route.paramMap.get('slug');
     const guide = await this.guideRepository.loadOneBySlug(slug);
     const isActivated =
-      (guide.type !== GuideTypes.Gem &&
-        guide.type !== GuideTypes.LimitAfterAuthAvailable) ||
+      guide.type !== GuideTypes.Gem &&
+      guide.type !== GuideTypes.LimitAfterAuthAvailable &&
       !!this.authService.authData;
 
+    console.log(guide.type, !!this.authService.authData);
     if (!isActivated) {
       this.appService.popupLoginActive = true;
       this.router.navigateByUrl(`/`);

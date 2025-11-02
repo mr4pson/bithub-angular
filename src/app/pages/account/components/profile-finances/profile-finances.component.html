@@ -36,6 +36,19 @@
         />
       </div>
     </div>
+    <div *ngIf="!user.subType" class="pfs-row">
+      <div class="pfs-title">
+        {{words['account']?.['viewed-free-guides']?.[lang.slug]}}
+      </div>
+      <div class="pfs-value">
+        <input
+          type="text"
+          [value]="user.viewedGuidesCount + '/5'"
+          disabled
+          [class.error]="user.overdue"
+        />
+      </div>
+    </div>
     <!-- <div class="pfs-row">
       <div class="pfs-title">
         {{words['account']?.['fss-freetasks']?.[lang.slug]}}

@@ -15,13 +15,13 @@
               <a
                 href="https://t.me/bithab_bot?start=auth_1"
                 target="_blank"
+                (click)="stopInterval()"
                 class="btn gold"
                 style="width: 100%"
               >
                 <span class="btn-icon login"></span
-                ><span
-                  class="btn-text"
-                  >{{words["login"]?.["submit"]?.[lang.slug]}}</span
+                ><span class="btn-text"
+                  >{{words["login"]?.["submit"]?.[lang.slug]}} {{ timer }}</span
                 >
               </a>
             </div>

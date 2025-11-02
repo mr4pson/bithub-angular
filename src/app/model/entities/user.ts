@@ -26,6 +26,7 @@ export class CUser extends CEntity {
   public tg_guides: boolean;
   public tg_articles: boolean;
   public tg_deadlines: boolean;
+  public viewedGuidesCount?: number;
   public tz: number;
   public verified: boolean;
   public created_at: Date;
