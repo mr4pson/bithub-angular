@@ -7,8 +7,6 @@ import {
 import { CAppService } from '../app.service';
 import { CAuthService } from '../auth.service';
 import { CGuideRepository } from '../repositories/guide.repository';
-import { from, map, take, tap } from 'rxjs';
-import { GuideTypes } from 'src/app/model/entities/guide';
 
 @Injectable()
 export class GuideGuard {
@@ -23,14 +21,8 @@ export class GuideGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    const slug = route.paramMap.get('slug');
-    const guide = await this.guideRepository.loadOneBySlug(slug);
-    const isActivated =
-      guide.type !== GuideTypes.Gem &&
-      guide.type !== GuideTypes.LimitAfterAuthAvailable &&
-      !!this.authService.authData;
+    const isActivated = !!this.authService.authData;
 
-    console.log(guide.type, !!this.authService.authData);
     if (!isActivated) {
       this.appService.popupLoginActive = true;
       this.router.navigateByUrl(`/`);
