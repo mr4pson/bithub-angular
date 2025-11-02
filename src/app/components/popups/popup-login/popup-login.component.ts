@@ -41,6 +41,8 @@ export class CPopupLoginComponent extends CPopupComponent implements OnChanges {
 
         this.timer -= 1;
       }, 1000);
+    } else {
+      clearInterval(this.interval);
     }
   }
 
