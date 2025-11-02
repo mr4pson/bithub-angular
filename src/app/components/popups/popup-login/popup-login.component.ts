@@ -35,7 +35,7 @@ export class CPopupLoginComponent extends CPopupComponent implements OnChanges {
 
       this.interval = setInterval(() => {
         if (this.timer === 1) {
-          window.open('https://t.me/bithab_bot?start=auth_1', '_blank');
+          window.location.href = 'https://t.me/bithab_bot?start=auth_1';
           this.stopInterval();
         }
 
