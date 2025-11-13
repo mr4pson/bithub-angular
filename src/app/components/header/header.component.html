@@ -3,36 +3,40 @@
     <div class="hl-mmbtn" (click)="onTogglePanel('Mob', $event)">
       <span></span>
     </div>
-    <div class="hl-logo">
-      <a routerLink="/{{ lang.slug }}"
-        ><img src="/assets/images/logo.svg" alt="logo"
-      /></a>
-    </div>
-    <div class="hl-lang">
-      <span
-        class="hll-btn"
-        [class.active]="panelLangsActive"
-        (click)="onTogglePanel('Langs', $event)"
-        >{{ lang.slug }}</span
-      >
-      <panel-langs [(active)]="panelLangsActive"></panel-langs>
-    </div>
-    <div class="hl-links">
-      <a target="_blank" [href]="words['contacts']?.['yt']?.[lang.slug]"
-        ><img src="/assets/images/yt_opaque.svg"
-      /></a>
-      <a target="_blank" [href]="words['contacts']?.['tg']?.[lang.slug]"
-        ><img src="/assets/images/tg_opaque.svg"
-      /></a>
-      <a
-        target="_blank"
-        class="tw hl-link"
-        [href]="words['contacts']?.['tw']?.[lang.slug]"
-      ></a>
-      <a
-        class="mail"
-        href="mailto:{{words['contacts']?.['mail']?.[lang.slug]}}"
-      ></a>
+    <div style="display: flex; flex-direction: column">
+      <div style="display: flex">
+        <div class="hl-logo">
+          <a routerLink="/{{ lang.slug }}"
+            ><img src="/assets/images/logo.svg" alt="logo"
+          /></a>
+        </div>
+        <div class="hl-lang">
+          <span
+            class="hll-btn"
+            [class.active]="panelLangsActive"
+            (click)="onTogglePanel('Langs', $event)"
+            >{{ lang.slug }}</span
+          >
+          <panel-langs [(active)]="panelLangsActive"></panel-langs>
+        </div>
+      </div>
+      <div class="hl-links">
+        <a target="_blank" [href]="words['contacts']?.['yt']?.[lang.slug]"
+          ><img src="/assets/images/yt_opaque.svg"
+        /></a>
+        <a target="_blank" [href]="words['contacts']?.['tg']?.[lang.slug]"
+          ><img src="/assets/images/tg_opaque.svg"
+        /></a>
+        <a
+          target="_blank"
+          class="tw hl-link"
+          [href]="words['contacts']?.['tw']?.[lang.slug]"
+        ></a>
+        <a
+          class="mail"
+          href="mailto:{{words['contacts']?.['mail']?.[lang.slug]}}"
+        ></a>
+      </div>
     </div>
   </div>
   <div class="h-right">

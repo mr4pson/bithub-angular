@@ -1,0 +1,26 @@
+<a class="tool" routerLink="/{{ lang.slug }}/tools/{{ tool.slug }}">
+  <div class="a-imgwrap" *ngIf="tool.img">
+    <img
+      src="/images/tools/{{ tool.img }}"
+      loading="lazy"
+      [alt]="tool.name[lang.slug]"
+    />
+  </div>
+  <div class="a-details" [class.wide]="!tool.img">
+    <div class="a-txt">
+      <div class="a-name">{{ tool.name[lang.slug] }}</div>
+      <div class="a-content">{{ tool.contentshort[lang.slug] }}</div>
+    </div>
+    <div class="a-dash">
+      <div class="a-time" [title]="words['tools']?.['readtime']?.[lang.slug]">
+        <span
+          >{{ tool.readtime }}
+          {{words['common']?.['minutes']?.[lang.slug]}}</span
+        >
+      </div>
+      <div class="a-wasread" *ngIf="authenticated">
+        <btn-reading [tool]="tool"></btn-reading>
+      </div>
+    </div>
+  </div>
+</a>

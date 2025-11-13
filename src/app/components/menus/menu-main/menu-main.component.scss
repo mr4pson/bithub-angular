@@ -28,6 +28,10 @@ ul.menu-main {
         content: "\f19d";
       }
 
+      &.tools::before {
+        content: "\f0e3";
+      }
+
       &.shop::before {
         content: "\f07a";
       }

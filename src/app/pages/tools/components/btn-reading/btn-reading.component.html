@@ -1,0 +1,9 @@
+<div
+  class="btn-reading"
+  [class.active]="tool.was_read"
+  [class.busy]="loading"
+  (click)="onToggle($event)"
+  [title]="words['tools']?.['was-read']?.[lang.slug]"
+>
+  <span></span>
+</div>

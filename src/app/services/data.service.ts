@@ -54,6 +54,8 @@ import { ICompletion } from '../model/entities/completion';
 import { IDatemarkGetList, IDatemarkToggle } from '../model/dto/datemarks';
 import { IDrop } from '../model/entities/drop';
 import { IWithdraworderCreate } from '../model/dto/withxdraworder.create';
+import { ITool } from '../model/entities/tool';
+import { IToolcat } from '../model/entities/toolcat';
 
 @Injectable()
 export class CDataService {
@@ -316,6 +318,20 @@ export class CDataService {
     dto: IReadingUpdate
   ): Observable<IResponse<void>> {
     return this.post('articles/update-reading', dto);
+  }
+
+  public toolcatsAll(): Observable<IResponse<IToolcat[]>> {
+    return this.post('toolcats/all');
+  }
+
+  public toolsChunk(dto: IGetList): Observable<IResponse<ITool[]>> {
+    return this.post('tools/chunk', dto);
+  }
+  public toolsOne(slug: string): Observable<IResponse<ITool>> {
+    return this.post(`tools/one/${slug}`);
+  }
+  public toolsUpdateReading(dto: IReadingUpdate): Observable<IResponse<void>> {
+    return this.post('tools/update-reading', dto);
   }
 
   public dailersChunk(dto: IGetList): Observable<IResponse<IDailer[]>> {

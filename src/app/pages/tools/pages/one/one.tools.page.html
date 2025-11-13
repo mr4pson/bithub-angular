@@ -1,0 +1,42 @@
+<div class="histback">
+  <a routerLink="/{{lang.slug}}/education"
+    >{{words['tools']?.['back']?.[lang.slug]}}</a
+  >
+</div>
+<ng-container *ngIf="!tool"
+  ><div class="loading">
+    <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+  </div></ng-container
+>
+<ng-container *ngIf="tool">
+  <div class="tool">
+    <div class="a-head">
+      <div class="a-imgwrap" *ngIf="img">
+        <img src="/images/tools/{{img}}" loading="lazy" [alt]="title" />
+      </div>
+      <div class="a-details">
+        <div class="a-date">{{date}}</div>
+        <h1>{{h1}}</h1>
+        <div class="a-dash">
+          <div class="a-time" *ngIf="readtime">
+            <span
+              >{{readtime}} {{words['common']?.['minutes']?.[lang.slug]}}</span
+            >
+          </div>
+          <div class="a-wasread" *ngIf="authenticated">
+            <div class="aw-btn">
+              <btn-reading [tool]="tool"></btn-reading>
+            </div>
+            <span>{{words['tools']?.['was-read']?.[lang.slug]}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="a-content" [innerHTML]="content"></div>
+    <div
+      *ngIf="yt_content"
+      class="a-yt"
+      [innerHTML]="yt_content | safe:'html'"
+    ></div>
+  </div>
+</ng-container>

@@ -40,6 +40,8 @@ import { CDatemarkRepository } from './repositories/datemark.repository';
 import { CDropRepository } from './repositories/drop.repository';
 import { GuideGuard } from './guards';
 import { CWithdraworderRepository } from './repositories/withdraworder.repository';
+import { CToolRepository } from './repositories/tool.repository';
+import { CToolcatRepository } from './repositories/toolcat.repository';
 
 @NgModule({
   declarations: [],
@@ -80,6 +82,8 @@ import { CWithdraworderRepository } from './repositories/withdraworder.repositor
     CProposalRepository,
     CArtcatRepository,
     CArticleRepository,
+    CToolRepository,
+    CToolcatRepository,
     CDailerRepository,
     CBaxerRepository,
     CCommentRepository,

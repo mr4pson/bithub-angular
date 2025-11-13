@@ -4,7 +4,7 @@ header {
   }
 
   @media (min-width:1200px) {
-    height: 70px;
+    height: 88px;
   }
 
   position: sticky;
@@ -38,12 +38,14 @@ header {
       }
 
       @media (min-width:1200px) {
-        display: block;
+        display: flex;
+        align-items: center;
         padding-right: 15px;
       }
 
       @media (min-width:1600px) {
-        display: block;
+        display: flex;
+        align-items: center;
         padding-right: 30px;
       }
 
@@ -135,17 +137,15 @@ header {
       @media (min-width:1200px) {
         display: flex;
         gap: 15px;
-        padding: 0 15px;
       }
 
       @media (min-width:1600px) {
         display: flex;
         gap: 30px;
-        padding: 0 30px;
       }
 
+      padding: 0;
       align-items: center;
-      border-left: 1px var(--color-border2) solid;
       height: 40px;
 
       img {

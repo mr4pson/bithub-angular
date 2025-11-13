@@ -1,0 +1,34 @@
+<h1 class="only-mobile-block">{{words['articles']?.['title']?.[lang.slug]}}</h1>
+<div class="articles-dash">
+  <div class="ar-left">
+    <list-toolcats
+      [(value)]="artcat_id"
+      (valueChange)="onCatChange()"
+    ></list-toolcats>
+  </div>
+  <div class="ar-right">
+    <div class="arr-block">
+      <entity-sorting
+        [items]="sortings"
+        [(value)]="sorting"
+        (valueChange)="onSortingChange()"
+      ></entity-sorting>
+    </div>
+    <div class="arr-block">
+      <input-search
+        [(value)]="search"
+        (valueChange)="onSearchChange()"
+      ></input-search>
+    </div>
+  </div>
+</div>
+<div class="articles-list">
+  <list-tools [tools]="tools" [loading]="loading"></list-tools>
+</div>
+<div class="articles-pagination" *ngIf="pagesQuantity > 1">
+  <the-pagination
+    [n]="pagesQuantity"
+    [(value)]="part"
+    (valueChange)="onPartChange()"
+  ></the-pagination>
+</div>

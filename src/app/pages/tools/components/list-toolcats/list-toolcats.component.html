@@ -1,0 +1,16 @@
+<div class="list-toolcats">
+  <ul>
+    <li>
+      <a
+        [class.active]="value === undefined"
+        (click)="onSelect(undefined)"
+        >{{words['common']?.['all']?.[lang.slug]}}</a
+      >
+    </li>
+    <li *ngFor="let c of toolcats">
+      <a [class.active]="value === c.id" (click)="onSelect(c.id)">{{
+        c.name[lang.slug]
+      }}</a>
+    </li>
+  </ul>
+</div>

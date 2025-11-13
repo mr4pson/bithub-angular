@@ -1,0 +1,19 @@
+<ng-container *ngIf="tools === null"
+  ><div class="loading">
+    <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+  </div></ng-container
+>
+<ng-container *ngIf="tools !== null">
+  <div class="tools">
+    <ng-container *ngIf="!tools.length"
+      ><span>{{words['common']?.['empty']?.[lang.slug]}}</span></ng-container
+    >
+    <ng-container *ngIf="tools.length">
+      <div class="a-items" [class.busy]="loading">
+        <div class="a-item" *ngFor="let tool of tools; let i = index">
+          <the-tool [tool]="tool"></the-tool>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
