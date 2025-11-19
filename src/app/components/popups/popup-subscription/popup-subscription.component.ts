@@ -112,7 +112,7 @@ export class CPopupSubscriptionComponent
   private async initTariffs(): Promise<void> {
     try {
       this.tariffs = await this.tariffRepository.loadSubscriptionAll();
-      this.selectedTariff = this.tariffs[0] || null;
+      this.selectedTariff = this.tariffs[2] || null;
       this.paidSubscription = this.subscriptions.find(
         (subscription) =>
           subscription.type === this.user?.subType ||

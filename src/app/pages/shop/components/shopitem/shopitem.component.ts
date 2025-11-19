@@ -31,10 +31,10 @@ export class CShopitemComponent {
   }
   get calculatedPrice(): number {
     const { discount, price } = this.shopitem;
-    return discount && this.isDgTeam ? price - (price * discount) / 100 : price;
+    return discount && this.isDgPro ? price - (price * discount) / 100 : price;
   }
-  get isDgTeam() {
-    return this.authService.user?.subType === 'dg-team';
+  get isDgPro() {
+    return !!this.authService.user?.subType;
   }
 
   public handleOpenShopitem(event: PointerEvent) {
@@ -48,10 +48,8 @@ export class CShopitemComponent {
     }
 
     if (
-      (this.authService.user?.subType === 'dg-pro' &&
-        this.shopitem.available_for === 'dg-team') ||
-      (!this.authService.user?.subType &&
-        ['dg-pro', 'dg-team'].includes(this.shopitem.available_for))
+      !this.authService.user?.subType &&
+      ['dg-pro', 'dg-team'].includes(this.shopitem.available_for)
     ) {
       this.appService.popupSubscriptionActive = true;
       this.appService.popupIsGemType = true;

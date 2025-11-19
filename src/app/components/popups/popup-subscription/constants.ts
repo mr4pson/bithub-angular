@@ -187,83 +187,83 @@ export const SUBSCRIPTION_LIST: TSubscription[] = [
       },
     ],
   },
-  {
-    type: 'dg-team',
-    name: 'DG TEAM',
-    price: [
-      {
-        period: 90,
-        value: 199,
-        monthPrice: 66,
-      },
-      {
-        period: 182,
-        value: 299,
-        monthPrice: 49,
-      },
-      {
-        period: 365,
-        value: 499,
-        monthPrice: 41,
-      },
-    ],
-    features: [
-      {
-        translations: {
-          ru: 'Всё из PRO',
-          ua: 'All from PRO',
-          en: 'Все з PRO',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Подключение до 15 субаккаунтов',
-          ua: 'Підключення до 15 субакаунтів',
-          en: 'Connect up to 15 sub-accounts',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Командный таскер',
-          ua: 'Командний таскер',
-          en: 'Team Tasker',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Ежемесячная консультация (60 мин)',
-          ua: 'Щомісячна консультація (60 хв)',
-          en: 'Monthly consultation (60 min)',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Приоритетная поддержка',
-          ua: 'Пріоритетна підтримка',
-          en: 'Priority support',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Отчёты по активности команды',
-          ua: 'Звіти щодо активності команди',
-          en: 'Team Activity Reports',
-        },
-        available: true,
-      },
-      {
-        translations: {
-          ru: 'Специальные тарифы на некоторые услуги в магазине',
-          ua: 'Спеціальні тарифи на деякі послуги у магазині',
-          en: 'Special rates for some services in the store',
-        },
-        available: true,
-      },
-    ],
-  },
+  // {
+  //   type: 'dg-team',
+  //   name: 'DG TEAM',
+  //   price: [
+  //     {
+  //       period: 90,
+  //       value: 199,
+  //       monthPrice: 66,
+  //     },
+  //     {
+  //       period: 182,
+  //       value: 299,
+  //       monthPrice: 49,
+  //     },
+  //     {
+  //       period: 365,
+  //       value: 499,
+  //       monthPrice: 41,
+  //     },
+  //   ],
+  //   features: [
+  //     {
+  //       translations: {
+  //         ru: 'Всё из PRO',
+  //         ua: 'All from PRO',
+  //         en: 'Все з PRO',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Подключение до 15 субаккаунтов',
+  //         ua: 'Підключення до 15 субакаунтів',
+  //         en: 'Connect up to 15 sub-accounts',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Командный таскер',
+  //         ua: 'Командний таскер',
+  //         en: 'Team Tasker',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Ежемесячная консультация (60 мин)',
+  //         ua: 'Щомісячна консультація (60 хв)',
+  //         en: 'Monthly consultation (60 min)',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Приоритетная поддержка',
+  //         ua: 'Пріоритетна підтримка',
+  //         en: 'Priority support',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Отчёты по активности команды',
+  //         ua: 'Звіти щодо активності команди',
+  //         en: 'Team Activity Reports',
+  //       },
+  //       available: true,
+  //     },
+  //     {
+  //       translations: {
+  //         ru: 'Специальные тарифы на некоторые услуги в магазине',
+  //         ua: 'Спеціальні тарифи на деякі послуги у магазині',
+  //         en: 'Special rates for some services in the store',
+  //       },
+  //       available: true,
+  //     },
+  //   ],
+  // },
 ];

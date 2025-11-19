@@ -69,7 +69,7 @@ export class CProfileFinancesComponent {
   }
 
   public onPayLimit(): void {
-    if (this.user.subType !== 'dg-team') {
+    if (!this.user.subType) {
       this.appService.popupSubscriptionActive = true;
       this.appService.popupIsGemType = true;
 
