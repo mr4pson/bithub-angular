@@ -1,15 +1,50 @@
 .panel-langs {
-    position: absolute; left: 50%; top: 100%; transform: translateX(-50%); background-color: var(--color-bg-block2); padding: 10px; border-radius: 15px; border:1px var(--color-border2) solid; opacity: 0; pointer-events: none; transition: 0.3s;
-    &.active {opacity: 1; pointer-events: inherit;}
-    ul {
-        li {
-            padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px var(--color-border2) solid;
-            &:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: none;}
-            a {
-                text-transform: uppercase; color: var(--color-txt1); padding: 0 5px; display: block;
-                @media (hover: hover) and (pointer: fine) {&:hover {color: var(--color-txt2);}}
-                &.active {pointer-events: none;}
-            }
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background-color: var(--color-bg-block2);
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px var(--color-border2) solid;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+
+  &.active {
+    opacity: 1;
+    pointer-events: inherit;
+    z-index: 20;
+  }
+
+  ul {
+    li {
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      border-bottom: 1px var(--color-border2) solid;
+
+      &:last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+
+      a {
+        text-transform: uppercase;
+        color: var(--color-txt1);
+        padding: 0 5px;
+        display: block;
+
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            color: var(--color-txt2);
+          }
         }
+
+        &.active {
+          pointer-events: none;
+        }
+      }
     }
+  }
 }
