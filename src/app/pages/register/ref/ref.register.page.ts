@@ -68,6 +68,9 @@ export class CRefRegisterPage implements OnInit {
 
       if (statusCode === 200) {
         this.found = true;
+        await this.userRepository.trackReferralView(
+          this.route.snapshot.params['uuid']
+        );
         await this.appService.pause(500);
         this.appService.popupRegisterActive = true;
         return;

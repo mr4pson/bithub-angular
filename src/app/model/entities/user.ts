@@ -22,6 +22,8 @@ export class CUser extends CEntity {
   public overdue: boolean;
   public referral_percent: number;
   public refEarnings?: number; // сумма заработанная на рефералах
+  public refViewCount: number; // количество переходов по реферальной ссылке
+  public refRegCount: number; // количество зарегистрированных пользователей по реф ссылке
   public tg_username: string;
   public tg_tasks: boolean;
   public tg_guides: boolean;

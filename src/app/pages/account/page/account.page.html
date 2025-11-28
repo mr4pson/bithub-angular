@@ -60,6 +60,14 @@
       </div>
       <div class="p-section">
         <div class="ps-title">
+          {{words['account']?.['income']?.[lang.slug]}}
+        </div>
+        <div class="ps-content">
+          <profile-refer-info [user]="user"></profile-refer-info>
+        </div>
+      </div>
+      <div class="p-section">
+        <div class="ps-title">
           {{words['account']?.['prop-title']?.[lang.slug]}}
         </div>
         <div class="ps-content">

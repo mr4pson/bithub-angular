@@ -134,6 +134,15 @@ export class CDataService {
   public usersIsExists(uuid: string): Observable<IResponse<void>> {
     return this.post(`users/is-exists/${uuid}`);
   }
+  public usersTrackReferralView(uuid: string): Observable<IResponse<void>> {
+    return this.post(`users/track-referral-view/${uuid}`);
+  }
+  public usersReferralsPurchaseCount(): Observable<IResponse<number>> {
+    return this.post(`users/referrals-purchase-count`);
+  }
+  public usersPotentialReferralEarnings(): Observable<IResponse<number>> {
+    return this.post(`users/potential-referral-earnings`);
+  }
   public verify(
     code: number
   ): Observable<{ statusCode: number; error: string }> {

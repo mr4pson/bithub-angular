@@ -1,19 +1,6 @@
 <div class="prr-title">
   {{words['account']?.['r-title']?.[lang.slug]}}({{ users?.length ?? 0 }})
 </div>
-<div class="prr-title">
-  {{words['account']?.['how-much-i-earn']?.[lang.slug]}}
-  <span class="lsm-tooltip">
-    <div
-      [lsm-tooltip]="'$' + refEarnings"
-      placement="top"
-      delay="500"
-      class="question-circle"
-    >
-      ?
-    </div></span
-  >
-</div>
 <div
   class="list-referees bscroll-v"
   [class.padded]="users?.length > 5"

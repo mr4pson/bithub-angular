@@ -1,74 +1,139 @@
 <div class="popup-wrap" [class.active]="active">
-    <div class="popup popup-limit" id="popup-{{unique}}">
-        <div class="popup-head">
-            <div class="popup-headtitle">{{words['limit']?.['title']?.[lang.slug]}}</div>
-            <div class="popup-close" (click)="onClose()"><span></span></div>
-        </div>
-        <div class="popup-main">
-            <div class="popup-title">{{words['limit']?.['title']?.[lang.slug]}}</div>
-            <div class="popup-content"> 
-                <ng-container *ngIf="tariff !== null">
-                    <div class="pc-limit">
-                        <div class="pcl-description">{{words['limit']?.['description']?.[lang.slug]}}</div>
-                        <div class="pcl-section">
-                            <div class="pcl-2cols">
-                                <div class="pcl-col">
-                                    <div class="pcl-title">
-                                        <div class="pclt-left">{{words['limit']?.['q']?.[lang.slug]}}</div>
-                                        <div class="pclt-right">(${{tariff.price}}/{{words['common']?.['pc']?.[lang.slug]}})</div>
-                                    </div>
-                                    <div class="pcl-inputwrap"><input-number [(value)]="q" [min]="5"></input-number></div>
-                                </div>
-                                <div class="pcl-col">
-                                    <div class="pcl-title">{{words['limit']?.['coupon-code']?.[lang.slug]}}</div>
-                                    <div class="pcl-inputwrap"><promo-code (promocodeLoaded)="promocode = $event"></promo-code></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pcl-section" *ngIf="user">
-                            <div class="pcl-title">{{words['limit']?.['order']?.[lang.slug]}}</div>
-                            <div class="pcl-cart">
-                                <div class="pclc-item">
-                                    <div class="pclci-name">{{words['limit']?.['subaccounts']?.[lang.slug]}} - ${{tariff.price}} x {{q}}</div>
-                                    <div class="pclci-value">${{tariff.price * q}}</div>
-                                </div>
-                                <div class="pclc-item" *ngIf="promocode">
-                                    <div class="pclci-name">{{words['limit']?.['coupon']?.[lang.slug]}} "{{promocode.code}}"</div>
-                                    <div class="pclci-value">-{{promocode.discount}}%</div>
-                                </div>
-                                <div class="pclc-item total">
-                                    <div class="pclci-name">{{words['limit']?.['total']?.[lang.slug]}}</div>
-                                    <div class="pclci-value">${{total}}</div>
-                                </div>
-                            </div>
-                            <ng-container *ngIf="total > user.money">
-                                <div class="pcl-insufficient">
-                                    <div class="pcli-note">
-                                        <div>{{words['common']?.['insufficient']?.[lang.slug]}}</div>
-                                        <div>{{words['common']?.['your-money']?.[lang.slug]}}: <strong>${{user.money | number:'1.2-2'}}</strong></div>
-                                    </div>
-                                    <div class="pcli-btnwrap"><button type="button" class="btn casual" (click)="onRecharge($event)"><span class="btn-icon pay"></span><span class="btn-text">{{words["common"]?.["recharge"]?.[lang.slug]}}</span></button></div>
-                                </div>
-                            </ng-container>  
-                            <ng-container *ngIf="total <= user.money">
-                                <div class="pcl-pay" *ngIf="total <= user.money">
-                                    <div class="pclp-btnwrap">
-                                        <button type="button" class="btn gold" [class.busy]="loading" [class.done]="done" (click)="onPay()">
-                                            <span class="btn-icon pay"></span>
-                                            <span class="btn-text">{{words["limit"]?.["pay"]?.[lang.slug]}}</span>
-                                            <span class="btn-done"><span>{{words["limit"]?.["paid"]?.[lang.slug]}}</span></span>
-                                        </button>
-                                        <div class="pclp-error" *ngIf="error">{{words['errors']?.[error]?.[lang.slug]}}</div>
-                                    </div>                                
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                </ng-container>                
-                <ng-container *ngIf="tariff === null">
-                    <div class="loading"><span>{{words['common']?.['loading']?.[lang.slug]}}</span></div>
-                </ng-container>  
-            </div>            
-        </div>        
+  <div class="popup popup-limit" id="popup-{{ unique }}">
+    <div class="popup-head">
+      <div class="popup-headtitle">
+        {{words['limit']?.['title']?.[lang.slug]}}
+      </div>
+      <div class="popup-close" (click)="onClose()"><span></span></div>
     </div>
+    <div class="popup-main">
+      <div class="popup-title">{{words['limit']?.['title']?.[lang.slug]}}</div>
+      <div class="popup-content">
+        <ng-container *ngIf="tariff !== null">
+          <div class="pc-limit">
+            <div class="pcl-description">
+              {{words['limit']?.['description']?.[lang.slug]}}
+            </div>
+            <div class="pcl-section">
+              <div class="pcl-2cols">
+                <div class="pcl-col">
+                  <div class="pcl-title">
+                    <div class="pclt-left">
+                      {{words['limit']?.['q']?.[lang.slug]}}
+                    </div>
+                    <div class="pclt-right">
+                      (${{
+                        tariff.price
+                      }}/{{words['common']?.['pc']?.[lang.slug]}})
+                    </div>
+                  </div>
+                  <div class="pcl-inputwrap">
+                    <input-number [(value)]="q" [min]="1"></input-number>
+                  </div>
+                </div>
+                <div class="pcl-col">
+                  <div class="pcl-title">
+                    {{words['limit']?.['coupon-code']?.[lang.slug]}}
+                  </div>
+                  <div class="pcl-inputwrap">
+                    <promo-code
+                      (promocodeLoaded)="promocode = $event"
+                    ></promo-code>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pcl-section" *ngIf="user">
+              <div class="pcl-title">
+                {{words['limit']?.['order']?.[lang.slug]}}
+              </div>
+              <div class="pcl-cart">
+                <div class="pclc-item">
+                  <div class="pclci-name">
+                    {{words['limit']?.['subaccounts']?.[lang.slug]}} - ${{
+                      tariff.price
+                    }}
+                    x {{ q }}
+                  </div>
+                  <div class="pclci-value">${{ tariff.price * q }}</div>
+                </div>
+                <div class="pclc-item" *ngIf="promocode">
+                  <div class="pclci-name">
+                    {{words['limit']?.['coupon']?.[lang.slug]}} "{{
+                      promocode.code
+                    }}"
+                  </div>
+                  <div class="pclci-value">-{{ promocode.discount }}%</div>
+                </div>
+                <div class="pclc-item total">
+                  <div class="pclci-name">
+                    {{words['limit']?.['total']?.[lang.slug]}}
+                  </div>
+                  <div class="pclci-value">${{ total }}</div>
+                </div>
+              </div>
+              <ng-container *ngIf="total > user.money">
+                <div class="pcl-insufficient">
+                  <div class="pcli-note">
+                    <div>
+                      {{words['common']?.['insufficient']?.[lang.slug]}}
+                    </div>
+                    <div>
+                      {{words['common']?.['your-money']?.[lang.slug]}}:
+                      <strong>${{ user.money | number : "1.2-2" }}</strong>
+                    </div>
+                  </div>
+                  <div class="pcli-btnwrap">
+                    <button
+                      type="button"
+                      class="btn casual"
+                      (click)="onRecharge($event)"
+                    >
+                      <span class="btn-icon pay"></span
+                      ><span
+                        class="btn-text"
+                        >{{words["common"]?.["recharge"]?.[lang.slug]}}</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="total <= user.money">
+                <div class="pcl-pay" *ngIf="total <= user.money">
+                  <div class="pclp-btnwrap">
+                    <button
+                      type="button"
+                      class="btn gold"
+                      [class.busy]="loading"
+                      [class.done]="done"
+                      (click)="onPay()"
+                    >
+                      <span class="btn-icon pay"></span>
+                      <span
+                        class="btn-text"
+                        >{{words["limit"]?.["pay"]?.[lang.slug]}}</span
+                      >
+                      <span class="btn-done"
+                        ><span
+                          >{{words["limit"]?.["paid"]?.[lang.slug]}}</span
+                        ></span
+                      >
+                    </button>
+                    <div class="pclp-error" *ngIf="error">
+                      {{words['errors']?.[error]?.[lang.slug]}}
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="tariff === null">
+          <div class="loading">
+            <span>{{words['common']?.['loading']?.[lang.slug]}}</span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,92 @@
+<div class="profile-referees">
+  <div class="pr-reward">
+    <div class="prr-info">
+      {{words['account']?.['redirections-num']?.[lang.slug]}}
+      <span class="lsm-tooltip">
+        <div
+          [lsm-tooltip]="words['account']?.['redirections-num-info']?.[lang.slug]"
+          placement="top"
+          delay="500"
+          class="question-circle"
+        >
+          ?
+        </div>
+      </span>
+    </div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="user.refViewCount" />
+    </div>
+  </div>
+  <div class="pr-reward">
+    <div class="prr-info">
+      {{words['account']?.['reg-num']?.[lang.slug]}}
+      <span class="lsm-tooltip">
+        <div
+          [lsm-tooltip]="words['account']?.['reg-num-info']?.[lang.slug]"
+          placement="top"
+          delay="500"
+          class="question-circle"
+        >
+          ?
+        </div>
+      </span>
+    </div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="user.refRegCount" />
+    </div>
+  </div>
+  <div class="pr-reward">
+    <div class="prr-info">
+      {{words['account']?.['paid-refs-num']?.[lang.slug]}}
+      <span class="lsm-tooltip">
+        <div
+          [lsm-tooltip]="words['account']?.['paid-refs-num-info']?.[lang.slug]"
+          placement="top"
+          delay="500"
+          class="question-circle"
+        >
+          ?
+        </div>
+      </span>
+    </div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="referralPurchaseCount" />
+    </div>
+  </div>
+  <div class="pr-reward">
+    <div class="prr-info">
+      {{words['account']?.['how-much-i-earn']?.[lang.slug]}}
+      <span class="lsm-tooltip">
+        <div
+          [lsm-tooltip]="words['account']?.['how-much-i-earn-info']?.[lang.slug]"
+          placement="top"
+          delay="500"
+          class="question-circle"
+        >
+          ?
+        </div>
+      </span>
+    </div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="'$' + user.refEarnings" />
+    </div>
+  </div>
+  <div class="pr-reward">
+    <div class="prr-info">
+      {{words['account']?.['how-much-i-can-earn']?.[lang.slug]}}
+      <span class="lsm-tooltip">
+        <div
+          [lsm-tooltip]="words['account']?.['how-much-i-can-earn-info']?.[lang.slug]"
+          placement="top"
+          delay="500"
+          class="question-circle"
+        >
+          ?
+        </div>
+      </span>
+    </div>
+    <div class="prr-inputwrap">
+      <input type="text" disabled [value]="'$' + potentialReferralEarnings" />
+    </div>
+  </div>
+</div>

@@ -26,7 +26,7 @@ export class CPopupLimitComponent
   implements OnInit, OnChanges
 {
   public tariff: IOnetimeTariff = null;
-  public q: number = 5;
+  public q: number = 1;
   public promocode: IPromocode = null;
   public loading: boolean = false;
   public error: string = null;

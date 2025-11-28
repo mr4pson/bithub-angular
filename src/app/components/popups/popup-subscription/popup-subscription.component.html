@@ -61,8 +61,8 @@
                 <div class="pcs-cart">
                   <div class="pcsc-item">
                     <div class="pcsci-name">
-                      {{ selectedTariff.name[lang.slug] }}
-                      {{ selectedSubscription.name }}
+                      {{ selectedTariff?.name[lang.slug] }}
+                      {{ selectedSubscription?.name }}
                       <span
                         >({{words['common']?.['until']?.[lang.slug]}}
                         {{ tariffUntil }})</span

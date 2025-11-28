@@ -100,6 +100,34 @@ export class CUserRepository {
     );
   }
 
+  public trackReferralView(uuid: string): Promise<number> {
+    return new Promise((resolve, reject) =>
+      this.dataService.usersTrackReferralView(uuid).subscribe({
+        next: (res) => resolve(res.statusCode),
+        error: (err) => reject(err.message),
+      })
+    );
+  }
+
+  public getReferralsPurchaseCount(): Promise<number> {
+    return new Promise((resolve, reject) =>
+      this.dataService.usersReferralsPurchaseCount().subscribe({
+        next: (res) =>
+          res.statusCode === 200 ? resolve(res.data) : reject(res.error),
+      })
+    );
+  }
+
+  public getPotentialReferralEarnings(): Promise<number> {
+    return new Promise((resolve, reject) =>
+      this.dataService.usersPotentialReferralEarnings().subscribe({
+        next: (res) =>
+          res.statusCode === 200 ? resolve(res.data) : reject(res.error),
+        error: (err) => reject(err.message),
+      })
+    );
+  }
+
   public verify(code: number): Promise<{ statusCode: number; error: string }> {
     return new Promise((resolve, reject) =>
       this.dataService.verify(code).subscribe({
