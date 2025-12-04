@@ -39,6 +39,14 @@
       </div>
     </div>
   </div>
+  <div class="h-center">
+    <nav><menu-main></menu-main></nav>
+    <div class="hc-logo" *ngIf="!authenticated">
+      <a routerLink="/{{ lang.slug }}"
+        ><img src="/assets/images/logo.svg" alt="logo"
+      /></a>
+    </div>
+  </div>
   <div class="h-right">
     <ng-container *ngIf="!authenticated">
       <div class="hr-ava">
@@ -100,14 +108,6 @@
         <panel-account [(active)]="panelAccountActive"></panel-account>
       </div>
     </ng-container>
-  </div>
-  <div class="h-center">
-    <nav><menu-main></menu-main></nav>
-    <div class="hc-logo" *ngIf="!authenticated">
-      <a routerLink="/{{ lang.slug }}"
-        ><img src="/assets/images/logo.svg" alt="logo"
-      /></a>
-    </div>
   </div>
 </header>
 

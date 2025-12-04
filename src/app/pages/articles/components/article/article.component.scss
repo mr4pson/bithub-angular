@@ -9,6 +9,12 @@
   height: 100%;
   user-select: none;
 
+  // .a-content {
+  //   figure.m_column {
+  //     margin: 10px 0;
+  //   }
+  // }
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       color: var(--color-txt1);

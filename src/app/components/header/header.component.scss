@@ -413,6 +413,10 @@ header {
     display: flex;
     align-items: center;
 
+    @media (max-width:1750px) {
+      margin-right: 200px;
+    }
+
     nav {
       @media (min-width:0) {
         display: none;

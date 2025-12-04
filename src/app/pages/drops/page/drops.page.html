@@ -1,8 +1,21 @@
 <h1 class="only-mobile-block">{{h1}}</h1>
 <div class="drops-dash">
-    <div class="dd-left"><entity-sorting [items]="sortings" [(value)]="sorting" (valueChange)="onSortingChange()"></entity-sorting></div>
-    <div class="dd-right"></div>
+  <div class="dd-left">
+    <entity-sorting
+      [items]="sortings"
+      [(value)]="sorting"
+      (valueChange)="onSortingChange()"
+    ></entity-sorting>
+  </div>
+  <div class="dd-right"></div>
 </div>
-<div class="drops-list"><list-drops [drops]="drops" [loading]="loading"></list-drops></div>
-<div class="drops-pagination" *ngIf="pagesQuantity > 1"><the-pagination [n]="pagesQuantity" [(value)]="part" (valueChange)="onPartChange()"></the-pagination></div>
-
+<div class="drops-list">
+  <list-drops [drops]="drops" [loading]="loading"></list-drops>
+</div>
+<div class="drops-pagination" *ngIf="pagesQuantity > 1">
+  <the-pagination
+    [n]="pagesQuantity"
+    [(value)]="part"
+    (valueChange)="onPartChange()"
+  ></the-pagination>
+</div>
