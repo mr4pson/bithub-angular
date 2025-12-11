@@ -54,7 +54,7 @@ export class CPopupSubscriptionComponent
     return this.authService.user;
   }
   get subscriptionTotalPrice() {
-    const price = this.selectedSubscription.price?.find(
+    const price = this.selectedSubscription?.price?.find(
       (priceItem) => priceItem.period === this.selectedTariff.period
     );
 

@@ -7,6 +7,7 @@ import { IWords } from 'src/app/model/entities/words';
 import { CAppService } from 'src/app/services/app.service';
 import { CAuthService } from 'src/app/services/auth.service';
 import { CArticleRepository } from 'src/app/services/repositories/article.repository';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'one-articles-page',
@@ -24,7 +25,8 @@ export class COneArticlesPage {
     private route: ActivatedRoute,
     private router: Router,
     @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private sanitizer: DomSanitizer
   ) {}
 
   get words(): IWords {
@@ -33,8 +35,10 @@ export class COneArticlesPage {
   get lang(): ILang {
     return this.appService.lang.value;
   }
-  get content(): string {
-    return this.article?.content[this.lang.slug];
+  get content(): SafeHtml {
+    const raw = this.article?.content?.[this.lang.slug] ?? '';
+
+    return this.sanitizer.bypassSecurityTrustHtml(raw);
   }
   get img(): string {
     return this.article.img;
@@ -79,10 +83,76 @@ export class COneArticlesPage {
       this.updateCanonicalLink(
         this.article.canonical[this.appService.lang.value.slug]
       );
+
+      // Заменяем пустые якоря на якоря с пробелом, чтобы браузер не обрезал id
+      this.fixEmptyAnchors();
+
+      // После загрузки статьи пробуем найти первый <a id="..."></a> в контенте и проскроллить к нему
+      await this.scrollToFirstAnchor();
     } catch (err) {
       err === 404
         ? this.router.navigateByUrl(`/${this.lang.slug}/errors/404`)
         : this.appService.notifyError(err);
+    }
+  }
+
+  // Заменяет пустые якоря <a id="..."></a> на <a id="..."> </a>
+  private fixEmptyAnchors(): void {
+    try {
+      const langSlug = this.appService.lang.value.slug;
+      if (!this.article?.content?.[langSlug]) {
+        return;
+      }
+      // Заменяем <a id="..."></a> на <a id="..."> </a>
+      this.article.content[langSlug] = this.article.content[langSlug].replace(
+        /<a\s+([^>]*?)id=["']([^"']+)["']([^>]*)>(\s*)<\/a>/gi,
+        '<a href="$2" $1id="$2"$3></a>'
+      );
+    } catch (e) {
+      console.warn('fixEmptyAnchors failed', e);
+    }
+  }
+
+  // Ищет id якоря (сначала из hash в URL, иначе - первый <a id="..."> в контенте) и делает scrollIntoView
+  private async scrollToFirstAnchor(): Promise<void> {
+    try {
+      // Попробовать взять id из хэша URL (#test)
+      let id: string = '';
+      try {
+        const rawHash = this.document?.location?.hash || '';
+        if (rawHash && rawHash.startsWith('#')) {
+          id = decodeURIComponent(rawHash.slice(1));
+        }
+      } catch (e) {
+        // игнорируем ошибки чтения hash
+      }
+
+      if (!id) {
+        return;
+      }
+
+      // Ждем отрисовки контента в DOM
+      await this.appService.pause(50);
+
+      // Ищем элемент сначала по getElementById, затем внутри контейнера .a-content
+      let el: Element = this.document.getElementById(id) as Element;
+      if (!el) {
+        const contentDiv = this.document.querySelector('.a-content') as Element;
+        if (contentDiv) {
+          // безопасный селектор поиска по атрибуту id
+          const safeId = id.replace(/"/g, '\\"');
+          el = contentDiv.querySelector(`[id="${safeId}"]`);
+        }
+      }
+
+      if (el && typeof (el as HTMLElement).scrollIntoView === 'function') {
+        (el as HTMLElement).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    } catch (e) {
+      console.warn('scrollToFirstAnchor failed', e);
     }
   }
 
