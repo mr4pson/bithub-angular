@@ -25,7 +25,7 @@ export class CAppService {
   public notifyErrorTimer: number = null;
   public popupLoginActive: boolean = false;
   public popupVerifActive: boolean = false;
-  public popupRegisterActive: boolean = true;
+  public popupRegisterActive: boolean = false;
   public popupRecoverActive: boolean = false;
   public popupSubscriptionActive: boolean = false;
   public popupInorderActive: boolean = false;
