@@ -79,7 +79,7 @@
                     <score-scale [value]="d.score" />
                   </div>
                 </td>
-                <td>{{ d.tasks[lang.slug] }}</td>
+                <td [innerHTML]="d.tasks[lang.slug] | safe : 'html'"></td>
                 <td>
                   <div class="did-txt">{{ d.fundrising }}</div>
                   <div *ngIf="d.invest[lang.slug]" class="did-value">
@@ -173,7 +173,10 @@
                   <div class="dgi-title">
                     {{words['drops']?.['tasks']?.[lang.slug]}}
                   </div>
-                  <div class="dgi-value">{{ d.tasks[lang.slug] }}</div>
+                  <div
+                    class="dgi-value"
+                    [innerHTML]="d.tasks[lang.slug] | safe : 'html'"
+                  ></div>
                 </div>
                 <div class="dgi-param">
                   <div class="dgi-title">
