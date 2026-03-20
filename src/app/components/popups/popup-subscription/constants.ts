@@ -20,9 +20,9 @@ export const SUBSCRIPTION_LIST: TSubscription[] = [
     features: [
       {
         translations: {
-          ru: 'Неограниченный доступ к просмотру доступных гайдов',
-          ua: 'Необмежений доступ до перегляду доступних гайдів',
-          en: 'Unlimited access to view available guides',
+          ru: '5 бесплатных просмотров доступных гайдов',
+          ua: '5 безкоштовених переглядів доступних гайдів',
+          en: '5 free views for available guides',
         },
         available: true,
       },
